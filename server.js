@@ -34,8 +34,9 @@ var Scraper = db.model('scraper', ScraperSchema);
 ///////////////////////
 // SCRAPER ////////////
 ///////////////////////
-var scraped_data = require('./scraper.js');
+var scraper = require('./scraper.js');
 
+// app.get('/', scraper.addScrapedUrls);
 
 
 /////////////////////
@@ -46,7 +47,6 @@ app.set('port', process.env.PORT || 3030);
 // app.set('views', path.join(__dirname, 'views'));
 // app.set('view engine', 'jade');
 
-
 app.use(favicon());
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -55,6 +55,8 @@ app.use(cookieParser());
 
 // app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
+
+
 
 
 /////////////////////

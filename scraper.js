@@ -31,14 +31,14 @@ request('http://giphy.com/search/fistbump', function(err, resp, body){
       $('img.gifs-gif', '#searchresults').each(function(i, element){
         var url = $(element).attr('src');
         urls.push(url);
-        console.log(url);
-        addScrapedUrls(urls);
       });
+      addScrapedUrls(urls);
     }
 });
 
 function addScrapedUrls(urls){
   for (var i=0; i < urls.length; i++){
+    console.log("inserting url " + urls[i] + " into DB");
     scraped_data = new Scraper({
       url : urls[i],
       used : "no"

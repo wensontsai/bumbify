@@ -9,13 +9,18 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var routes = require('./routes/index');
+var cheerio = require('cheerio');
+var request = require('request');
 
+var routes = require('./routes/index');
 var app = express();
 
+
+////////////////////////////////////////
 ///////// db connect  //////////////////
+////////////////////////////////////////
 var Mongoose = require('mongoose');
-var db = Mongoose.createConnection('mongodb://localhost/last_todo_ever',
+var db = Mongoose.createConnection('mongodb://localhost/bumbify',
         function(err){
             if(err){
                 console.log('connection error', err);
@@ -24,8 +29,11 @@ var db = Mongoose.createConnection('mongodb://localhost/last_todo_ever',
             }
         });
 
-var TodoSchema = require('./models/Todo.js').TodoSchema;
-var Todo = db.model('todos', TodoSchema);
+
+var ScraperSchema = require('./models/Scraper.js').ScraperSchema;
+var Scraper = db.model('scraper', ScraperSchema);
+
+
 
 
 /////////////////////
@@ -49,10 +57,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 /////////////////////
 // AngularJS  ROUTING
 /////////////////////
-app.get('/', routes.index(Todo));
-app.get('/todos.json', routes.get(Todo));
-app.put('/todo/:id/json', routes.update(Todo));
-app.post('/todo.json', routes.addTodo(Todo));
+app.get('/', routes.index(Scraper));
+app.get('/todos.json', routes.get(Scraper));
+app.put('/todo/:id/json', routes.update(Scraper));
+app.post('/todo.json', routes.addTodo(Scraper));
 
 // var user = require('.routes/user');
 // app.get('/users', user.list);
@@ -60,8 +68,8 @@ app.post('/todo.json', routes.addTodo(Todo));
 
 
 
-
-////////   catch 404 and forward to error handler  ////////
+//////////////////////////////////////////////////
+////////   catch 404 and forward to error handler  //////////////////////////////////////////////////
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
     err.status = 404;

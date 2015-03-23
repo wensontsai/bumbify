@@ -41,8 +41,9 @@ var Scraper = db.model('scraper', ScraperSchema);
 // all environments
 /////////////////////
 app.set('port', process.env.PORT || 3030);
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+// app.set('views', path.join(__dirname, 'views'));
+// app.set('view engine', 'jade');
+
 
 app.use(favicon());
 app.use(logger('dev'));

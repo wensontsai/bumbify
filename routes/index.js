@@ -1,7 +1,10 @@
-
 /*
  * GET home page.
  */
+
+ // scrape and load db
+
+
 
 exports.index = function(Todo) {
   return function(req, res) {

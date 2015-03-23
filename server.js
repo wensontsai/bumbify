@@ -9,9 +9,6 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var cheerio = require('cheerio');
-var request = require('request');
-
 var routes = require('./routes/index');
 var app = express();
 
@@ -33,6 +30,11 @@ var db = Mongoose.createConnection('mongodb://localhost/bumbify',
 var ScraperSchema = require('./models/Scraper.js').ScraperSchema;
 var Scraper = db.model('scraper', ScraperSchema);
 
+
+///////////////////////
+// SCRAPER ////////////
+///////////////////////
+var scraped_data = require('./scraper.js');
 
 
 

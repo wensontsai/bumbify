@@ -2,7 +2,21 @@ angular.module('BumbifyModule', [])
 
   .controller('ScraperController',
     function($scope, $http){
-  $scope.todos = [];
+      $scope.scrapedData = [];
+
+      $scope.newScrape = {
+        time : new Date(new Date().getTime() + 24 * 60 * 60 * 1000),
+        url : ''
+      };
+
+      $scope.setScrape = function(scrapedData){
+        $scope.scrapedData = scrapedData;
+      }
+
+
+
+
+    });
 
 
 
@@ -19,6 +33,8 @@ angular.module('BumbifyModule', [])
   // $scope.setTodos = function(todos) {
   //   $scope.todos = todos;
   // };
+
+
 
   // $scope.update = function(todo) {
   //   $http.put('/todo/' + todo._id + '.json', todo).success(function(data) {
@@ -51,4 +67,3 @@ angular.module('BumbifyModule', [])
 
   // $scope.updateList();
 
-});

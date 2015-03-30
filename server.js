@@ -10,6 +10,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
+var scraper_routes = require('./routes/scraper');
 var app = express();
 
 
@@ -34,9 +35,9 @@ var Scraper = db.model('scraper', ScraperSchema);
 ///////////////////////
 // SCRAPER ////////////
 ///////////////////////
-var scraper = require('./scraper.js');
+var scraper_logic = require('./scraper.js');
 
-// app.get('/', scraper.addScrapedUrls);
+
 
 
 /////////////////////
@@ -62,10 +63,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 /////////////////////
 // AngularJS  ROUTING
 /////////////////////
-app.get('/', routes.index(Scraper));
-app.get('/todos.json', routes.get(Scraper));
-app.put('/todo/:id/json', routes.update(Scraper));
-app.post('/todo.json', routes.addTodo(Scraper));
+
+app.get('/', routes.showScrapes(Scraper));
+
+
+// app.get('/', routes.index(Scraper));
+// app.get('/todos.json', routes.get(Scraper));
+// app.put('/todo/:id/json', routes.update(Scraper));
+// app.post('/todo.json', routes.addTodo(Scraper));
 
 // var user = require('.routes/user');
 // app.get('/users', user.list);

@@ -2,10 +2,6 @@
  * GET home page.
  */
 
- //show scraped data
-exports.showScrapes = function(scrapedData){
-  return scrapedData;
-};
 
 
 exports.index = function(Todo) {

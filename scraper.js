@@ -37,6 +37,11 @@ request('http://giphy.com/search/fistbump', function(err, resp, body){
 });
 
 function addScrapedUrls(urls){
+  // clear out old urls
+  console.log('removing all current docs from collection -> scraper');
+  Scraper.remove().exec();
+
+  // populate with latest scrape urls
   for (var i=0; i < urls.length; i++){
     console.log("inserting url " + urls[i] + " into DB");
     scraped_data = new Scraper({

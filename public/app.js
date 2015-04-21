@@ -1,4 +1,4 @@
-angular.module('MyApp', ['ngCookies', 'ngResource', 'ngMessages', 'ui.router'])
+angular.module('ThisApp', ['ngCookies', 'ngResource', 'ngMessages', 'ui.router'])
 
   .config(function($stateProvider, $urlRouterProvider) {
   //
@@ -9,7 +9,7 @@ angular.module('MyApp', ['ngCookies', 'ngResource', 'ngMessages', 'ui.router'])
   $stateProvider
     .state('state1', {
       url: "/",
-      templateUrl: "views/home.html"
+      templateUrl: "index.html"
     })
     .state('state1.gifs', {
       url: "/gifs",

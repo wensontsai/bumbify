@@ -8,7 +8,6 @@ var favicon = require('static-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
 var routes = require('./routes/index');
 var app = express();
 
@@ -44,7 +43,7 @@ var scraper_logic = require('./scraper.js');
 // all environments
 /////////////////////
 app.set('port', process.env.PORT || 3030);
-app.set('views', path.join(__dirname, 'views'));
+// app.set('views', path.join(__dirname, 'views'));
 // app.set('view engine', 'jade');
 
 app.use(favicon());
@@ -52,8 +51,6 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(cookieParser());
-
-// app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
 
@@ -64,7 +61,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 /////////////////////
 
 app.get('/', routes.index(Scraper));
-
+app.get('/api/all_scrapes', routes.getScrapes(Scraper));
+// app.get('*', routes.index(Scraper));
 
 
 

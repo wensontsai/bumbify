@@ -1,15 +1,3 @@
-// angular.module('MyApp')
-//   .controller('ScrapesCtrl', ['$scope', 'Scraper', function($scope, Scraper){
-
-//     $scope.gifs = Scraper.query();
-
-//     $scope.showAllGifs = function(gifs){
-//       $scope.gifs = Scraper.query({url : url});
-//     };
-
-//   }]);
-
-
 angular.module('ThisApp', [])
   .controller('ScrapesCtrl',
     function($scope, $http){
@@ -18,7 +6,7 @@ angular.module('ThisApp', [])
       $scope.showScrapes = function(){
         $http.get('/api/all_scrapes').success(function(data){
           console.log(data);
-          $scope.gifs = data;
+          $scope.gifs = data.gifs;
         });
       };
 

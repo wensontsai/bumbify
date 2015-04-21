@@ -60,9 +60,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 // AngularJS  ROUTING
 /////////////////////
 
-app.get('/', routes.index(Scraper));
-app.get('/api/all_scrapes', routes.getScrapes(Scraper));
-// app.get('*', routes.index(Scraper));
 
 
 

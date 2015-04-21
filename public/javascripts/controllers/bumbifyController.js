@@ -14,6 +14,11 @@ angular.module('BumbifyModule', [])
       }
 
 
+      $scope.showScrapes = function() {
+        $http.get('/.json').success(function(data) {
+          $scope.scrapedData = data.scrapedData;
+        });
+      }
 
 
     });

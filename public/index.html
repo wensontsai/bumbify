@@ -18,7 +18,8 @@
   <div class='container'>
     <!-- angular code -->
     <div ng-controller="bumbifyController" ng-init="showScrapes()">
-      all the stuff here then.
+      <li ng-repeat='data in scrapedData'>
+        <span>{{data.url}}</span>
 
 
 

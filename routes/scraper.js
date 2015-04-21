@@ -4,14 +4,15 @@
 
 
  //show scraped data
-exports.showScrapes = function(ScrapedData) {
+
+
+exports.index = function(Scraper) {
   return function(req, res) {
-    ScrapedData.find({}. function(error, scrapedData) {
+    Scraper.find({}, function(error, scrapes){
       res.render('index', {
         title: 'Bumbify',
-        scrapedData : scrapedData
+        scrapes : scrapes
       });
     });
   };
 };
-

@@ -2,7 +2,6 @@ var cheerio = require('cheerio');
 var request = require('request');
 var urls = [];
 
-var routes = require('./routes/index');
 
 ////////////////////////////////////////
 ///////// db connect  //////////////////

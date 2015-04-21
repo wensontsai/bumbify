@@ -1,30 +1,62 @@
 <!DOCTYPE html>
-<html lang="en">
+<html ng-app="MyApp" lang="en"> <!-- ng-app determines this as root element of app -->
 <head>
   <meta charset="UTF-8">
-  <title>Bumbify</title>
-  <link rel="stylesheet" href="/stylesheets/style.css">
-  <link rel="stylesheet" href="/javascripts/vendor/bootstrap-css/css/bootstrap.css">
+  <title>bumbify</title>
 
-  <script type='text/javascript' src='/javascripts/vendor/angular/angular.js'></script>
-  <script type='text/javascript' src='/javascripts/vendor/angular-bootstrap/ui-bootstrap-tpls.js'></script>
-  <script type='text/javascript' src='/javascripts/BumbifyModule.js'></script>
-  <script type='text/javascript' src='/javascripts/controllers/bumbifyController.js'></script>
+  <base href="/">
+  <!-- necessary to enable HTML5 history API in angular.js -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="icon" type="image/png" href="favicon.png"/>
+  <link rel="stylesheet" href="stylesheets/style.css">
+
+
+  <script src="vendor/angular/angular.js"></script>
+  <script src="vendor/angular-bootstrap/ui-bootstrap.min.js"></script>
+  <script src="vendor/angular-strap/dist/angular-strap.tpl.min.js"></script>
+  <script src="vendor/angular-strap/dist/angular-strap.min.js"></script>
+  <script src="vendor/angular-animate/angular-animate.min.js"></script>
+  <script src="vendor/angular-messages/angular-messages.js"></script>
+  <script src="vendor/angular-resource/angular-resource.js"></script>
+  <script src="vendor/angular-ui-router/release/angular-ui-router.js"></script>
+  <script src="vendor/angular-cookies/angular-cookies.js"></script>
+  <script src="vendor/moment/moment.js"></script>
+
+
+
+  <script src="app.js"></script>
+  <script src="services/show.js"></script>
+  <script src="services/subscription.js"></script>
+  <script src="services/auth.js"></script>
+
+  <script src="filters/fromNow.js"></script>
+  <script src="directives/repeatPassword.js"></script>
+
+  <script src="controllers/main.js"></script>
+  <script src="controllers/add.js"></script>
+  <script src="controllers/signup.js"></script>
+  <script src="controllers/login.js"></script>
+  <script src="controllers/navbar.js"></script>
 
 
 </head>
+
+
 <body>
   <!-- begin bootstrap container -->
   <div class='container'>
     <!-- angular code -->
-    <div ng-controller="bumbifyController" ng-init="showScrapes()">
-      <li ng-repeat='data in scrapedData'>
-        <span>{{data.url}}</span>
+    <div ng-controller="ScrapesCtrl" ng-init="showScrapes()">
+      <li ng-repeat='url in gifs'>
+        <span>{{gifs}}</span>
 
 
 
     </div> <!-- end angular code -->
   </div> <!-- end bootstrap container -->
 
-</body>
-</html>
+
+
+    <div ng-view></div>

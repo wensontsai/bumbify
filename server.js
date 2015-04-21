@@ -10,7 +10,6 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
-var scraper_routes = require('./routes/scraper');
 var app = express();
 
 
@@ -45,7 +44,7 @@ var scraper_logic = require('./scraper.js');
 // all environments
 /////////////////////
 app.set('port', process.env.PORT || 3030);
-// app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, 'views'));
 // app.set('view engine', 'jade');
 
 app.use(favicon());
@@ -64,24 +63,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 // AngularJS  ROUTING
 /////////////////////
 
-// app.get('/', routes.showScrapes(Scraper));
 app.get('/', routes.index(Scraper));
 
 
 
-// app.get('/', routes.index(Scraper));
-// app.get('/todos.json', routes.get(Scraper));
-// app.put('/todo/:id/json', routes.update(Scraper));
-// app.post('/todo.json', routes.addTodo(Scraper));
-
-// var user = require('.routes/user');
-// app.get('/users', user.list);
 
 
 
 
-//////////////////////////////////////////////////
-////////   catch 404 and forward to error handler  //////////////////////////////////////////////////
+////////   catch 404 and forward to error handler
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
     err.status = 404;
@@ -89,9 +79,8 @@ app.use(function(req, res, next) {
 });
 
 
-//////////////////
 /// error handlers
-//////////////////
+
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
@@ -114,8 +103,7 @@ app.use(function(err, req, res, next) {
 });
 
 
-//////////////////////////
+
 // server + listening port
-//////////////////////////
 http.createServer(app).listen(3030);
 console.log('Express server listening on port ' + app.get('port'));

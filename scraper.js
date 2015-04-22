@@ -24,7 +24,7 @@ var Scraper = db.model('scraper', ScraperSchema);
 
 
 //wrap this in a success function
-request('http://giphy.com/search/fistbump', function(err, resp, body){
+request('http://giphy.com/search/sex', function(err, resp, body){
     if(!err && resp.statusCode == 200){
       var $ = cheerio.load(body);
       $('img.gifs-gif', '#searchresults').each(function(i, element){
@@ -42,9 +42,9 @@ function addScrapedUrls(urls){
 
   // populate with latest scrape urls
   for (var i=0; i < urls.length; i++){
-    console.log("inserting url " + urls[i] + " into DB");
+    console.log("inserting url " + urls[i].replace('_s', '') + " into DB");
     scraped_data = new Scraper({
-      url : urls[i],
+      url : urls[i].replace('_s', ''),
       used : "no"
     });
     scraped_data.save();

@@ -2,6 +2,13 @@ angular.module('ThisApp', [])
   .controller('ScrapesCtrl',
     function($scope, $http){
       $scope.gifs = [];
+      $scope.formInfo = {};
+
+
+      $scope.saveData = function(){
+        console.log($scope.formInfo);
+      };
+
 
       $scope.showScrapes = function(){
         $http.get('/api/scrapes').success(function(data){

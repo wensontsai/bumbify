@@ -35,6 +35,8 @@ request('http://giphy.com/search/sex', function(err, resp, body){
     }
 });
 
+
+
 function addScrapedUrls(urls){
   // clear out old urls
   console.log('removing all current docs from collection -> scraper');

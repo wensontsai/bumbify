@@ -10,18 +10,24 @@ angular.module('ThisApp', [])
       $scope.passwordRequired = '';
 
       $scope.saveData = function(){
-        console.log($scope.formInfo);
-        if (!$scope.formInfo.Name) {
-        $scope.nameRequired = '* Name Required *';
-      }
+        if (!$scope.formInfo.name) {
+          $scope.nameRequired = '* Name Required *';
+        }
+        else if (!$scope.formInfo.email) {
+          $scope.emailRequired = '* Email Required *';
+        }
+        else if (!$scope.formInfo.password) {
+          $scope.passwordRequired = '* Password Required *';
+        }
+        else {
+          $http.post('/api/createUser', $scope.formInfo)
+            .success(function(data){
+              if(data){
+                console.log(JSON.stringify(data));
+              }
+          });
+        }
 
-      if (!$scope.formInfo.Email) {
-        $scope.emailRequired = '* Email Required *';
-      }
-
-      if (!$scope.formInfo.Password) {
-        $scope.passwordRequired = '* Password Required *';
-      }
       };
 
 

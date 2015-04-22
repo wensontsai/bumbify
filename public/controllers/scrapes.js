@@ -6,7 +6,7 @@ angular.module('ThisApp', [])
       $scope.showScrapes = function(){
         $http.get('/api/scrapes').success(function(data){
           $scope.gifs = data;
-          console.log($scope);
+          console.log($scope.gifs);
         });
       };
 

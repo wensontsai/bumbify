@@ -4,9 +4,24 @@ angular.module('ThisApp', [])
       $scope.gifs = [];
       $scope.formInfo = {};
 
+      //validations
+      $scope.nameRequired = '';
+      $scope.emailRequired = '';
+      $scope.passwordRequired = '';
 
       $scope.saveData = function(){
         console.log($scope.formInfo);
+        if (!$scope.formInfo.Name) {
+        $scope.nameRequired = '* Name Required *';
+      }
+
+      if (!$scope.formInfo.Email) {
+        $scope.emailRequired = '* Email Required *';
+      }
+
+      if (!$scope.formInfo.Password) {
+        $scope.passwordRequired = '* Password Required *';
+      }
       };
 
 

@@ -11,7 +11,17 @@ var request = require('request');
 //     });
 //   };
 // };
+function clearDB(Scraper){
+  // clear out old urls
+  Scraper.remove().exec();
+  console.log('removing all current docs from collection -> scraper');
+}
 
+
+
+
+
+// GET reqs //
 exports.showScrapes = function(Scraper){
   return function(req, res, next){
     Scraper.find(function(error, scrapes){
@@ -22,6 +32,9 @@ exports.showScrapes = function(Scraper){
   };
 };
 
+
+
+// POST reqs //
 exports.searchGifs = function(Scraper){
     var urls = [];
     var tag = '';
@@ -40,14 +53,15 @@ exports.searchGifs = function(Scraper){
               urls.push(url);
             });
             addScrapedUrls(urls);
+
+            // clear urls array so next search is that search only
+            urls=[];
           };
       });
     };
 
     function addScrapedUrls(urls){
-      // clear out old urls
-      console.log('removing all current docs from collection -> scraper');
-      Scraper.remove().exec();
+      clearDB(Scraper);
 
       // populate with latest scrape urls
       for (var i=0; i < urls.length; i++){
@@ -59,12 +73,6 @@ exports.searchGifs = function(Scraper){
         scraped_data.save();
       };
     };
-
-    Scraper.find(function(error, scrapes){
-      if(error) return console.error(error);
-      console.dir(scrapes);
-      res.send(scrapes);
-    });
 };
 
 

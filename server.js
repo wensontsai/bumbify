@@ -22,7 +22,7 @@ var db = Mongoose.createConnection('mongodb://localhost/bumbify',
             if(err){
                 console.log('connection error', err);
             } else {
-                console.log('connection successfull');
+                console.log('connection successful');
             }
         });
 
@@ -33,11 +33,6 @@ var Scraper = db.model('scraper', ScraperSchema);
 var UserSchema = require('./models/User.js').UserSchema;
 var User = db.model('user', UserSchema);
 
-
-///////////////////////
-// SCRAPER ////////////
-///////////////////////
-// var scraper_logic = require('./scraper.js');
 
 
 
@@ -64,6 +59,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // AngularJS  ROUTING
 /////////////////////
 // app.get('/', routes.index(Scraper));
+
 app.get('/api/scrapes', routes.showScrapes(Scraper));
 app.post('/api/searchGifs', routes.searchGifs(Scraper));
 

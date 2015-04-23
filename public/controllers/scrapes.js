@@ -36,7 +36,18 @@ angular.module('ThisApp', [])
       $scope.searchGifs = function(){
         $http.post('/api/searchGifs', $scope.gifSearch).success(function(data){
           if(data){
-            console.log(JSON.stringify(data));
+            console.log("searchGifs function->" + JSON.stringify(data));
+
+            // clear $scope.gifSearch
+            $scope.gifSearch = {};
+
+            // then get scrapes again
+            $http.get('/api/scrapes').success(function(data){
+              $scope.gifs = data;
+            console.log("showScrapes function->" + JSON.stringify($scope.gifs));
+
+        });
+
           }
         })
       };

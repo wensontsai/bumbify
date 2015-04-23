@@ -1,7 +1,5 @@
-/*
- * GET home page.
- */
-
+var cheerio = require('cheerio');
+var request = require('request');
 
 
 // exports.index = function(Scraper){
@@ -14,34 +12,37 @@
 //   };
 // };
 
-exports.getScrapes = function(Scraper){
+exports.showScrapes = function(Scraper){
   return function(req, res, next){
     Scraper.find(function(error, scrapes){
       if(error) return console.error(error);
-      console.dir(scrapes);
+      // console.dir(scrapes);
       res.send(scrapes);
     });
   };
 };
 
 exports.searchGifs = function(Scraper){
-    var cheerio = require('cheerio');
-    var request = require('request');
-
     var urls = [];
-    var tag = 'love';
+    var tag = '';
+
+    return function(req, res, next){
+      var tag = req.body.tag;
+      console.dir(tag);
+      res.send(tag);
 
     //wrap this in a success function
-    request('http://giphy.com/search/' + tag, function(err, resp, body){
-        if(!err && resp.statusCode == 200){
-          var $ = cheerio.load(body);
-          $('img.gifs-gif', '#searchresults').each(function(i, element){
-            var url = $(element).attr('src');
-            urls.push(url);
-          });
-          addScrapedUrls(urls);
-        }
-    });
+      request('http://giphy.com/search/' + tag, function(err, resp, body){
+          if(!err && resp.statusCode == 200){
+            var $ = cheerio.load(body);
+            $('img.gifs-gif', '#searchresults').each(function(i, element){
+              var url = $(element).attr('src');
+              urls.push(url);
+            });
+            addScrapedUrls(urls);
+          };
+      });
+    };
 
     function addScrapedUrls(urls){
       // clear out old urls
@@ -56,22 +57,20 @@ exports.searchGifs = function(Scraper){
           used : "no"
         });
         scraped_data.save();
-      }
+      };
     };
 
-
-  return function(req, res, next){
     Scraper.find(function(error, scrapes){
       if(error) return console.error(error);
       console.dir(scrapes);
       res.send(scrapes);
     });
-  };
 };
 
 
 
 
+// AUTH shit
 exports.createUser = function(User, formInfo){
   return function(req, res, next){
     var user = new User(req.body);
@@ -81,4 +80,4 @@ exports.createUser = function(User, formInfo){
       res.send(user);
     });
   };
-}
+};

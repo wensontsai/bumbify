@@ -37,7 +37,7 @@ var User = db.model('user', UserSchema);
 ///////////////////////
 // SCRAPER ////////////
 ///////////////////////
-var scraper_logic = require('./scraper.js');
+// var scraper_logic = require('./scraper.js');
 
 
 
@@ -64,8 +64,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 // AngularJS  ROUTING
 /////////////////////
 // app.get('/', routes.index(Scraper));
-app.get('/api/scrapes', routes.getScrapes(Scraper));
-app.get('/api/searchGifs', routes.searchGifs(Scraper));
+app.get('/api/scrapes', routes.showScrapes(Scraper));
+app.post('/api/searchGifs', routes.searchGifs(Scraper));
 
 app.post('/api/createUser', routes.createUser(User));
 

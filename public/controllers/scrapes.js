@@ -3,7 +3,7 @@ angular.module('ThisApp', [])
     function($scope, $http){
       $scope.gifs = [];
       $scope.formInfo = {};
-      $scope.gifTag = {};
+      $scope.gifSearch = {};
 
       //validations
       $scope.nameRequired = '';
@@ -34,7 +34,7 @@ angular.module('ThisApp', [])
 
       // gif scrape functions
       $scope.searchGifs = function(){
-        $http.post('/api/searchGifs', $scope.gifTag).success(function(data){
+        $http.post('/api/searchGifs', $scope.gifSearch).success(function(data){
           if(data){
             console.log(JSON.stringify(data));
           }

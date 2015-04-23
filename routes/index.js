@@ -38,25 +38,33 @@ exports.showScrapes = function(Scraper){
 exports.searchGifs = function(Scraper){
     var urls = [];
     var tag = '';
+    var status = '';
 
     return function(req, res, next){
       var tag = req.body.tag;
-      console.dir(tag);
-      res.send(tag);
 
     //wrap this in a success function
-      request('http://giphy.com/search/' + tag, function(err, resp, body){
-          if(!err && resp.statusCode == 200){
-            var $ = cheerio.load(body);
+    request('http://giphy.com/search/' + tag, function(err, resp, body){
+        if(!err && resp.statusCode == 200){
+          var $ = cheerio.load(body);
+          if ($('img.gifs-gif', '#searchresults').length > 0){
             $('img.gifs-gif', '#searchresults').each(function(i, element){
               var url = $(element).attr('src');
+
               urls.push(url);
+              status = "success";
+
             });
             addScrapedUrls(urls);
 
             // clear urls array so next search is that search only
             urls=[];
-          };
+          } else {
+            status = "fail";
+            addScrapedUrls(urls);
+          }
+        res.send(status);
+        }
       });
     };
 

@@ -35,20 +35,21 @@ angular.module('ThisApp', [])
       // gif scrape functions
       $scope.searchGifs = function(){
         $http.post('/api/searchGifs', $scope.gifSearch).success(function(data){
-          if(data){
-            console.log("searchGifs function->" + JSON.stringify(data));
+            console.log(data);
 
             // clear $scope.gifSearch
             $scope.gifSearch = {};
 
+            if(data == 'fail'){
+              $scope.searchResult = 'That search yielded no results!';
+            }
+
             // then get scrapes again
             $http.get('/api/scrapes').success(function(data){
-              $scope.gifs = data;
-            console.log("showScrapes function->" + JSON.stringify($scope.gifs));
+            $scope.gifs = data;
 
-        });
 
-          }
+            });
         })
       };
 

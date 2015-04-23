@@ -9,6 +9,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var routes = require('./routes/index');
+
 var app = express();
 
 
@@ -64,9 +65,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 /////////////////////
 // app.get('/', routes.index(Scraper));
 app.get('/api/scrapes', routes.getScrapes(Scraper));
+app.get('/api/searchGifs', routes.searchGifs(Scraper));
 
 app.post('/api/createUser', routes.createUser(User));
-
 
 
 

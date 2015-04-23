@@ -3,12 +3,14 @@ angular.module('ThisApp', [])
     function($scope, $http){
       $scope.gifs = [];
       $scope.formInfo = {};
+      $scope.gifTag = {};
 
       //validations
       $scope.nameRequired = '';
       $scope.emailRequired = '';
       $scope.passwordRequired = '';
 
+      // user functions
       $scope.saveData = function(){
         if (!$scope.formInfo.name) {
           $scope.nameRequired = '* Name Required *';
@@ -23,13 +25,21 @@ angular.module('ThisApp', [])
           $http.post('/api/createUser', $scope.formInfo)
             .success(function(data){
               if(data){
-                console.log(JSON.stringify(data));
+                console.log(data);
               }
           });
         }
-
       };
 
+
+      // gif scrape functions
+      $scope.searchGifs = function(){
+        $http.post('/api/searchGifs', $scope.gifTag).success(function(data){
+          if(data){
+            console.log(JSON.stringify(data));
+          }
+        })
+      };
 
       $scope.showScrapes = function(){
         $http.get('/api/scrapes').success(function(data){

@@ -1,4 +1,4 @@
-angular.module('ThisApp', ['ngCookies', 'ngResource', 'ngMessages', 'ui.router'])
+angular.module('ThisApp', ['ngCookies', 'ngResource', 'ngMessages', 'ui.router', 'wu.masonry'])
 
   .config(function($stateProvider, $urlRouterProvider) {
   //

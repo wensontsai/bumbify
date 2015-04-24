@@ -90,6 +90,7 @@ exports.searchGifs = function(Scraper){
 exports.createUser = function(User, formInfo){
   return function(req, res, next){
     var user = new User(req.body);
+    console.dir(user._id);
     user.save(function(error, user){
       if(error) return console.error(error);
       console.dir(user);

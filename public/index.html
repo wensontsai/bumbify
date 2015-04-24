@@ -12,7 +12,7 @@
   <link rel="icon" type="image/png" href="favicon.png"/>
   <link rel="stylesheet" href="stylesheets/style.css">
 
-
+  <!-- bower installs -->
   <script src="vendor/angular/angular.js"></script>
   <script src="vendor/angular-bootstrap/ui-bootstrap.min.js"></script>
   <script src="vendor/angular-messages/angular-messages.js"></script>
@@ -20,25 +20,31 @@
   <script src="vendor/angular-ui-router/release/angular-ui-router.js"></script>
   <script src="vendor/angular-cookies/angular-cookies.js"></script>
   <script src="vendor/moment/moment.js"></script>
+  <script src="vendor/angular-masonry/angular-masonry.js"></script>
 
-
-
+  <!-- script includes -->
   <script src="app.js"></script>
   <script src="services/scrape.js"></script>
   <script src="controllers/scrapes.js"></script>
-
 
 
 </head>
 
 
 <body>
-  ok this is the right page!
 
     <hr>
 
   <!-- begin bootstrap container -->
   <div class='container'>
+
+
+
+
+
+
+
+
     <div ng-controller="ScrapesCtrl" ng-init="showScrapes()">
 
 
@@ -93,11 +99,22 @@
       </div>
 
       <hr>
+      <div id="masonry-container">
+        <form role="form">
 
-
-      <div ng-repeat='url in gifs'>
-        <span><img src={{url.url}}></span>
-    </div>
+          <div masonry>
+            <div class="masonry-brick" ng-repeat='url in gifs'>
+              <input type="checkbox" name="{{url.url}}"><img ng-src="{{url.url}}">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <button ng-click="searchGifs()" type="submit" class="btn btn-success">Save Gifs</button>
+              {{searchResult}}
+            </div>
+          </div>
+        </form>
+      </div>
 
 
   </div> <!-- end bootstrap container -->

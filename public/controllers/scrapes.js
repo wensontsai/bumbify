@@ -5,12 +5,12 @@ angular.module('ThisApp', [])
       $scope.formInfo = {};
       $scope.gifSearch = {};
 
-      //validations
+      //user AUTH validations
       $scope.nameRequired = '';
       $scope.emailRequired = '';
       $scope.passwordRequired = '';
 
-      // user functions
+      // user AUTH functions
       $scope.saveData = function(){
         if (!$scope.formInfo.name) {
           $scope.nameRequired = '* Name Required *';
@@ -32,10 +32,9 @@ angular.module('ThisApp', [])
       };
 
 
+
       // gif scrape functions
       $scope.searchGifs = function(){
-
-
         $http.post('/api/searchGifs', $scope.gifSearch).success(function(data){
             console.log(data);
 

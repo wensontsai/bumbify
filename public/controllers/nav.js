@@ -1,5 +1,5 @@
 angular.module('routerApp', [])
-  .controller('ScrapesCtrl',
+  .controller('NavCtrl',
     function($scope, $http){
       $scope.gifs = [];
       $scope.formInfo = {};

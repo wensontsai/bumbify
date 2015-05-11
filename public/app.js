@@ -61,7 +61,6 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
                     controller: 'scotchController'
                 }
             }
-
         })
 
          //  SIGNUP PAGE  =================================

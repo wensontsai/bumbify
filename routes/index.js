@@ -55,7 +55,7 @@ exports.searchGifs = function(Scraper){
               status = "success";
 
             });
-            addScrapedUrls(urls);
+            addScrapedUrls(urls, tag);
 
             // clear urls array so next search is that search only
             urls=[];
@@ -68,7 +68,7 @@ exports.searchGifs = function(Scraper){
       });
     };
 
-    function addScrapedUrls(urls){
+    function addScrapedUrls(urls, tag){
       clearDB(Scraper);
 
       // populate with latest scrape urls
@@ -76,6 +76,7 @@ exports.searchGifs = function(Scraper){
         console.log("inserting url " + urls[i].replace('_s', '') + " into DB");
         scraped_data = new Scraper({
           url : urls[i].replace('_s', ''),
+          tag : tag,
           used : "no"
         });
         scraped_data.save();

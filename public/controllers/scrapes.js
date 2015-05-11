@@ -1,4 +1,4 @@
-angular.module('routerApp', [])
+angular.module('ThisApp', [])
   .controller('ScrapesCtrl',
     function($scope, $http){
       $scope.gifs = [];

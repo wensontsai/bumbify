@@ -32,8 +32,7 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
         // HOME STATES AND NESTED VIEWS ========================================
         .state('home', {
             url: '/home',
-            templateUrl: '/views/home.html',
-            controller: 'ScrapesCtrl'
+            templateUrl: '/views/partial-home.html'
         })
 
         // nested list with custom controller
@@ -63,6 +62,13 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
                 }
             }
 
+        })
+
+         //  SIGNUP PAGE  =================================
+        .state('gif_search', {
+            url: '/gif_search',
+            templateUrl: '/views/gif_search.html',
+            controller: 'ScrapesCtrl'
         })
 
          //  SIGNUP PAGE  =================================

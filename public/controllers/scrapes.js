@@ -1,4 +1,5 @@
-angular.module('ThisApp', [])
+// angular.module('ThisApp', [])
+routerApp
   .controller('ScrapesCtrl',
     function($scope, $http){
       $scope.gifs = [];
@@ -54,7 +55,7 @@ angular.module('ThisApp', [])
 
 
             });
-        })
+        });
       };
 
       $scope.showScrapes = function(){

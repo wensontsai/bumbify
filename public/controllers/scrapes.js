@@ -52,17 +52,18 @@ routerApp
             // then get scrapes again
             $http.get('/api/scrapes').success(function(data){
             $scope.gifs = data;
-
+            $scope.tag = data[0].tag;
 
             });
         });
       };
 
       $scope.showScrapes = function(){
-
         $http.get('/api/scrapes').success(function(data){
           $scope.gifs = data;
+          $scope.tag = data[0].tag;
           console.log($scope.gifs);
+          console.log($scope.tag);
         });
       };
 

@@ -63,6 +63,12 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
                 }
             }
 
+        })
+
+         //  SIGNUP PAGE  =================================
+        .state('signup', {
+            url: '/signup',
+            templateUrl: '/views/partial-signup.html'
         });
 
 });

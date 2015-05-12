@@ -22,6 +22,8 @@
 // });
 
 var routerApp = angular.module('ThisApp', ['ui.router', 'wu.masonry']);
+var routerApp = angular.module('ThisApp', ['ui.router']);
+
 
 routerApp.config(function($stateProvider, $urlRouterProvider) {
 

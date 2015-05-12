@@ -21,7 +21,7 @@
 
 // });
 
-var routerApp = angular.module('ThisApp', ['ui.router', 'wu.masonry']);
+// var routerApp = angular.module('ThisApp', ['ui.router', 'wu.masonry']);
 var routerApp = angular.module('ThisApp', ['ui.router']);
 
 
@@ -34,13 +34,13 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
         // HOME STATES AND NESTED VIEWS ========================================
         .state('home', {
             url: '/home',
-            templateUrl: '/main/partial-main.html'
+            templateUrl: 'app/main/partial-main.html'
         })
 
         // nested list with custom controller
         .state('home.list', {
             url: '/list',
-            templateUrl: '/main/partial-main-list.html',
+            templateUrl: 'app/main/partial-main-list.html',
             controller: function($scope) {
                 $scope.dogs = ['Bernese', 'Husky', 'Goldendoodle'];
             }
@@ -56,10 +56,10 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
         .state('about', {
             url: '/about',
             views: {
-                '': { templateUrl: '/about/partial-about.html' },
+                '': { templateUrl: 'app/about/partial-about.html' },
                 'columnOne@about': { template: 'Look I am a column!' },
                 'columnTwo@about': {
-                    templateUrl: '/about/table-data.html',
+                    templateUrl: 'app/about/table-data.html',
                     controller: 'scotchController'
                 }
             }
@@ -68,14 +68,14 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
          //  SIGNUP PAGE  =================================
         .state('gif_search', {
             url: '/gif_search',
-            templateUrl: '/gif_search/gif_search.html',
+            templateUrl: 'app/gif_search/gif_search.html',
             controller: 'ScrapesCtrl'
         })
 
          //  SIGNUP PAGE  =================================
         .state('signup', {
             url: '/signup',
-            templateUrl: '/views/partial-signup.html'
+            templateUrl: 'app/user/partial-signup.html'
         });
 
 });

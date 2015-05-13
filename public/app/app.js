@@ -23,6 +23,11 @@
 
 // var routerApp = angular.module('ThisApp', ['ui.router', 'wu.masonry']);
 var routerApp = angular.module('ThisApp', ['ui.router']);
+var chatApp = angular.module('ChatApp', ['btford.socket-io', 'ui.router'])
+    .value('nickName', 'anonymous')
+    .value('messageFormatter', function(date, nick, message){
+        return date.toLocaleTimeString() + ' - ' +nick+ ' - ' +message+ '\n';
+    });
 
 
 routerApp.config(function($stateProvider, $urlRouterProvider) {
@@ -61,7 +66,7 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
                 // 'columnOne@chat': { template: 'Look I am a column!' },
                 'columnOne@chat': {
                     templateUrl: 'app/chat/chatroom.html',
-                //     controller: 'scotchController'
+                    controller: 'ChatCtrl'
                 },
                 'columnTwo@chat': {
                     templateUrl: 'app/gif_search/gif_search.html',

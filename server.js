@@ -106,17 +106,7 @@ var server = http.createServer(app);
 // socket.io ////////
 // var io = require('socket.io').listen(app.listen(port));
 var io = require('socket.io').listen(server);
-
-// io.sockets.on('connection', function (socket) {
-//     socket.emit('message', { message: 'Welcome to the Chattertator where DREAMS HAPPEN' });
-//     socket.on('send', function (data) {
-//         io.sockets.emit('message', data);
-//     });
-// });
-io.sockets.on('connection', function(socket){
-    console.log("SOCKET.IO : Listening on server port " + port);
-
-})
 server.listen(port);
+require('./sockets/base')(io);
 
 console.log('Express server listening on port ' + port);

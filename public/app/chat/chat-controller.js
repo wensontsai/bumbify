@@ -1,4 +1,4 @@
-chatApp
+routerApp
   .controller('ChatCtrl',
     function($log, $scope, chatSocket, messageFormatter, nickName){
 
@@ -22,6 +22,7 @@ chatApp
         $log.debug('message sent', $scope.message);
         $scope.message = '';
       };
+
 
       $scope.$on('socket:broadcast', function(event, data){
         $log.debug('got a message', event.name);

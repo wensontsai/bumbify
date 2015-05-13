@@ -22,8 +22,8 @@
 // });
 
 // var routerApp = angular.module('ThisApp', ['ui.router', 'wu.masonry']);
-var routerApp = angular.module('ThisApp', ['ui.router']);
-var chatApp = angular.module('ChatApp', ['btford.socket-io', 'ui.router'])
+
+var routerApp = angular.module('ThisApp', ['ui.router', 'btford.socket-io'])
     .value('nickName', 'anonymous')
     .value('messageFormatter', function(date, nick, message){
         return date.toLocaleTimeString() + ' - ' +nick+ ' - ' +message+ '\n';
@@ -58,7 +58,7 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
             controller: 'ScrapesCtrl'
         })
 
-        // ABOUT PAGE AND MULTIPLE NAMED VIEWS =================================
+        // CHAT PAGE AND MULTIPLE NAMED VIEWS =================================
         .state('chat', {
             url: '/chat',
             views: {
@@ -75,7 +75,7 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
             }
         })
 
-         //  SIGNUP PAGE  =================================
+         //  GIF SEARCH PAGE  =================================
         .state('gif_search', {
             url: '/gif_search',
             templateUrl: 'app/gif_search/gif_search.html',

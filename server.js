@@ -1,9 +1,15 @@
 //////////////////////
 // Module Dependencies
 //////////////////////
-var http = require('http');
 var express = require('express');
+var io = require('socket.io');
+var http = require('http');
 var port = process.env.PORT || 3030;
+
+var app = express();
+
+var server = http.createServer(app);
+io = io.listen(server);
 
 var path = require('path');
 var favicon = require('static-favicon');
@@ -12,7 +18,6 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 
-var app = express();
 
 
 ////////////////////////////////////////
@@ -101,11 +106,10 @@ app.use(function(err, req, res, next) {
 
 
 // server + listening port
-var server = http.createServer(app);
+
 
 // socket.io ////////
 // var io = require('socket.io').listen(app.listen(port));
-var io = require('socket.io').listen(server);
 server.listen(port);
 require('./sockets/base')(io);
 

@@ -58,11 +58,11 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
             url: '/chat',
             views: {
                 '': { templateUrl: 'app/about/partial-about.html' },
-                'columnOne@chat': { template: 'Look I am a column!' },
-                // 'columnTwo@about': {
-                //     templateUrl: 'app/about/table-data.html',
+                // 'columnOne@chat': { template: 'Look I am a column!' },
+                'columnOne@chat': {
+                    templateUrl: 'app/chat/chatroom.html',
                 //     controller: 'scotchController'
-                // }
+                },
                 'columnTwo@chat': {
                     templateUrl: 'app/gif_search/gif_search.html',
                     controller: 'ScrapesCtrl'

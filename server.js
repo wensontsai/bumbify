@@ -9,7 +9,13 @@ var port = process.env.PORT || 3030;
 var app = express();
 
 var server = http.createServer(app);
+
 io = io.listen(server);
+
+// socket.io ////////
+var socket_run = require('./sockets/base');
+socket_run.runIO(io);
+
 
 var path = require('path');
 var favicon = require('static-favicon');
@@ -106,11 +112,5 @@ app.use(function(err, req, res, next) {
 
 
 // server + listening port
-
-
-// socket.io ////////
-// var io = require('socket.io').listen(app.listen(port));
 server.listen(port);
-require('./sockets/base')(io);
-
 console.log('Express server listening on port ' + port);

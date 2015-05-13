@@ -1,5 +1,5 @@
-module.exports = function(io){
-  'use strict';
+exports.runIO = function(io){
+  // 'use strict';
   io.on('connection', function(socket){
     socket.on('message', function(from, msg){
       console.log('received message from', from, 'msg', JSON.stringify(msg));

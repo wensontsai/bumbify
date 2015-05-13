@@ -1,5 +1,3 @@
-'use strict';
-
 angular.module('ThisApp')
   .factory('chatSocket', function(socketFactory) {
   var socket = socketFactory();

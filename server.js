@@ -1,8 +1,10 @@
 //////////////////////
 // Module Dependencies
 //////////////////////
-var http = require('http')
+var http = require('http');
 var express = require('express');
+var port = process.env.PORT || 3030;
+
 var path = require('path');
 var favicon = require('static-favicon');
 var logger = require('morgan');
@@ -35,13 +37,11 @@ var User = db.model('user', UserSchema);
 
 
 
-
-
 /////////////////////
 // view engine setup
 // all environments
 /////////////////////
-app.set('port', process.env.PORT || 3030);
+// app.set('port', process.env.PORT || 3030);
 // app.set('views', path.join(__dirname, 'views'));
 // app.set('view engine', 'jade');
 
@@ -51,7 +51,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
 
 
 
@@ -102,5 +101,22 @@ app.use(function(err, req, res, next) {
 
 
 // server + listening port
-http.createServer(app).listen(3030);
-console.log('Express server listening on port ' + app.get('port'));
+var server = http.createServer(app);
+
+// socket.io ////////
+// var io = require('socket.io').listen(app.listen(port));
+var io = require('socket.io').listen(server);
+
+// io.sockets.on('connection', function (socket) {
+//     socket.emit('message', { message: 'Welcome to the Chattertator where DREAMS HAPPEN' });
+//     socket.on('send', function (data) {
+//         io.sockets.emit('message', data);
+//     });
+// });
+io.sockets.on('connection', function(socket){
+    console.log("SOCKET.IO : Listening on server port " + port);
+
+})
+server.listen(port);
+
+console.log('Express server listening on port ' + port);

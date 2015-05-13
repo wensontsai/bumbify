@@ -47,20 +47,25 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
         })
 
         // nested list with just some random string data
-        .state('home.paragraph', {
-            url: '/paragraph',
-            template: 'I could sure use a drink right now.'
+        .state('home.gif_search', {
+            url: '/gif_search',
+            templateUrl: 'app/gif_search/gif_search.html',
+            controller: 'ScrapesCtrl'
         })
 
         // ABOUT PAGE AND MULTIPLE NAMED VIEWS =================================
-        .state('about', {
-            url: '/about',
+        .state('chat', {
+            url: '/chat',
             views: {
                 '': { templateUrl: 'app/about/partial-about.html' },
-                'columnOne@about': { template: 'Look I am a column!' },
-                'columnTwo@about': {
-                    templateUrl: 'app/about/table-data.html',
-                    controller: 'scotchController'
+                'columnOne@chat': { template: 'Look I am a column!' },
+                // 'columnTwo@about': {
+                //     templateUrl: 'app/about/table-data.html',
+                //     controller: 'scotchController'
+                // }
+                'columnTwo@chat': {
+                    templateUrl: 'app/gif_search/gif_search.html',
+                    controller: 'ScrapesCtrl'
                 }
             }
         })

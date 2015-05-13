@@ -11,12 +11,12 @@ var request = require('request');
 //     });
 //   };
 // };
+
 function clearDB(Scraper){
   // clear out old urls
   Scraper.remove().exec();
   console.log('removing all current docs from collection -> scraper');
 }
-
 
 
 

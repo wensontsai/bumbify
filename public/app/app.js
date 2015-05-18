@@ -51,7 +51,7 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
                     controller: 'ChatCtrl'
                 },
                 'columnTwo@chat': {
-                    templateUrl: 'app/gif_search/gif_search.html',
+                    templateUrl: 'app/gif_search/gif_add.html',
                     controller: 'ScrapesCtrl'
                 }
             }

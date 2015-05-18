@@ -11,6 +11,12 @@ a {
   border-radius: 0;
 }
 
+.gif_select {
+  height: 300px;
+  width : 500px;
+  overflow-x: scroll;
+  overflow-y: scroll;
+}
 
 .masonry-brick {
   margin: 1em;

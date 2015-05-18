@@ -3,7 +3,7 @@ routerApp
     function($log, $scope, chatSocket, messageArrayer, nickName){
 
       $scope.nickName = nickName;
-      $scope.messageLog = 'Ready to chat!';
+      // $scope.messageLog = 'Ready to chat!';
       $scope.messageArray = [];
 
       $scope.sendMessage = function(){
@@ -18,6 +18,7 @@ routerApp
           $scope.nickName = nickName;
         }
 
+        // console logging
         $log.debug('sending message', $scope.message);
         chatSocket.emit('message', nickName, $scope.message);
         $log.debug('message sent', $scope.message);
@@ -26,13 +27,14 @@ routerApp
 
 
       $scope.$on('socket:broadcast', function(event, data){
+        // console logging
         $log.debug('got a message', event.name);
         if(!data.payload){
           $log.error('invalid message', 'event', event, 'data', JSON.stringify(data));
           return;
         }
 
-        $scope.$apply(function(messageArray){
+        $scope.$apply(function(){
           // $scope.messageLog = messageFormatter(
           //   new Date(), data.source, data.payload) + $scope.messageLog;
 

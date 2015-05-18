@@ -1,4 +1,5 @@
 exports.runIO = function(io){
+  console.log(io);
   // 'use strict';
   io.on('connection', function(socket){
     socket.on('message', function(from, msg){

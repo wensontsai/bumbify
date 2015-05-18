@@ -1,32 +1,14 @@
-// angular.module('ThisApp', ['ngCookies', 'ngResource', 'ngMessages', 'ui.router', 'wu.masonry'])
-
-//   .config(function($stateProvider, $urlRouterProvider) {
-//   //
-//   // For any unmatched url, redirect to /state1
-//   $urlRouterProvider.otherwise("/state1");
-//   //
-//   // Now set up the states
-//   $stateProvider
-//     .state('state1', {
-//       url: "/",
-//       templateUrl: "index.html"
-//     })
-//     .state('state1.gifs', {
-//       url: "/gifs",
-//       templateUrl: "views/gifs.html",
-//       controller: ScopeCtrl
-//     })
-
-
-
-// });
-
 // var routerApp = angular.module('ThisApp', ['ui.router', 'wu.masonry']);
 
 var routerApp = angular.module('ThisApp', ['ui.router', 'btford.socket-io'])
     .value('nickName', 'anonymous')
-    .value('messageFormatter', function(date, nick, message){
+    .value('messageArrayer', function(date, nick, message){
+        // messageArray.push(date.toLocaleTimeString() + ' - ' +nick+ ' - ' +message+ '\n');
+        // return messageArray;
         return date.toLocaleTimeString() + ' - ' +nick+ ' - ' +message+ '\n';
+    // })
+    // .value('messageFormatter', function(date, nick, message){
+    //     return date.toLocaleTimeString() + ' - ' +nick+ ' - ' +message+ '\n';
     });
 
 

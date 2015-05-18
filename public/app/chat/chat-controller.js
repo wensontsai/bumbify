@@ -1,9 +1,10 @@
 routerApp
   .controller('ChatCtrl',
-    function($log, $scope, chatSocket, messageFormatter, nickName){
+    function($log, $scope, chatSocket, messageArrayer, nickName){
 
       $scope.nickName = nickName;
       $scope.messageLog = 'Ready to chat!';
+      $scope.messageArray = [];
 
       $scope.sendMessage = function(){
         var match = $scope.message.match('^\/nick (.*)');
@@ -30,9 +31,17 @@ routerApp
           $log.error('invalid message', 'event', event, 'data', JSON.stringify(data));
           return;
         }
-        $scope.$apply(function(){
-          $scope.messageLog = messageFormatter(
-            new Date(), data.source, data.payload) + $scope.messageLog;
+
+        $scope.$apply(function(messageArray){
+          // $scope.messageLog = messageFormatter(
+          //   new Date(), data.source, data.payload) + $scope.messageLog;
+
+          $scope.messageToAdd = messageArrayer(new Date(), data.source, data.payload);
+          console.log($scope.messageToAdd);
+
+          $scope.messageArray.push($scope.messageToAdd);
+          $scope.messageLog = $scope.messageArray;
+          console.log($scope.messageLog);
         });
       });
 

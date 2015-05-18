@@ -1,7 +1,7 @@
 // var routerApp = angular.module('ThisApp', ['ui.router', 'wu.masonry']);
 
 var routerApp = angular.module('ThisApp', ['ui.router', 'btford.socket-io'])
-    .value('nickName', 'anonymous')
+    .value('nickName', 'pizzaMOMMAa')
     .value('messageArrayer', function(date, nick, message){
         // messageArray.push(date.toLocaleTimeString() + ' - ' +nick+ ' - ' +message+ '\n');
         // return messageArray;

@@ -24,6 +24,8 @@ a {
 }
 
 #chatroom {
-  height: 200px;
+  height: 500px;
   border: 1px solid black;
+  overflow-x: scroll;
+  overflow-y: scroll;
 }

@@ -1,6 +1,6 @@
 routerApp
   .controller('ChatCtrl',
-    function($log, $scope, chatSocket, messageArrayer, nickName){
+    function($log, $scope, ChatSocket, messageArrayer, nickName, GetUrl){
 
       $scope.nickName = nickName;
       $scope.chatSession = [];
@@ -20,7 +20,7 @@ routerApp
 
         // console logging
         $log.debug('sending message', $scope.message);
-        chatSocket.emit('message', nickName, $scope.message);
+        ChatSocket.emit('message', nickName, $scope.message);
         $log.debug('message sent', $scope.message);
         $scope.message = '';
       };
@@ -42,9 +42,9 @@ routerApp
 
           $scope.chatLine.text = $scope.messageToAdd;
 
-
           // call this function through GIF controller, or share service
           var url = "https://media1.giphy.com/media/h3qK8CdQHUp7W/200.gif";
+          var url = GetUrl.getUrl();
           if(url){
             $scope.chatLine.url = url;
           }

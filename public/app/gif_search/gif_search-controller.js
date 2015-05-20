@@ -1,7 +1,7 @@
 // angular.module('ThisApp', [])
 routerApp
   .controller('ScrapesCtrl',
-    function($scope, $http){
+    function($scope, $http, GifUrl){
       $scope.gifs = [];
       $scope.formInfo = {};
       $scope.gifSearch = {};

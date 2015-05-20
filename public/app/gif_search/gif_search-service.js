@@ -3,7 +3,7 @@ angular.module('ThisApp')
     return $resource('/all_scrapes');
   }])
 
-  .factory('GetUrl', function () {
+  .factory('GifUrl', function () {
 
     // var data = {
     //     FirstName: ''

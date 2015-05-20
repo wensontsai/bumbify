@@ -3,12 +3,7 @@
 var routerApp = angular.module('ThisApp', ['ui.router', 'btford.socket-io'])
     .value('nickName', 'pizzaMOMMAa')
     .value('messageArrayer', function(date, nick, message){
-        // messageArray.push(date.toLocaleTimeString() + ' - ' +nick+ ' - ' +message+ '\n');
-        // return messageArray;
         return date.toLocaleTimeString() + ' - ' +nick+ ' - ' +message+ '\n';
-    // })
-    // .value('messageFormatter', function(date, nick, message){
-    //     return date.toLocaleTimeString() + ' - ' +nick+ ' - ' +message+ '\n';
     });
 
 

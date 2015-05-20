@@ -53,6 +53,7 @@ routerApp
             $http.get('/api/scrapes').success(function(data){
             $scope.gifs = data;
             $scope.tag = data[0].tag;
+            console.log(tag);
 
             });
         });

@@ -43,9 +43,8 @@ routerApp
           $scope.chatLine.text = $scope.messageToAdd;
 
           // call this function through GIF controller, or share service
-          var url = "https://media1.giphy.com/media/h3qK8CdQHUp7W/200.gif";
           var url = GifUrl.getUrl();
-          if(url){
+          if(url !== null){
             $scope.chatLine.url = url;
           }
           $scope.chatSession.push($scope.chatLine);

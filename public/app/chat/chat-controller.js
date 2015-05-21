@@ -40,7 +40,9 @@ routerApp
           console.log(data);
           console.log($scope.messageToAdd);
 
+          $scope.chatLine = Object.create(null);
           $scope.chatLine.text = $scope.messageToAdd;
+
 
           // call this function through GIF controller, or share service
           var url = GifUrl.getUrl();

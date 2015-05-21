@@ -73,9 +73,11 @@ exports.searchGifs = function(Scraper){
 
       // populate with latest scrape urls
       for (var i=0; i < urls.length; i++){
-        console.log("inserting url " + urls[i].replace('_s', '') + " into DB");
+        // var cleanUrl = urls[i].replace(/.*?:\/\//g, "");
+        var cleanUrl = urls[i];
+        console.log("inserting url " + cleanUrl.replace('_s', '') + " into DB");
         scraped_data = new Scraper({
-          url : urls[i].replace('_s', ''),
+          url : cleanUrl.replace('_s', ''),
           tag : tag,
           used : "no"
         });

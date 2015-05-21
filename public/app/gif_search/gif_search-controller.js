@@ -5,6 +5,7 @@ routerApp
       $scope.gifs = [];
       $scope.formInfo = {};
       $scope.gifSearch = {};
+      $scope.loadedGif = {};
 
       // //user AUTH validations
       // $scope.nameRequired = '';
@@ -68,7 +69,8 @@ routerApp
       };
 
       $scope.setUrl = function(){
-        var gifUrl = GifUrl.setUrl();
+        console.log($scope.loadedGif.url);
+        var gifUrl = GifUrl.setUrl($scope.loadedGif.url);
         console.log(gifUrl);
       };
 

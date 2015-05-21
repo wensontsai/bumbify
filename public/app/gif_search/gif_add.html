@@ -26,7 +26,7 @@
     <form role="form">
       <div masonry class="gif_select">
         <div class="masonry-brick" ng-repeat='url in gifs'>
-          <input type="checkbox" name="{{url.url}}"><img ng-src="{{url.url}}">
+          <input type="radio" value="{{url.url}}" ng-model="loadedGif.url"><img ng-src="{{url.url}}">
         </div>
       </div>
       <div class="form-group">

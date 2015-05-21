@@ -12,11 +12,10 @@ angular.module('ThisApp')
       getUrl: function(){
         return data.url;
       },
-      setUrl: function(){
-        // set data.url
-        data.url = "https://media0.giphy.com/media/KBJabfoRtIPbW/200.gif";
+      setUrl: function(url){
+        data.url = url;
         return data.url;
-
       }
+
     };
 });

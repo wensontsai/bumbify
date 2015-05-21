@@ -6,6 +6,7 @@ routerApp
       $scope.chatSession = [];
       $scope.chatLine = {};
 
+      //
       $scope.sendMessage = function(){
         var match = $scope.message.match('^\/nick (.*)');
 
@@ -26,6 +27,7 @@ routerApp
       };
 
 
+      // on socket broadcast
       $scope.$on('socket:broadcast', function(event, data){
         // console logging
         $log.debug('got a message', event.name);

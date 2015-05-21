@@ -69,7 +69,6 @@ routerApp
       };
 
       $scope.setUrl = function(){
-        console.log($scope.loadedGif.url);
         var gifUrl = GifUrl.setUrl($scope.loadedGif.url);
         console.log(gifUrl);
       };

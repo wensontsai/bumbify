@@ -5,7 +5,7 @@
     <br/>
     Change your nickname with <code>/nick [yourNewNick]</code>
     <div class='row'>
-      <div id="chatroom"  class='col-md-5'>
+      <div id="chatroom"  class='col-md-7'>
           <div ng-repeat="message in chatSession track by $id($index)">
             <div>
               {{message.text}}
@@ -27,6 +27,7 @@
             ng-max='50'
             ng-model='message'
             focus>
+            {{loadResponse}}
             <button class='btn btn-sm btn-primary'
               ng-enable='form.$valid'
               ng-click="sendMessage(message)">Send!</button>

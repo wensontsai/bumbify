@@ -2,10 +2,20 @@
 routerApp
   .controller('ScrapesCtrl',
     function($scope, $http, GifUrl){
+      // search models
       $scope.gifs = [];
       $scope.formInfo = {};
       $scope.gifSearch = {};
+
+      // gif select models
       $scope.loadedGif = {};
+      $scope.loadResponse = '';
+
+      $scope.uncheck = function(event) {
+        console.log(event);
+          if ($scope.checked == event.target.value)
+              $scope.checked = false;
+      };
 
       // //user AUTH validations
       // $scope.nameRequired = '';
@@ -51,11 +61,11 @@ routerApp
 
             // then get scrapes again
             $http.get('/api/scrapes').success(function(data){
-            $scope.gifs = data;
-            $scope.tag = data[0].tag;
-            console.log(tag);
-
+              $scope.gifs = data;
+              $scope.tag = data[0].tag;
+              console.log(tag);
             });
+
         });
       };
 
@@ -69,8 +79,9 @@ routerApp
       };
 
       $scope.setUrl = function(){
-        var gifUrl = GifUrl.setUrl($scope.loadedGif.url);
-        console.log(gifUrl);
+        $scope.loadResponse = GifUrl.setUrl($scope.loadedGif.url);
+        console.log($scope.loadResponse);
+
       };
 
 

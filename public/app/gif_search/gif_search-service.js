@@ -10,11 +10,13 @@ angular.module('ThisApp')
 
     return {
       getUrl: function(){
-        return data.url;
+        return data;
       },
       setUrl: function(url){
         data.url = url;
-        return data.url;
+        // data.loadResponse = "GIF is successfully loaded!";
+        console.log(data.url);
+        return "GIF is successfully loaded!";
       }
 
     };

@@ -47,12 +47,17 @@ routerApp
 
 
           // call this function through GIF controller, or share service
-          var url = GifUrl.getUrl();
-          if(url !== null){
-            $scope.chatLine.url = url;
+          var response = GifUrl.getUrl();
+
+          if(response.url !== null){
+            $scope.chatLine.url = response.url;
           }
           $scope.chatSession.push($scope.chatLine);
           console.log($scope.chatSession);
+
+          // reset gif to none
+          response = {};
+          $scope.chatline.url = '';
         });
       });
 

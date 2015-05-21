@@ -5,33 +5,33 @@ routerApp
       $scope.gifs = [];
       $scope.formInfo = {};
       $scope.gifSearch = {};
+      $scope.loadedGif = {};
 
-      //user AUTH validations
-      $scope.nameRequired = '';
-      $scope.emailRequired = '';
-      $scope.passwordRequired = '';
+      // //user AUTH validations
+      // $scope.nameRequired = '';
+      // $scope.emailRequired = '';
+      // $scope.passwordRequired = '';
 
-      // user AUTH functions
-      $scope.saveData = function(){
-        if (!$scope.formInfo.name) {
-          $scope.nameRequired = '* Name Required *';
-        }
-        else if (!$scope.formInfo.email) {
-          $scope.emailRequired = '* Email Required *';
-        }
-        else if (!$scope.formInfo.password) {
-          $scope.passwordRequired = '* Password Required *';
-        }
-        else {
-          $http.post('/api/createUser', $scope.formInfo)
-            .success(function(data){
-              if(data){
-                console.log(data);
-              }
-          });
-        }
-      };
-
+      // // user AUTH functions
+      // $scope.saveData = function(){
+      //   if (!$scope.formInfo.name) {
+      //     $scope.nameRequired = '* Name Required *';
+      //   }
+      //   else if (!$scope.formInfo.email) {
+      //     $scope.emailRequired = '* Email Required *';
+      //   }
+      //   else if (!$scope.formInfo.password) {
+      //     $scope.passwordRequired = '* Password Required *';
+      //   }
+      //   else {
+      //     $http.post('/api/createUser', $scope.formInfo)
+      //       .success(function(data){
+      //         if(data){
+      //           console.log(data);
+      //         }
+      //     });
+      //   }
+      // };
 
 
       // gif scrape functions
@@ -66,6 +66,12 @@ routerApp
           console.log($scope.gifs);
           console.log($scope.tag);
         });
+      };
+
+      $scope.setUrl = function(){
+        console.log($scope.loadedGif.url);
+        var gifUrl = GifUrl.setUrl($scope.loadedGif.url);
+        console.log(gifUrl);
       };
 
 

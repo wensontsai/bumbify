@@ -10,6 +10,7 @@ angular.module('ThisApp')
 
     return {
       getUrl: function(){
+        console.log("inside getUrl now");
         return data;
       },
       resetUrl: function(){
@@ -22,8 +23,9 @@ angular.module('ThisApp')
         data.url = url;
         // data.loadResponse = "GIF is successfully loaded!";
         console.log(data.url);
+        this.getUrl();
         return "GIF is successfully loaded!";
       }
 
     };
-});
+  });

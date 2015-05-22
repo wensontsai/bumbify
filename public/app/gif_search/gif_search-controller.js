@@ -1,7 +1,7 @@
 // angular.module('ThisApp', [])
 routerApp
   .controller('ScrapesCtrl',
-    function($scope, $http, GifUrl){
+    function($rootScope, $scope, $http, GifUrl){
       // search models
       $scope.gifs = [];
       $scope.formInfo = {};
@@ -10,6 +10,7 @@ routerApp
       // gif select models
       $scope.loadedGif = {};
       $scope.loadResponse = '';
+
 
       $scope.uncheck = function(event) {
         console.log(event);
@@ -78,9 +79,13 @@ routerApp
         });
       };
 
-      $scope.setUrl = function(){
+      $scope.setUrl = function($rootScope){
         $scope.loadResponse = GifUrl.setUrl($scope.loadedGif.url);
         console.log($scope.loadResponse);
+
+        // console.log($rootScope);
+        // $rootScope.$broadcast('gifLoaded', "helllo!");
+
 
       };
 

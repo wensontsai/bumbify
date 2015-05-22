@@ -37,27 +37,28 @@ routerApp
         }
 
         $scope.$apply(function(){
+          $scope.chatLine = Object.create(null);
+
+          // this fetches loaded GIF, and clears data object
+          var response = GifUrl.getUrl();
+          GifUrl.resetUrl();
+
+          // if response is not null
+          if(response.url !== null){
+            $scope.chatLine.url = response.url;
+          }
+
+          // assemble chat session
           $scope.messageToAdd = messageArrayer(new Date(), data.source, data.payload);
 
           console.log(data);
           console.log($scope.messageToAdd);
 
-          $scope.chatLine = Object.create(null);
           $scope.chatLine.text = $scope.messageToAdd;
-
-
-          // call this function through GIF controller, or share service
-          var response = GifUrl.getUrl();
-
-          if(response.url !== null){
-            $scope.chatLine.url = response.url;
-          }
           $scope.chatSession.push($scope.chatLine);
           console.log($scope.chatSession);
 
-          // reset gif to none
-          response = {};
-          $scope.chatline.url = '';
+
         });
       });
 

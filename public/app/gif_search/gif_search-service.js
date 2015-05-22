@@ -12,6 +12,12 @@ angular.module('ThisApp')
       getUrl: function(){
         return data;
       },
+      resetUrl: function(){
+        data = {};
+      },
+      insertGif: function(){
+
+      },
       setUrl: function(url){
         data.url = url;
         // data.loadResponse = "GIF is successfully loaded!";

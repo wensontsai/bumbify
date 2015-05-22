@@ -10,12 +10,22 @@ angular.module('ThisApp')
 
     return {
       getUrl: function(){
-        return data.url;
+        console.log("inside getUrl now");
+        return data;
+      },
+      resetUrl: function(){
+        data = {};
+      },
+      insertGif: function(){
+
       },
       setUrl: function(url){
         data.url = url;
-        return data.url;
+        // data.loadResponse = "GIF is successfully loaded!";
+        console.log(data.url);
+        this.getUrl();
+        return "GIF is successfully loaded!";
       }
 
     };
-});
+  });

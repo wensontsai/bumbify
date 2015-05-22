@@ -8,12 +8,8 @@
         <div class="col-sm-4">
           <input class="form-control" placeholder="tag" ng-model="gifSearch.tag">
         </div>
-      </div>
-      <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
           <button ng-click="searchGifs()" type="submit" class="btn btn-success">Search Gifs</button>
           {{searchResult}}
-        </div>
       </div>
     </form>
   </div>
@@ -27,7 +23,7 @@
           <h2>{{tag}}</h2>
         </div>
         <div class="masonry-brick" ng-repeat='url in gifs'>
-          <input type="checkbox" name="{{url.url}}"><img ng-src="{{url.url}}">
+          <input type="checkbox" name="{{url.url}}" ><img ng-src="{{url.url}}">
         </div>
       </div>
       <div class="form-group">

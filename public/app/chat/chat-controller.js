@@ -5,6 +5,7 @@ routerApp
       $scope.nickName = nickName;
       $scope.chatSession = [];
       $scope.chatLine = {};
+      $scope.gifCheck = '';
 
       //listen for gif loads
       // trigger sendMessage
@@ -16,13 +17,17 @@ routerApp
       // });
 
       $scope.$watch(function () { return GifUrl.getUrl(); }, function (newValue, oldValue) {
-        if (newValue !== null) {
+        if (newValue !== oldValue) {
+          console.log(oldValue);
+          console.log(newValue);
           console.log("worrrking");
+          $scope.gifCheck = 'gif';
             // $scope.= newValue;
-        $log.debug('sending message', $scope.message);
-        ChatSocket.emit('message', nickName, $scope.message);
-        $log.debug('message sent', $scope.message);
-        $scope.message = '';        }
+          // $scope.message = newValue;
+          $log.debug('sending message', $scope.message);
+          ChatSocket.emit('message', nickName, $scope.message);
+          $log.debug('message sent', $scope.message);
+        }
       }, true);
 
 
@@ -51,10 +56,12 @@ routerApp
       $scope.$on('socket:broadcast', function(event, data){
         // console logging
         $log.debug('got a message', event.name);
-        // if(!data.payload){
-        //   $log.error('invalid message', 'event', event, 'data', JSON.stringify(data));
-        //   return;
-        // }
+        console.log("data payload = " +data.payload);
+
+        if(!data.payload && $scope.gifCheck !== 'gif'){
+          $log.error('invalid message', 'event', event, 'data', JSON.stringify(data));
+          return;
+        }
 
         $scope.$apply(function(){
           $scope.chatLine = Object.create(null);
@@ -66,6 +73,7 @@ routerApp
           // if response is not null
           if(response.url !== null){
             $scope.chatLine.url = response.url;
+            $scope.gifCheck = '';
           }
 
           // assemble chat session

@@ -6,11 +6,9 @@ angular.module('ThisApp')
   .factory('GifUrl', function () {
     var data = {};
 
-    // data.url = "https://media1.giphy.com/media/fRezK8aTNYz6M/200.gif";
-
     return {
       getUrl: function(){
-        console.log("inside getUrl now");
+        // console.log("inside getUrl now");
         return data;
       },
       resetUrl: function(){
@@ -22,7 +20,7 @@ angular.module('ThisApp')
       setUrl: function(url){
         data.url = url;
         // data.loadResponse = "GIF is successfully loaded!";
-        console.log(data.url);
+        // console.log(data.url);
         this.getUrl();
         return "GIF is successfully loaded!";
       }

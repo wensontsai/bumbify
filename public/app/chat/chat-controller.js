@@ -86,6 +86,11 @@ routerApp
 
             $scope.chatLine.text = $scope.messageToAdd;
             $scope.chatSession.push($scope.chatLine);
+
+            var elem = document.getElementById('chatroom');
+            // elem.scrollTop = elem.scrollHeight;
+            // console.log(elem.scrollHeight);
+
             console.log($scope.chatSession);
           }
 

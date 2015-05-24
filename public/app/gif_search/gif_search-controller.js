@@ -84,7 +84,7 @@ routerApp
         console.log($scope.loadResponse);
 
         // console.log($rootScope);
-        // $rootScope.$broadcast('gifLoaded', "helllo!");
+        // $rootScope.$broadcast('gifLoaded');
 
 
       };

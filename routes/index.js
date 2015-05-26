@@ -20,6 +20,15 @@ function clearDB(Scraper){
 
 
 
+function saveSearch(tag, SearchHistory){
+  console.log("i save the search params here - " +tag);
+   search = new SearchHistory({
+        tag : tag,
+        user : "pizzaMOMMA"
+      });
+   search.save();
+}
+
 
 // GET reqs //
 exports.showScrapes = function(Scraper){
@@ -35,13 +44,15 @@ exports.showScrapes = function(Scraper){
 
 
 // POST reqs //
-exports.searchGifs = function(Scraper){
+exports.searchGifs = function(Scraper, SearchHistory){
     var urls = [];
     var tag = '';
     var status = '';
 
     return function(req, res, next){
       var tag = req.body.tag;
+
+      saveSearch(tag, SearchHistory);
 
     //wrap this in a success function
     request('http://giphy.com/search/' + tag, function(err, resp, body){

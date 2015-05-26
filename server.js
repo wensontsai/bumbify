@@ -43,6 +43,11 @@ var db = Mongoose.createConnection('mongodb://localhost/bumbify',
 var ScraperSchema = require('./models/Scraper.js').ScraperSchema;
 var Scraper = db.model('scraper', ScraperSchema);
 
+
+var SearchHistorySchema = require('./models/SearchHistory.js').SearchHistorySchema;
+var SearchHistory = db.model('searchhistory', SearchHistorySchema);
+
+
 var UserSchema = require('./models/User.js').UserSchema;
 var User = db.model('user', UserSchema);
 
@@ -71,7 +76,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // app.get('/', routes.index(Scraper));
 
 app.get('/api/scrapes', routes.showScrapes(Scraper));
-app.post('/api/searchGifs', routes.searchGifs(Scraper));
+app.post('/api/searchGifs', routes.searchGifs(Scraper, SearchHistory));
 
 app.post('/api/createUser', routes.createUser(User));
 

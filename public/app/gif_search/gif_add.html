@@ -1,4 +1,6 @@
 <!-- <div ng-controller="ScrapesCtrl" ng-init="showScrapes()"> -->
+
+
 <div ng-init="showScrapes()" >
 
   <div >
@@ -15,6 +17,8 @@
   </div>
 
   <hr>
+
+
   <div>
     <h2>{{tag}}</h2>
   </div>
@@ -29,6 +33,7 @@
         <div class="col-sm-10">
           <button ng-click="setUrl()" type="submit" class="btn btn-success">Load Gif</button>
           {{searchResult}}{{loadResponse}}
+          <button class='btn btn-sm'>Save to Favorites</button>
         </div>
       </div>
     </form>

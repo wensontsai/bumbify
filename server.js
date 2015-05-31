@@ -77,6 +77,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/api/scrapes', routes.showScrapes(Scraper));
 app.post('/api/searchGifs', routes.searchGifs(Scraper, SearchHistory));
+app.get('/api/searchHistory', routes.showHistory(SearchHistory));
 
 app.post('/api/createUser', routes.createUser(User));
 

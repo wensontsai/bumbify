@@ -16,17 +16,18 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
         // HOME STATES AND NESTED VIEWS ========================================
         .state('home', {
             url: '/home',
-            templateUrl: 'app/main/partial-main.html'
+            templateUrl: 'app/history/history.html',
+            controller: 'HistoryCtrl'
         })
 
         // nested list with custom controller
-        .state('home.list', {
-            url: '/list',
-            templateUrl: 'app/main/partial-main-list.html',
-            controller: function($scope) {
-                $scope.dogs = ['Bernese', 'Husky', 'Goldendoodle'];
-            }
-        })
+        // .state('home.list', {
+        //     url: '/list',
+        //     templateUrl: 'app/main/partial-main-list.html',
+        //     controller: function($scope) {
+        //         $scope.dogs = ['Bernese', 'Husky', 'Goldendoodle'];
+        //     }
+        // })
 
         // nested list with just some random string data
         .state('home.gif_search', {

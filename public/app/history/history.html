@@ -1,0 +1,11 @@
+<div class="jumbotron text-center" ng-init="showHistory()">
+    <h4>latest GIF searches HISTORRYRY</h4>
+</div>
+
+<div ng-repeat="search in searches">
+    <!-- {{search.tag}} by {{search.user}}
+ -->
+    {{search.tag}}
+</div>
+
+<div ui-view></div>

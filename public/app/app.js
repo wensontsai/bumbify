@@ -29,29 +29,58 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
         //     }
         // })
 
-        // nested list with just some random string data
-        .state('home.gif_search', {
-            url: '/gif_search',
-            templateUrl: 'app/gif_search/gif_search.html',
-            controller: 'ScrapesCtrl'
-        })
+
+        // .state('home.gif_search', {
+        //     url: '/gif_search',
+        //     templateUrl: 'app/gif_search/gif_search.html',
+        //     controller: 'ScrapesCtrl'
+        // })
 
         // CHAT PAGE AND MULTIPLE NAMED VIEWS =================================
         .state('chat', {
             url: '/chat',
             views: {
-                '': { templateUrl: 'app/about/partial-about.html' },
-                // 'columnOne@chat': { template: 'Look I am a column!' },
+                '': {
+                    templateUrl: 'app/chat/chatpage_main.html'
+                },
                 'columnOne@chat': {
                     templateUrl: 'app/chat/chatroom.html',
                     controller: 'ChatCtrl'
                 },
+                // 'columnTwo@chat': {
+                //     templateUrl: 'app/gif_search/gif_add.html',
+                //     controller: 'ScrapesCtrl'
+                // }
                 'columnTwo@chat': {
-                    templateUrl: 'app/gif_search/gif_add.html',
-                    controller: 'ScrapesCtrl'
+                    templateUrl: 'app/chat/gif_nav_module.html'
                 }
             }
         })
+
+         // CHAT PAGE GIF SEARCH FAVORITES =================================
+        .state('gif_add_search', {
+            parent: 'chat',
+            url: '/gif_add_search',
+            templateUrl: 'app/gif_search/gif_add.html',
+            controller: 'ScrapesCtrl'
+        })
+
+         // CHAT PAGE GIF SEARCH RECENTS =================================
+        .state('recent', {
+            parent: 'chat',
+            url: '/recent_searches',
+            templateUrl: 'app/gif_search/gif_add.html',
+            controller: 'ScrapesCtrl'
+        })
+
+        // CHAT PAGE GIF SEARCH FAVORITES =================================
+        .state('favorites', {
+            parent: 'chat',
+            url: '/favorite_searches',
+            templateUrl: 'app/gif_search/gif_add.html',
+            controller: 'ScrapesCtrl'
+        })
+
 
          //  GIF SEARCH PAGE  =================================
         .state('gif_search', {

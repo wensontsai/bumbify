@@ -2,22 +2,11 @@ var cheerio = require('cheerio');
 var request = require('request');
 
 
-// exports.index = function(Scraper){
-//   return function(req, res, next){
-//     Scraper.find(function(error, scrapes){
-//       if(error) return console.error(error);
-//       console.dir(scrapes);
-//       res.send(scrapes);
-//     });
-//   };
-// };
-
 function clearDB(Scraper){
   // clear out old urls
   Scraper.remove().exec();
   console.log('removing all current docs from collection -> scraper');
 }
-
 
 
 function saveSearch(tag, SearchHistory){
@@ -30,6 +19,7 @@ function saveSearch(tag, SearchHistory){
 }
 
 
+
 // GET reqs //
 exports.showScrapes = function(Scraper){
   return function(req, res, next){
@@ -37,6 +27,17 @@ exports.showScrapes = function(Scraper){
       if(error) return console.error(error);
       // console.dir(scrapes);
       res.send(scrapes);
+    });
+  };
+};
+
+
+exports.showHistory = function(SearchHistory){
+  return function(req, res, next){
+    SearchHistory.find(function(error, searches){
+      if(error) return console.error(error);
+      // console.dir(scrapes);
+      res.send(searches);
     });
   };
 };

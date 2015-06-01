@@ -1,21 +1,3 @@
-/*body {
-  padding: 20px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
-
-a {
-  color: #00B7FF;
-}*/
-
-
-ul.nav a:hover {
-  color: #fff;
-}
-
-.navbar-header>a:hover{
-  color: #3B3B3B;
-}
-
 .main_view{
   height: 80vh;
 }
@@ -28,6 +10,16 @@ ul.nav a:hover {
   width: 87vw;
 }
 
+
+/* NAVBAR */
+ul.nav a:hover {
+  color: #fff;
+}
+
+.navbar-header>a:hover{
+  color: #3B3B3B;
+}
+
 .navbar {
   border-radius: 0;
   background-color: #F7F7F7;
@@ -37,16 +29,17 @@ ul.nav a:hover {
   color: #71637D;
 }
 
-.sub_nav a{
-  color: #71637D;
-}
-
 .navbar-brand{
   position: absolute;
   width: 100%;
   left: 0;
   text-align: left;
   margin: auto;
+}
+
+/* CHAT NAVBAR */
+.sub_nav a{
+  color: #71637D;
 }
 
 .nav_tab{
@@ -59,7 +52,7 @@ ul.nav a:hover {
 }
 
 
-
+/* BUTTONS */
 .btn.outline {
     background: none;
     padding: 3px 12px;
@@ -82,8 +75,7 @@ ul.nav a:hover {
 }
 
 
-
-
+/* CHATROOM */
 .chat_field{
   width: 27vw;
 }
@@ -129,6 +121,8 @@ ul.nav a:hover {
   overflow-y: scroll;
 }
 
+
+/* CHAT CONTENT */
 .userChat{
   color: blue;
 }

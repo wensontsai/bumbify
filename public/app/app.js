@@ -52,13 +52,43 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
                 //     controller: 'ScrapesCtrl'
                 // }
                 'columnTwo@chat': {
-                    templateUrl: 'app/chat/gif_nav_module.html'
+                    templateUrl: 'app/chat/gif_nav_module.html',
+                    params: {
+                        autoActivateChild: 'chat.gif_add_search'
+                    },
+                    controller: 'ChatCtrl'
                 }
+                // 'columnTwo@chat': {
+                //     abstract: true,
+                //     views: {
+                //         '' : {
+                //             templateUrl: 'app/chat/gif_nav_module.html'
+                //         },
+                //         'gif_add_search' : {
+                //             parent: 'chat',
+                //             url: '/gif_add_search',
+                //             templateUrl: 'app/gif_search/gif_add.html',
+                //             controller: 'ScrapesCtrl'
+                //         },
+                //         'recent' : {
+                //             parent: 'chat',
+                //             url: '/recent_searches',
+                //             templateUrl: 'app/gif_search/gif_add.html',
+                //             controller: 'ScrapesCtrl'
+                //         },
+                //         'favorites' : {
+                //             parent: 'chat',
+                //             url: '/favorite_searches',
+                //             templateUrl: 'app/gif_search/gif_add.html',
+                //             controller: 'ScrapesCtrl'
+                //         }
+                //     }
+                // }
             }
         })
 
          // CHAT PAGE GIF SEARCH FAVORITES =================================
-        .state('gif_add_search', {
+        .state('chat.gif_add_search', {
             parent: 'chat',
             url: '/gif_add_search',
             templateUrl: 'app/gif_search/gif_add.html',
@@ -66,7 +96,7 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
         })
 
          // CHAT PAGE GIF SEARCH RECENTS =================================
-        .state('recent', {
+        .state('chat.recent', {
             parent: 'chat',
             url: '/recent_searches',
             templateUrl: 'app/gif_search/gif_add.html',
@@ -74,7 +104,7 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
         })
 
         // CHAT PAGE GIF SEARCH FAVORITES =================================
-        .state('favorites', {
+        .state('chat.favorites', {
             parent: 'chat',
             url: '/favorite_searches',
             templateUrl: 'app/gif_search/gif_add.html',
@@ -96,6 +126,8 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
         });
 
 });
+
+
 
 
 

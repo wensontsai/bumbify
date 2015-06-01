@@ -11,11 +11,19 @@ a {
   border-radius: 0;
 }
 
+.chat_field {
+  width: 400px;
+}
+
 .gif_select {
-  height: 500px;
+  height: 440px;
   width : 500px;
   overflow-x: scroll;
   overflow-y: scroll;
+}
+
+.custom_btn{
+  padding: 10px;
 }
 
 .masonry-brick {

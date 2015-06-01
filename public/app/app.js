@@ -1,10 +1,10 @@
 // var routerApp = angular.module('ThisApp', ['ui.router', 'wu.masonry']);
 
-var routerApp = angular.module('ThisApp', ['ui.router', 'btford.socket-io', 'luegg.directives'])
-    .value('nickName', 'pizzaMOMMAa')
-    .value('messageArrayer', function(date, nick, message){
-        return date.toLocaleTimeString() + ' - ' +nick+ ' - ' +message+ '\n';
-    });
+var routerApp = angular.module('ThisApp', ['ui.router', 'btford.socket-io', 'luegg.directives']);
+    // .value('nickName', 'pizzaMOMMAa')
+    // .value('messageArrayer', function(date, nick, message){
+    //     return date.toLocaleTimeString() + ' - ' +nick+ ' - ' +message+ '\n';
+    // });
 
 
 routerApp.config(function($stateProvider, $urlRouterProvider) {

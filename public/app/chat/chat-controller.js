@@ -1,14 +1,20 @@
 routerApp
   .controller('ChatCtrl',
-    function($rootScope, $log, $scope, ChatSocket, messageArrayer, nickName, GifUrl){
+    function($rootScope, $log, $scope, ChatSocket, GifUrl){
 
       $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
           if(toState && toState.params && toState.params.autoActivateChild){
               $state.go(toState.params.autoActivateChild);
               console.log('state change yo');
           }
-
       });
+
+      // internal functions
+      var nickName = 'pizzaMOMMAMAMA';
+
+      function messageArrayer(date, nick, message){
+        return date.toLocaleTimeString() + ' - ' +nick+ ' - ' +message+ '\n';
+      }
 
 
 
@@ -77,7 +83,6 @@ routerApp
 
           // this fetches loaded GIF, and clears data object
           var response = GifUrl.getUrl();
-          console.log("holy fuck: "+response);
           GifUrl.resetUrl();
 
 
@@ -89,12 +94,29 @@ routerApp
             }
 
             // assemble chat session
-            $scope.messageToAdd = messageArrayer(new Date(), data.source, data.payload);
+            // $scope.messageToAdd = messageArrayer(new Date(), data.source, data.payload);
 
             // console.log(data);
             // console.log($scope.messageToAdd);
+            var unixDatestamp = [
+                 new Date().getMonth()+1,
+                 new Date().getDate(),
+                 new Date().getFullYear()
+              ];
+            var unixTimestamp = [
+                new Date().getHours(),
+                new Date().getMinutes(),
+                new Date().getSeconds()
+              ];
 
-            $scope.chatLine.text = $scope.messageToAdd;
+            unixDatestamp = unixDatestamp.join('-');
+            unixTimestamp = unixTimestamp.join(':');
+
+
+
+            $scope.chatLine.timestamp = unixDatestamp +", "+ unixTimestamp;
+            $scope.chatLine.user = data.source;
+            $scope.chatLine.text = data.payload;
             $scope.chatSession.push($scope.chatLine);
 
             var elem = document.getElementById('chatroom');

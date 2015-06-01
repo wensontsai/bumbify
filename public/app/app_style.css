@@ -12,8 +12,20 @@ ul.nav a:hover {
   color: #fff;
 }
 
+.navbar-header>a:hover{
+  color: #3B3B3B;
+}
+
 .main_view{
   height: 80vh;
+}
+
+.right_align {
+  float: right;
+}
+
+.container {
+  width: 87vw;
 }
 
 .navbar {
@@ -29,8 +41,7 @@ ul.nav a:hover {
   color: #71637D;
 }
 
-.navbar-brand
-{
+.navbar-brand{
   position: absolute;
   width: 100%;
   left: 0;
@@ -44,7 +55,9 @@ ul.nav a:hover {
   width: 8vw;
   text-align: center;
   background-color: #FAFAFA;
+  padding: 0;
 }
+
 
 
 .btn.outline {
@@ -53,17 +66,18 @@ ul.nav a:hover {
 }
 
 .btn-primary.outline {
-    border: 2px solid black;
-    color: #0099cc;
+    border: 2px solid #404040;
+    color: #71637D;
 }
 
 .btn-primary.outline:hover, .btn-primary.outline:focus, .btn-primary.outline:active, .btn-primary.outline.active, .open > .dropdown-toggle.btn-primary {
-    color: #33a6cc;
-    border-color: black;
+    color: #71637D;
+    border-color: #404040;
+    background-color: #D3BECF;
 }
 .btn-primary.outline:active, .btn-primary.outline.active {
-    border-color: #007299;
-    color: #007299;
+    border-color: #D3BECF;
+    color: #D3BECF;
     box-shadow: none;
 }
 
@@ -89,7 +103,7 @@ ul.nav a:hover {
 }
 
 .gif_select {
-  height: 52vh;
+  height: 54vh;
   overflow-x: scroll;
   overflow-y: scroll;
   border: 1px solid #bdbdbd;
@@ -108,7 +122,7 @@ ul.nav a:hover {
 #chatroom {
   padding: 10px;
   height: 75vh;
-  width: 50vw;
+  width: 55vw;
   border: 1px solid #bdbdbd;
   border-radius: 10px;
   overflow-x: scroll;

@@ -2,6 +2,16 @@ routerApp
   .controller('ChatCtrl',
     function($rootScope, $log, $scope, ChatSocket, messageArrayer, nickName, GifUrl){
 
+      $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
+          if(toState && toState.params && toState.params.autoActivateChild){
+              $state.go(toState.params.autoActivateChild);
+              console.log('state change yo');
+          }
+
+      });
+
+
+
       $scope.nickName = nickName;
       $scope.chatSession = [];
       $scope.chatLine = {};

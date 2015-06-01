@@ -7,7 +7,7 @@
       <div id="chatroom"  scroll-glue="glued" class='col-md-7'>
           <div ng-repeat="message in chatSession track by $id($index)">
             <div>
-              {{message.text}}
+              <span style="color:blue;">{{message.user}}</span> ({{message.timestamp}}) : {{message.text}}
               <img ng-src="{{message.url}}">
             </div>
           </div>
@@ -20,9 +20,9 @@
       <div class='col-md-5'>
         <form role='form' novalidate name='form'>
           <div class='form-group'>
-            <input class='chat_field' type='text'required ng-max='50' ng-model='message' focus>
+            <input class='input_field chat_field' type='text'required ng-max='50' ng-model='message' focus>
             {{loadResponse}}
-            <button class='btn btn-sm btn-primary' ng-enable='form.$valid' ng-click="sendMessage()">Send!</button>
+            <button class='btn outline btn-primary btn-sm' ng-enable='form.$valid' ng-click="sendMessage()">Send!</button>
           </div>
         </form>
       </div>

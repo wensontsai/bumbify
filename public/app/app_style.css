@@ -7,16 +7,41 @@ a {
   color: #00B7FF;
 }*/
 
+
+ul.nav a:hover {
+  color: #fff;
+}
+
+.navbar-header>a:hover{
+  color: #3B3B3B;
+}
+
 .main_view{
   height: 80vh;
 }
 
-.navbar {
-  border-radius: 0;
+.right_align {
+  float: right;
 }
 
-.navbar-brand
-{
+.container {
+  width: 87vw;
+}
+
+.navbar {
+  border-radius: 0;
+  background-color: #F7F7F7;
+}
+
+.navbar a{
+  color: #71637D;
+}
+
+.sub_nav a{
+  color: #71637D;
+}
+
+.navbar-brand{
   position: absolute;
   width: 100%;
   left: 0;
@@ -24,15 +49,65 @@ a {
   margin: auto;
 }
 
-.chat_field {
+.nav_tab{
+  border: 1px solid #bdbdbd;
+  border-radius: 10px;
+  width: 8vw;
+  text-align: center;
+  background-color: #FAFAFA;
+  padding: 0;
+}
+
+
+
+.btn.outline {
+    background: none;
+    padding: 3px 12px;
+}
+
+.btn-primary.outline {
+    border: 2px solid #404040;
+    color: #71637D;
+}
+
+.btn-primary.outline:hover, .btn-primary.outline:focus, .btn-primary.outline:active, .btn-primary.outline.active, .open > .dropdown-toggle.btn-primary {
+    color: #71637D;
+    border-color: #404040;
+    background-color: #D3BECF;
+}
+.btn-primary.outline:active, .btn-primary.outline.active {
+    border-color: #D3BECF;
+    color: #D3BECF;
+    box-shadow: none;
+}
+
+
+
+
+.chat_field{
   width: 27vw;
 }
 
+.search_area{
+  padding: 20px 0px 0px 0px;
+}
+
+.search_field{
+  width: 16vw;
+}
+
+.input_field {
+  padding: 5px;
+  border-radius: 10px;
+  border: 1px solid #bdbdbd;
+}
+
 .gif_select {
-  height: 52vh;
+  height: 54vh;
   overflow-x: scroll;
   overflow-y: scroll;
-  border: 1px solid black;
+  border: 1px solid #bdbdbd;
+  border-radius: 10px;
 }
 
 .custom_btn{
@@ -47,8 +122,9 @@ a {
 #chatroom {
   padding: 10px;
   height: 75vh;
-  width: 50vw;
-  border: 1px solid black;
+  width: 55vw;
+  border: 1px solid #bdbdbd;
+  border-radius: 10px;
   overflow-x: scroll;
   overflow-y: scroll;
 }

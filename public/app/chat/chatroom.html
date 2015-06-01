@@ -20,7 +20,7 @@
       <div class='col-md-5'>
         <form role='form' novalidate name='form'>
           <div class='form-group'>
-            <input class='chat_field' type='text'required ng-max='50' ng-model='message' focus>
+            <input class='input_field chat_field' type='text'required ng-max='50' ng-model='message' focus>
             {{loadResponse}}
             <button class='btn btn-sm btn-primary' ng-enable='form.$valid' ng-click="sendMessage()">Send!</button>
           </div>

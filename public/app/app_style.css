@@ -24,8 +24,18 @@ a {
   margin: auto;
 }
 
-.chat_field {
+.chat_field{
   width: 27vw;
+}
+
+.search_field{
+  width: 15vw;
+}
+
+.input_field {
+  padding: 5px;
+  border-radius: 10px;
+  border: 1px solid black;
 }
 
 .gif_select {
@@ -33,6 +43,7 @@ a {
   overflow-x: scroll;
   overflow-y: scroll;
   border: 1px solid black;
+  border-radius: 10px;
 }
 
 .custom_btn{
@@ -49,6 +60,7 @@ a {
   height: 75vh;
   width: 50vw;
   border: 1px solid black;
+  border-radius: 10px;
   overflow-x: scroll;
   overflow-y: scroll;
 }

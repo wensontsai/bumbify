@@ -7,23 +7,31 @@ a {
   color: #00B7FF;
 }*/
 
+.main_view{
+  height: 80vh;
+}
+
 .navbar {
   border-radius: 0;
 }
 
+.nav_tab {
+  float: left;
+}
+
 .chat_field {
-  width: 400px;
+  width: 27vw;
 }
 
 .gif_select {
-  height: 440px;
-  width : 500px;
+  height: 52vh;
   overflow-x: scroll;
   overflow-y: scroll;
+  border: 1px solid black;
 }
 
 .custom_btn{
-  padding: 10px;
+  padding: 15px;
 }
 
 .masonry-brick {
@@ -33,7 +41,8 @@ a {
 
 #chatroom {
   padding: 10px;
-  height: 600px;
+  height: 75vh;
+  width: 50vw;
   border: 1px solid black;
   overflow-x: scroll;
   overflow-y: scroll;

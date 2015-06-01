@@ -7,7 +7,7 @@
       <div id="chatroom"  scroll-glue="glued" class='col-md-7'>
           <div ng-repeat="message in chatSession track by $id($index)">
             <div>
-              <span style="color:blue;">{{message.user}}</span> ({{message.timestamp}}) : {{message.text}}
+              <span class="userChat">{{message.user}}</span> <span class="userTimestamp">({{message.timestamp}})</span> :  <span class="chatContent">{{message.text}}</span>
               <img ng-src="{{message.url}}">
             </div>
           </div>

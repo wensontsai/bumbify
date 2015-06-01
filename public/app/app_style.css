@@ -128,3 +128,15 @@ ul.nav a:hover {
   overflow-x: scroll;
   overflow-y: scroll;
 }
+
+.userChat{
+  color: blue;
+}
+
+.userTimestamp{
+  font-size: 0.7em;
+}
+
+.chatContent{
+  padding-left: 10px;
+}

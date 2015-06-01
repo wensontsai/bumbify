@@ -3,14 +3,14 @@
 
 <div ng-init="showScrapes()" >
 
-  <div >
+  <div class="search_area">
     <form class="form-horizontal" role="form" >
       <div class="form-group">
         <!--   -->
-        <div class="col-md-8 ">
+        <div class="col-md-8">
           <input class="input_field search_field" placeholder="tag" ng-model="gifSearch.tag">
         </div>
-          <button ng-click="searchGifs()" type="submit" class="btn btn-success">Search Gifs</button>
+          <button ng-click="searchGifs()" type="submit" class="btn outline btn-primary btn-sm">Search Gifs</button>
           {{searchResult}}
       </div>
     </form>
@@ -31,10 +31,10 @@
       </div>
       <div>
         <div class="col-sm-10 custom_btn">
-          <button ng-click="setUrl()" type="submit" class="btn btn-success">Load Gif</button>
+          <button ng-click="setUrl()" type="submit" class="btn outline btn-primary btn-sm">Load Gif</button>
           {{searchResult}}
          <!--  {{loadResponse}} -->
-          <button class='btn btn-sm'>Save to Favorites</button>
+          <button class='btn outline btn-primary btn-sm'>Save to Favorites</button>
         </div>
       </div>
     </form>

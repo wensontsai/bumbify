@@ -15,8 +15,13 @@ a {
   border-radius: 0;
 }
 
-.nav_tab {
-  float: left;
+.navbar-brand
+{
+  position: absolute;
+  width: 100%;
+  left: 0;
+  text-align: left;
+  margin: auto;
 }
 
 .chat_field {

@@ -105,6 +105,7 @@ app.post('/api/searchGifs', routes.searchGifs(Scraper, SearchHistory));
 app.get('/api/searchHistory', routes.showHistory(SearchHistory));
 
 app.post('/api/createUser', routes.createUser(User));
+app.get('/api/signup', routes.signup(User));
 app.get('/api/login', routes.login(User));
 
 

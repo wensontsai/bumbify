@@ -7,9 +7,7 @@ var http = require('http');
 var port = process.env.PORT || 3030;
 
 var app = express();
-
 var server = http.createServer(app);
-
 io = io.listen(server);
 
 // socket.io ////////
@@ -22,7 +20,10 @@ var favicon = require('static-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var routes = require('./routes/index');
+
+var flash = require('connect-flash');
+var session = require('express-session');
+
 
 
 
@@ -71,6 +72,30 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 /////////////////////
+// PASSPORT.JS  ////
+////////////////////
+// Configuring Passport
+var passport = require('passport');
+// var expressSession = require('express-session');
+
+// TODO - Why Do we need this key ?
+// app.use(expressSession({secret: 'mySecretKey'}));
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Using the flash middleware provided by connect-flash to store messages in session
+ // and displaying in templates
+var flash = require('connect-flash');
+app.use(flash());
+
+// Initialize Passport
+var initPassport = require('./passport/init');
+initPassport(passport);
+
+
+
+var routes = require('./routes/index');
+/////////////////////
 // AngularJS  ROUTING
 /////////////////////
 // app.get('/', routes.index(Scraper));
@@ -80,10 +105,14 @@ app.post('/api/searchGifs', routes.searchGifs(Scraper, SearchHistory));
 app.get('/api/searchHistory', routes.showHistory(SearchHistory));
 
 app.post('/api/createUser', routes.createUser(User));
+app.get('/api/login', routes.login(User));
 
 
 
 
+
+
+//======================================================//
 ////////   catch 404 and forward to error handler
 app.use(function(req, res, next) {
     var err = new Error('Not Found');

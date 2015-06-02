@@ -122,7 +122,15 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
          //  SIGNUP PAGE  =================================
         .state('signup', {
             url: '/signup',
-            templateUrl: 'app/user/partial-signup.html'
+            templateUrl: 'app/user/partial-signup.html',
+            controller: 'UserCtrl'
+        })
+
+         //  LOGIN PAGE  =================================
+        .state('login', {
+            url: '/login',
+            templateUrl: 'app/user/partial-login.html',
+            controller: 'UserCtrl'
         });
 
 });

@@ -1,4 +1,4 @@
-var LocalStrategy   = require('passport-local').Strategy;
+var LocalStrategy = require('passport-local').Strategy;
 var User = require('../models/user');
 var bCrypt = require('bcrypt');
 
@@ -36,6 +36,6 @@ module.exports = function(passport){
 
     var isValidPassword = function(user, password){
         return bCrypt.compareSync(password, user.password);
-    }
+    };
 
 }

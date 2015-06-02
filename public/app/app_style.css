@@ -113,7 +113,7 @@ input[type="radio"]:checked + label {
   height: 54vh;
   overflow-x: scroll;
   overflow-y: scroll;
-  border: 1px solid #bdbdbd;
+  border: 2px solid #bdbdbd;
   border-radius: 10px;
 }
 
@@ -134,7 +134,7 @@ input[type="radio"]:checked + label {
   padding: 10px;
   height: 75vh;
   width: 55vw;
-  border: 1px solid #bdbdbd;
+  border: 2px solid #bdbdbd;
   border-radius: 10px;
   overflow-x: scroll;
   overflow-y: scroll;

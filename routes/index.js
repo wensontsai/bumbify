@@ -105,7 +105,8 @@ exports.searchGifs = function(Scraper, SearchHistory){
 
 
 
-// AUTH shit
+// USER AUTHENTICATION
+
 // Generates hash using bCrypt
 var createHash = function(password){
   return bCrypt.hashSync(password, bCrypt.genSaltSync(10), null);
@@ -117,7 +118,7 @@ exports.createUser = function(User){
     console.log("inside createUser!");
 
     // find a user in Mongo with provided username
-    User.findOne({ 'email' :  req.body.email }, function(err, user) {
+    User.findOne({ 'name' :  req.body.name }, function(err, user) {
         // In case of any error, return using the done method
         if (err){
           console.log('Error in SignUp: '+err);
@@ -126,13 +127,13 @@ exports.createUser = function(User){
 
         // already exists
         if(user){
-          console.log('User already exists with username: '+req.body.email);
+          console.log('User already exists with username: '+req.body.name);
           // return done(null, false, req.flash('message','User Already Exists'));
         } else {
           var user = new User({
             name : req.body.name,
             email : req.body.email,
-            password : req.body.password
+            password : createHash(req.body.password)
           });
           console.log(user);
 
@@ -172,6 +173,7 @@ exports.login = function(User, formInfo){
             return done(null, user);
         }
     );
+
     var isValidPassword = function(user, password){
       return bCrypt.compareSync(password, user.password);
     };

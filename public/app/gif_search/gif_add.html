@@ -25,9 +25,14 @@
     <div id="masonry-container">
       <form role="form">
         <div masonry class="gif_select">
+
           <div class="masonry-brick" ng-repeat='url in gifs'>
-            <input type="radio" value="{{url.url}}" ng-model="loadedGif.url" ng-click="uncheck($event)"><img ng-src="{{url.url}}">
+              <input id="{{url.url}}" type="radio" value="{{url.url}}" ng-model="loadedGif.url" ng-click="uncheck($event)">
+              <label for="{{url.url}}">
+                <img ng-src="{{url.url}}">
+              </label>
           </div>
+
         </div>
         <div>
           <div class="col-sm-10 custom_btn">

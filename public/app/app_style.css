@@ -98,6 +98,17 @@ ul.nav a:hover {
   border: 1px solid #bdbdbd;
 }
 
+
+/* GIF TOOLS */
+.masonry-brick input[type="radio"] {
+    display: none;
+}
+
+input[type="radio"]:checked + label {
+    opacity: 0.6;
+}
+
+
 .gif_select {
   height: 54vh;
   overflow-x: scroll;
@@ -115,6 +126,10 @@ ul.nav a:hover {
   display: inline-block;
 }
 
+
+
+
+/* CHAT CONTENT */
 #chatroom {
   padding: 10px;
   height: 75vh;
@@ -125,8 +140,6 @@ ul.nav a:hover {
   overflow-y: scroll;
 }
 
-
-/* CHAT CONTENT */
 .userChat{
   color: blue;
 }
@@ -138,3 +151,4 @@ ul.nav a:hover {
 .chatContent{
   padding-left: 10px;
 }
+

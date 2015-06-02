@@ -112,17 +112,35 @@ var createHash = function(password){
 };
 
 
-exports.createUser = function(User, formInfo){
+exports.createUser = function(User){
   return function(req, res, next){
-    var user = new User(req.body);
-    console.dir(user._id);
+
+    console.log("inside createUser!");
+
+    var user = new User({
+      name : req.body.name,
+      email : req.body.email,
+      password : req.body.password
+    });
+    console.log(user);
+
     user.save(function(error, user){
       if(error) return console.error(error);
       console.dir(user);
       res.send(user);
     });
+    console.dir(user._id);
   };
 };
+
+function saveSearch(tag, SearchHistory){
+  console.log("i save the search params here - " +tag);
+   search = new SearchHistory({
+        tag : tag,
+        user : "pizzaMOMMA"
+      });
+   search.save();
+}
 
 exports.signup = function(User, formInfo){
   return function(req, res, next){

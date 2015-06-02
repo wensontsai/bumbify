@@ -44,10 +44,8 @@ var db = Mongoose.createConnection('mongodb://localhost/bumbify',
 var ScraperSchema = require('./models/Scraper.js').ScraperSchema;
 var Scraper = db.model('scraper', ScraperSchema);
 
-
 var SearchHistorySchema = require('./models/SearchHistory.js').SearchHistorySchema;
 var SearchHistory = db.model('searchhistory', SearchHistorySchema);
-
 
 var UserSchema = require('./models/User.js').UserSchema;
 var User = db.model('user', UserSchema);
@@ -71,26 +69,26 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 
-/////////////////////
-// PASSPORT.JS  ////
-////////////////////
-// Configuring Passport
-var passport = require('passport');
-// var expressSession = require('express-session');
+// /////////////////////
+// // PASSPORT.JS  ////
+// ////////////////////
+// // Configuring Passport
+// var passport = require('passport');
+// // var expressSession = require('express-session');
 
-// TODO - Why Do we need this key ?
-// app.use(expressSession({secret: 'mySecretKey'}));
-app.use(passport.initialize());
-app.use(passport.session());
+// // TODO - Why Do we need this key ?
+// // app.use(expressSession({secret: 'mySecretKey'}));
+// app.use(passport.initialize());
+// app.use(passport.session());
 
-// Using the flash middleware provided by connect-flash to store messages in session
- // and displaying in templates
-var flash = require('connect-flash');
-app.use(flash());
+// // Using the flash middleware provided by connect-flash to store messages in session
+//  // and displaying in templates
+// var flash = require('connect-flash');
+// app.use(flash());
 
-// Initialize Passport
-var initPassport = require('./passport/init');
-initPassport(passport);
+// // Initialize Passport
+// var initPassport = require('./passport/init');
+// initPassport(passport);
 
 
 
@@ -104,8 +102,8 @@ app.get('/api/scrapes', routes.showScrapes(Scraper));
 app.post('/api/searchGifs', routes.searchGifs(Scraper, SearchHistory));
 app.get('/api/searchHistory', routes.showHistory(SearchHistory));
 
-app.post('/api/createUser', routes.createUser(User));
-app.get('/api/signup', routes.signup(User));
+// app.post('/api/createUser', routes.createUser(User));
+app.post('/api/signup', routes.createUser(User));
 app.get('/api/login', routes.login(User));
 
 

@@ -104,7 +104,7 @@ app.get('/api/searchHistory', routes.showHistory(SearchHistory));
 
 // app.post('/api/createUser', routes.createUser(User));
 app.post('/api/signup', routes.createUser(User));
-app.get('/api/login', routes.login(User));
+app.post('/api/login', routes.login(User));
 
 
 

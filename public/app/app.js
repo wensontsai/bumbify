@@ -123,14 +123,14 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
         .state('signup', {
             url: '/signup',
             templateUrl: 'app/user/signup.html',
-            controller: 'UserCtrl'
+            controller: 'SignupCtrl'
         })
 
          //  LOGIN PAGE  =================================
         .state('login', {
             url: '/login',
             templateUrl: 'app/user/login.html',
-            controller: 'UserCtrl'
+            controller: 'LoginCtrl'
         });
 
 });

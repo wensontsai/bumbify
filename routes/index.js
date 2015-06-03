@@ -113,6 +113,8 @@ var createHash = function(password){
 };
 
 
+
+
 exports.createUser = function(User){
   return function(req, res, next) {
     console.log("inside createUser!");
@@ -151,32 +153,37 @@ exports.createUser = function(User){
 
 
 
-exports.login = function(User, formInfo){
+exports.login = function(User){
   return function(req, res, next){
-    User.findOne({ 'username' :  username },
-        function(err, user) {
-            // In case of any error, return using the done method
-            if (err)
-                return done(err);
-            // Username does not exist, log the error and redirect back
-            if (!user){
-                console.log('User Not Found with username '+username);
-                return done(null, false, req.flash('message', 'User Not found.'));
-            }
-            // User exists but wrong password, log the error
-            if (!isValidPassword(user, password)){
-                console.log('Invalid Password');
-                return done(null, false, req.flash('message', 'Invalid Password')); // redirect back to login page
-            }
-            // User and password both match, return user from done method
-            // which will be treated like success
-            return done(null, user);
+    console.log("inside login func!");
+
+    // find a user in Mongo with provided username
+    User.findOne({ 'name' :  req.body.name }, function(err, user) {
+        // In case of any error, return using the done method
+        if (err){
+            // return done(err);
         }
-    );
+        // Username does not exist, log the error and redirect back
+        if (!user){
+            console.log('User Not Found with username '+req.body.name);
+            // return done(null, false, req.flash('message', 'User Not found.'));
+        } else if (!isValidPassword(user, req.body.password)){
+        // User exists but wrong password, log the error
+            console.log('Invalid Password');
+            // return done(null, false, req.flash('message', 'Invalid Password')); // redirect back to login page
+        } else {
+        // User and password both match, return user from done method
+        // which will be treated like success
+        // return done(null, user);
+          res.send(user);
+        }
+
+    });
 
     var isValidPassword = function(user, password){
       return bCrypt.compareSync(password, user.password);
     };
+
   };
 };
 

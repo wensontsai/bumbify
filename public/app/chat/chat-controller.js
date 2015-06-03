@@ -1,6 +1,6 @@
 routerApp
   .controller('ChatCtrl',
-    function($rootScope, $log, $scope, ChatSocket, GifUrl){
+    function($rootScope, $log, $scope, ChatSocket, GifUrl, AuthenticationBlock){
 
       $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
           if(toState && toState.params && toState.params.autoActivateChild){
@@ -9,9 +9,9 @@ routerApp
           }
       });
 
-      // internal functions
-      var nickName = '*anonymous*';
+      var nickName = AuthenticationBlock.checkLoggedIn().name;
 
+      // internal functions
       function messageArrayer(date, nick, message){
         return date.toLocaleTimeString() + ' - ' +nick+ ' - ' +message+ '\n';
       }

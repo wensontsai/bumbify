@@ -39,12 +39,12 @@ routerApp
         $http.post('/api/login', $scope.loginData).success(function(data){
             console.log(data);
 
-          // clear $scope.loginData
-          $scope.loginData = {};
 
           // set loggedin
-          AuthenticationBlock.setLoggedIn();
+          AuthenticationBlock.setLoggedIn($scope.loginData);
 
+          // clear $scope.loginData
+          // $scope.loginData = {};
           // redirect to login page
           // $location.path('/home');
 

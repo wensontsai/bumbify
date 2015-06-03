@@ -24,8 +24,10 @@ angular.module('ThisApp')
                 console.log("logged in? : " +auth);
                 return auth;
             },
-            setLoggedIn: function(){
+            setLoggedIn: function(data){
                 auth.loggedIn = true;
+                console.log(data);
+                auth.name = data.name;
                 $state.go('home');
             },
             unsetLoggedIn: function(){

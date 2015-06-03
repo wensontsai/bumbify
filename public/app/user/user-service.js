@@ -16,23 +16,25 @@ angular.module('ThisApp')
 
     };
   })
-  .factory('AuthenticationBlock', function(){
-    var auth = {};
+  .factory('AuthenticationBlock', ['$rootScope', '$state', function($rootscope, $state){
+        var auth = {};
 
-    return {
-        checkLoggedIn: function(key){
-            console.log("logged in? : " +auth);
-            return auth;
-        },
-        setLoggedIn: function(){
-            auth.loggedIn = true;
-        },
-        unsetLoggedIn: function(){
-            auth.loggedIn = false;
-        }
+        return {
+            checkLoggedIn: function(key){
+                console.log("logged in? : " +auth);
+                return auth;
+            },
+            setLoggedIn: function(){
+                auth.loggedIn = true;
+                $state.go('home');
+            },
+            unsetLoggedIn: function(){
+                auth.loggedIn = false;
+            }
 
-    };
-  })
+        };
+     }
+  ]);
 
 // appServices.factory('AuthenticationService', function() {
 //     var auth = {

@@ -46,7 +46,7 @@ routerApp
           AuthenticationBlock.setLoggedIn();
 
           // redirect to login page
-          $location.path('/home');
+          // $location.path('/home');
 
         });
 

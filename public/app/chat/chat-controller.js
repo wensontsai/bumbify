@@ -10,7 +10,7 @@ routerApp
       });
 
       // internal functions
-      var nickName = 'pizzaMOMMAMAMA';
+      var nickName = '*anonymous*';
 
       function messageArrayer(date, nick, message){
         return date.toLocaleTimeString() + ' - ' +nick+ ' - ' +message+ '\n';

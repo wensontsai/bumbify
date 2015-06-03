@@ -1,9 +1,9 @@
 routerApp
   .controller('SignupCtrl',
-    function($rootScope, $scope, $http, $location){
+    function($rootScope, $scope, $http, $location, AlertBlock, AuthenticationBlock){
 
       $scope.signupData = {};
-      $scope.newSignupMessage = '';
+      $scope.alert = {};
 
       // Signup - add new user
       $scope.signUp = function(){
@@ -16,8 +16,8 @@ routerApp
           // clear $scope.signupData
           $scope.signupData = {};
           // redirect to login page
-          $scope.newSignupMessage = "Your account has been successfully created!";
-          console.log($scope.newSignupMessage);
+          $scope.alert.signupSuccess = "Your account has been successfully created!";
+          console.log($scope.alert.signupSuccess);
           $location.path('/login');
 
         });
@@ -26,9 +26,10 @@ routerApp
 
     })
   .controller('LoginCtrl',
-    function($rootScope, $scope, $http, $location){
+    function($rootScope, $scope, $http, $location, AlertBlock, AuthenticationBlock){
 
       $scope.loginData = {};
+      $scope.alert = {};
 
       // Login - add new user
       $scope.logIn = function(){
@@ -40,11 +41,22 @@ routerApp
 
           // clear $scope.loginData
           $scope.loginData = {};
+
+          // set loggedin
+          AuthenticationBlock.setLoggedIn();
+
           // redirect to login page
           $location.path('/home');
 
         });
 
       };
+
+      $scope.logOut = function(){
+          AuthenticationBlock.unsetLoggedIn();
+      };
+
+
+
 
     });

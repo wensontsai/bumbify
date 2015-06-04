@@ -11,6 +11,11 @@ routerApp
       $scope.loadedGif = {};
       $scope.loadResponse = '';
 
+      $scope.loggedIn = AuthenticationBlock.checkLoggedIn().loggedIn;
+        if($scope.loggedIn === true){
+        $scope.nickName = AuthenticationBlock.checkLoggedIn().name;
+      }
+
 
       // $scope.uncheck = function(event) {
       //   console.log(event);

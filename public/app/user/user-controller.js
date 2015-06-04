@@ -18,8 +18,8 @@ routerApp
           // redirect to login page
           $scope.alert.signupSuccess = "Your account has been successfully created!";
           console.log($scope.alert.signupSuccess);
-          // $location.path('/login');
           AuthenticationBlock.loginSignupToggle();
+          $location.path('/login');
 
         });
 
@@ -34,7 +34,7 @@ routerApp
 
 
   .controller('LoginCtrl',
-    function($rootScope, $scope, $http, $location, AlertBlock, AuthenticationBlock){
+    function($rootScope, $scope, $http, $location, $state, AlertBlock, AuthenticationBlock){
 
       $scope.loginData = {};
       $scope.alert = {};
@@ -45,16 +45,17 @@ routerApp
 
         // if all good, then hit up api
         $http.post('/api/login', $scope.loginData).success(function(data){
+            console.log('inside user controller now');
             console.log(data);
-
-
           // set loggedin
           AuthenticationBlock.setLoggedIn($scope.loginData);
 
           // clear $scope.loginData
           // $scope.loginData = {};
           // redirect to login page
-          $location.path('/home');
+          console.log($state);
+          $state.go('chat', {});
+          $location.path('chat');
 
         });
 

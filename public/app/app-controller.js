@@ -22,7 +22,8 @@ routerApp
 
       //login & signup //
       $scope.login_or_signup = function(){
-        return $scope.custom = AuthenticationBlock.checkLoggedIn().loginSignupToggle;
+        $scope.custom = AuthenticationBlock.checkLoggedIn().loginSignupToggle;
+        return $scope.custom;
       };
 
       // $scope.AuthResult = function(action){

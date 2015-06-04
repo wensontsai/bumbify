@@ -74,7 +74,7 @@
 </nav>
 
 <!--  LOGIN // SIGNUP VIEWS -->
-<div ng-hide="loggedIn()" ng-controller="ThisAppCtrl">
+<div ng-hide="loggedIn === true" ng-controller="ThisAppCtrl">
     <!-- LOGIN View -->
     <div ng-hide="login_or_signup()">
         <div ng-controller='LoginCtrl'>
@@ -148,7 +148,7 @@
 <!-- LOGIN // SIGNUP VIEWS END -->
   <!-- MAIN CONTENT -->
   <!-- THIS IS WHERE WE WILL INJECT OUR CONTENT ============================== -->
-<!-- <div ng-show="loggedIn()" ng-controller="ThisAppCtrl"> -->
+<!-- <div ng-show="loggedIn === true" ng-controller="ThisAppCtrl"> -->
   <div class="container">
       <div ui-view></div>
       <div class="footer text-center"></div>

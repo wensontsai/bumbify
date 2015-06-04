@@ -33,6 +33,7 @@ angular.module('ThisApp')
                 console.log(data);
                 auth.name = data.name;
                 $state.go('chat');
+                return auth;
             },
             unsetLoggedIn: function(){
                 auth.loggedIn = false;

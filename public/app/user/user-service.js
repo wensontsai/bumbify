@@ -17,7 +17,10 @@ angular.module('ThisApp')
     };
   })
   .factory('AuthenticationBlock', ['$rootScope', '$state', function($rootscope, $state){
-        var auth = {};
+        var auth = {
+          loggedIn : false,
+          loginSignupToggle : false
+        };
 
         return {
             checkLoggedIn: function(key){
@@ -26,12 +29,16 @@ angular.module('ThisApp')
             },
             setLoggedIn: function(data){
                 auth.loggedIn = true;
+                console.log("inside set logged in func");
                 console.log(data);
                 auth.name = data.name;
-                $state.go('home');
+                $state.go('chat');
             },
             unsetLoggedIn: function(){
                 auth.loggedIn = false;
+            },
+            loginSignupToggle: function(){
+              auth.loginSignupToggle = auth.loginSignupToggle === false ? true: false;
             }
 
         };

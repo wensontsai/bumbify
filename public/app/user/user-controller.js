@@ -18,13 +18,21 @@ routerApp
           // redirect to login page
           $scope.alert.signupSuccess = "Your account has been successfully created!";
           console.log($scope.alert.signupSuccess);
-          $location.path('/login');
+          // $location.path('/login');
+          AuthenticationBlock.loginSignupToggle();
 
         });
 
       };
 
+      //login & signup //
+      $scope.loginSignupToggle = function() {
+          AuthenticationBlock.loginSignupToggle();
+      };
+
     })
+
+
   .controller('LoginCtrl',
     function($rootScope, $scope, $http, $location, AlertBlock, AuthenticationBlock){
 
@@ -46,10 +54,15 @@ routerApp
           // clear $scope.loginData
           // $scope.loginData = {};
           // redirect to login page
-          // $location.path('/home');
+          $location.path('/home');
 
         });
 
+      };
+
+      //login & signup //
+      $scope.loginSignupToggle = function() {
+          AuthenticationBlock.loginSignupToggle();
       };
 
       $scope.logOut = function(){

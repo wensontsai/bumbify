@@ -15,7 +15,10 @@ routerApp
 
 
 
-      $scope.nickName = AuthenticationBlock.checkLoggedIn().name;
+      $scope.loggedIn = AuthenticationBlock.checkLoggedIn().loggedIn;
+        if($scope.loggedIn === true){
+        $scope.nickName = AuthenticationBlock.checkLoggedIn().name;
+      }
 
       // internal functions
       function messageArrayer(date, nick, message){

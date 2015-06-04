@@ -1,6 +1,6 @@
 routerApp
   .controller('ThisAppCtrl',
-    function($rootScope, $scope, $http, $location, GifUrl, AlertBlock, AuthenticationBlock){
+    function($rootScope, $scope, $http, $state, $location, GifUrl, AlertBlock, AuthenticationBlock){
 
       // variables //
       $scope.loginData = {};
@@ -14,15 +14,15 @@ routerApp
       }
 
 
+//////      ///////////////////////////
+      // for testing  only  //
+      // $scope.loggedIn = true;
+//////      /////////////////////////
+
 
       //login & signup //
-      $scope.loginSignupToggle = function() {
-            $scope.custom = $scope.custom === false ? true: false;
-            console.log($scope.custom);
-        };
-
       $scope.login_or_signup = function(){
-          return $scope.custom;
+        return $scope.custom = AuthenticationBlock.checkLoggedIn().loginSignupToggle;
       };
 
       // $scope.AuthResult = function(action){
@@ -35,6 +35,7 @@ routerApp
       // Login - add new user
       $scope.logIn = function(){
         // validations go here
+        console.log($scope.loginData);
 
         // if all good, then hit up api
         $http.post('/api/login', $scope.loginData).success(function(data){
@@ -46,9 +47,10 @@ routerApp
           AuthenticationBlock.setLoggedIn($scope.loginData);
 
           // clear $scope.loginData
-          // $scope.loginData = {};
+          $scope.loginData = {};
           // redirect to login page
-          // $location.path('/home');
+          $state.go('chat');
+          $location.path('/home');
 
         });
 

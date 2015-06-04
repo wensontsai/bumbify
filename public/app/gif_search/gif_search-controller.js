@@ -1,7 +1,7 @@
 // angular.module('ThisApp', [])
 routerApp
   .controller('ScrapesCtrl',
-    function($rootScope, $scope, $http, GifUrl){
+    function($rootScope, $scope, $http, GifUrl, AuthenticationBlock){
       // search models
       $scope.gifs = [];
       $scope.formInfo = {};
@@ -12,11 +12,11 @@ routerApp
       $scope.loadResponse = '';
 
 
-      $scope.uncheck = function(event) {
-        console.log(event);
-          if ($scope.checked == event.target.value)
-              $scope.checked = false;
-      };
+      // $scope.uncheck = function(event) {
+      //   console.log(event);
+      //     if ($scope.checked == event.target.value)
+      //         $scope.checked = false;
+      // };
 
       // //user AUTH validations
       // $scope.nameRequired = '';
@@ -64,7 +64,7 @@ routerApp
             $http.get('/api/scrapes').success(function(data){
               $scope.gifs = data;
               $scope.tag = data[0].tag;
-              console.log(tag);
+              console.log($scope.tag);
             });
 
         });
@@ -77,6 +77,10 @@ routerApp
           console.log($scope.gifs);
           console.log($scope.tag);
         });
+
+          var test_answer = AuthenticationBlock.checkLoggedIn();
+          console.log(test_answer);
+
       };
 
       $scope.setUrl = function($rootScope){

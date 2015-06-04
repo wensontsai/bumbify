@@ -1,18 +1,58 @@
-appServices.factory('AuthenticationService', function() {
-    var auth = {
-        isLogged: false
-    }
+angular.module('ThisApp')
+  .factory('AlertBlock', function () {
+    var alerts = {};
 
-    return auth;
-});
-appServices.factory('UserService', function($http) {
     return {
-        logIn: function(username, password) {
-            return $http.post(options.api.base_url + '/login', {username: username, password: password});
-        },
+      getAlert: function(){
+        return alerts;
+      },
+      setSignupAlert: function(message){
+        alerts.signupResult = message;
 
-        logOut: function() {
+      },
+      setLoginAlert: function(message){
+        alerts.loginResult = message;
+      }
 
-        }
-    }
-});
+    };
+  })
+  .factory('AuthenticationBlock', ['$rootScope', '$state', function($rootscope, $state){
+        var auth = {};
+
+        return {
+            checkLoggedIn: function(key){
+                console.log("logged in? : " +auth);
+                return auth;
+            },
+            setLoggedIn: function(data){
+                auth.loggedIn = true;
+                console.log(data);
+                auth.name = data.name;
+                $state.go('home');
+            },
+            unsetLoggedIn: function(){
+                auth.loggedIn = false;
+            }
+
+        };
+     }
+  ]);
+
+// appServices.factory('AuthenticationService', function() {
+//     var auth = {
+//         isLogged: false
+//     }
+
+//     return auth;
+// });
+// appServices.factory('UserService', function($http) {
+//     return {
+//         logIn: function(username, password) {
+//             return $http.post(options.api.base_url + '/login', {username: username, password: password});
+//         },
+
+//         logOut: function() {
+
+//         }
+//     }
+// });

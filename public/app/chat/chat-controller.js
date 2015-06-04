@@ -2,14 +2,20 @@ routerApp
   .controller('ChatCtrl',
     function($rootScope, $log, $scope, ChatSocket, GifUrl, AuthenticationBlock){
 
-      $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
-          if(toState && toState.params && toState.params.autoActivateChild){
-              $state.go(toState.params.autoActivateChild);
-              console.log('state change yo');
-          }
-      });
+      $scope.chatSession = [];
+      $scope.chatLine = {};
+      $scope.gifCheck = '';
 
-      var nickName = AuthenticationBlock.checkLoggedIn().name;
+      // $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
+      //     if(toState && toState.params && toState.params.autoActivateChild){
+      //         $state.go(toState.params.autoActivateChild);
+      //         console.log('state change yo');
+      //     }
+      // });
+
+
+
+      $scope.nickName = AuthenticationBlock.checkLoggedIn().name;
 
       // internal functions
       function messageArrayer(date, nick, message){
@@ -18,10 +24,6 @@ routerApp
 
 
 
-      $scope.nickName = nickName;
-      $scope.chatSession = [];
-      $scope.chatLine = {};
-      $scope.gifCheck = '';
 
       //listen for gif loads
       // trigger sendMessage
@@ -40,7 +42,7 @@ routerApp
 
           $scope.message = '';
           $log.debug('sending message', $scope.message);
-          ChatSocket.emit('message', nickName, $scope.message);
+          ChatSocket.emit('message', $scope.nickName, $scope.message);
           $log.debug('message sent', $scope.message);
         }
       }, true);
@@ -61,7 +63,7 @@ routerApp
 
         // console logging
         $log.debug('sending message', $scope.message);
-        ChatSocket.emit('message', nickName, $scope.message);
+        ChatSocket.emit('message', $scope.nickName, $scope.message);
         $log.debug('message sent', $scope.message);
         $scope.message = '';
       };

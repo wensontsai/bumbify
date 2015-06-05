@@ -3,7 +3,7 @@ routerApp
     function($rootScope, $scope, $http, $location, AlertBlock, AuthenticationBlock){
 
       $scope.signupData = {};
-      $scope.alert = {};
+      $scope.alert = '';
 
       // Signup - add new user
       $scope.signUp = function(){
@@ -14,11 +14,16 @@ routerApp
           // clear $scope.signupData
           $scope.signupData = {};
 
-          // set alert to display on login view
-          AlertBlock.setSignupAlert("Your account has been successfully created!");
+          if(data === 'exists'){
+            $scope.signupData = {};
+            $scope.alert = "Username already exists.  Please sign up with another!";
+          } else {
+              // set alert to display on login view
+              AlertBlock.setSignupAlert("Your account has been successfully created!");
 
-          // toggle login view
-          AuthenticationBlock.loginSignupToggle();
+              // toggle login view
+              AuthenticationBlock.loginSignupToggle();
+          }
 
         });
 
@@ -46,11 +51,20 @@ routerApp
         $http.post('/api/login', $scope.loginData).success(function(data){
             console.log('inside user controller now');
             console.log(data);
-          // set loggedin
-          AuthenticationBlock.setLoggedIn($scope.loginData);
 
-          // clear $scope.loginData
-          $scope.loginData = {};
+          if(data === 'password failed'){
+            $scope.loginData.password = '';
+            $scope.alert = "Login failed - Incorrect password.  Please try again!";
+          } else if(data === 'username failed'){
+            $scope.loginData = {};
+            $scope.alert = "Login failed - Incorrect username.  Please try again!";
+          } else {
+              // set loggedin
+              AuthenticationBlock.setLoggedIn($scope.loginData);
+
+              // clear $scope.loginData
+              $scope.loginData = {};
+          }
 
         });
 

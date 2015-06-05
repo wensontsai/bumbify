@@ -130,7 +130,8 @@ exports.createUser = function(User){
         // already exists
         if(user){
           console.log('User already exists with username: '+req.body.name);
-          res.send(401);
+          status = "exists";
+          res.send(status);
         } else {
           var user = new User({
             name : req.body.name,
@@ -144,7 +145,6 @@ exports.createUser = function(User){
             console.dir(user);
             res.send(user);
           });
-          console.dir(user._id);
         }
     });
 
@@ -166,10 +166,13 @@ exports.login = function(User){
         // Username does not exist, log the error and redirect back
         if (!user){
             console.log('User Not Found with username '+req.body.name);
+            status = "username failed";
+            res.send(status);
         } else if (!isValidPassword(user, req.body.password)){
         // User exists but wrong password, log the error
             console.log('Invalid Password');
-            res.send(401);
+            status = "password failed";
+            res.send(status);
         } else {
         // User and password both match, return user from done method
         // which will be treated like success

@@ -55,6 +55,9 @@
     <ul class="nav navbar-nav navbar-right">
       <li><a ui-sref="home" >Home</a></li>
       <li><a ui-sref="chat" >Chat</a></li>
+      <li style="padding:10px"><div ng-show="loggedIn === true" ng-controller="ThisAppCtrl">
+        <button ng-controller="LoginCtrl" id="logout_btn" type="submit" class="btn outline btn-primary btn-sm" ng-click="logOut()">Log Out</button>
+      </div></li>
     </ul>
   </div>
 </nav>
@@ -65,10 +68,10 @@
     <div ng-hide="login_or_signup()">
         <div ng-controller='LoginCtrl'>
             <form class="form-horizontal" role="form">
-                <div class="col-sm-offset-4 col-sm-10">
-                    {{alert}}
+                <div class="col-sm-offset-4 col-sm-10" ng-bind="alert">
                 </div>
-
+                <br>
+                <br>
                 <div class="form-group">
                     <label for="inputUsername" class="col-sm-4 control-label">Username</label>
                     <div class="col-sm-4">
@@ -100,6 +103,10 @@
     <div ng-show="login_or_signup()">
         <div ng-controller='SignupCtrl'>
             <form class="form-horizontal" role="form">
+                <div class="col-sm-offset-4 col-sm-10" ng-bind="alert">
+                </div>
+                <br>
+                <br>
                 <div class="form-group">
                     <label for="inputUsername" class="col-sm-4 control-label">Username</label>
                     <div class="col-sm-4">

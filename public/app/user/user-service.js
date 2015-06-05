@@ -37,6 +37,7 @@ angular.module('ThisApp')
             },
             unsetLoggedIn: function(){
                 auth.loggedIn = false;
+                $state.go('home');
             },
             loginSignupToggle: function(){
               auth.loginSignupToggle = auth.loginSignupToggle === false ? true: false;

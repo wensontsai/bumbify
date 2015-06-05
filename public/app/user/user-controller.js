@@ -7,9 +7,7 @@ routerApp
 
       // Signup - add new user
       $scope.signUp = function(){
-        // validations go here
 
-        // if all good, then hit up api
         $http.post('/api/signup', $scope.signupData).success(function(data){
             console.log(data);
 
@@ -21,8 +19,6 @@ routerApp
 
           // toggle login view
           AuthenticationBlock.loginSignupToggle();
-
-          // $location.path('/login');
 
         });
 
@@ -46,9 +42,7 @@ routerApp
 
       // Login - add new user
       $scope.logIn = function(){
-        // validations go here
 
-        // if all good, then hit up api
         $http.post('/api/login', $scope.loginData).success(function(data){
             console.log('inside user controller now');
             console.log(data);
@@ -57,9 +51,6 @@ routerApp
 
           // clear $scope.loginData
           $scope.loginData = {};
-
-          // redirect to login page
-          // $location.path('chat');
 
         });
 

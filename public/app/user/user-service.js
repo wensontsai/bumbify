@@ -32,7 +32,7 @@ angular.module('ThisApp')
                 console.log("inside set logged in func");
                 console.log(data);
                 auth.name = data.name;
-                $state.go('chat');
+                $state.go('home');
                 return auth;
             },
             unsetLoggedIn: function(){
@@ -45,22 +45,3 @@ angular.module('ThisApp')
         };
      }
   ]);
-
-// appServices.factory('AuthenticationService', function() {
-//     var auth = {
-//         isLogged: false
-//     }
-
-//     return auth;
-// });
-// appServices.factory('UserService', function($http) {
-//     return {
-//         logIn: function(username, password) {
-//             return $http.post(options.api.base_url + '/login', {username: username, password: password});
-//         },
-
-//         logOut: function() {
-
-//         }
-//     }
-// });

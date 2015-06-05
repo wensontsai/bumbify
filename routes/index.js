@@ -124,13 +124,13 @@ exports.createUser = function(User){
         // In case of any error, return using the done method
         if (err){
           console.log('Error in SignUp: '+err);
-          // return done(err);
+          res.send(401);
         }
 
         // already exists
         if(user){
           console.log('User already exists with username: '+req.body.name);
-          // return done(null, false, req.flash('message','User Already Exists'));
+          res.send(401);
         } else {
           var user = new User({
             name : req.body.name,
@@ -161,20 +161,18 @@ exports.login = function(User){
     User.findOne({ 'name' :  req.body.name }, function(err, user) {
         // In case of any error, return using the done method
         if (err){
-            // return done(err);
+          res.send(401);
         }
         // Username does not exist, log the error and redirect back
         if (!user){
             console.log('User Not Found with username '+req.body.name);
-            // return done(null, false, req.flash('message', 'User Not found.'));
         } else if (!isValidPassword(user, req.body.password)){
         // User exists but wrong password, log the error
             console.log('Invalid Password');
-            // return done(null, false, req.flash('message', 'Invalid Password')); // redirect back to login page
+            res.send(401);
         } else {
         // User and password both match, return user from done method
         // which will be treated like success
-        // return done(null, user);
           res.send(user);
         }
 

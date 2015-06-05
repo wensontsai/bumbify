@@ -1,4 +1,3 @@
-// angular.module('ThisApp', [])
 routerApp
   .controller('HistoryCtrl',
     function($rootScope, $scope, $http, GifUrl){

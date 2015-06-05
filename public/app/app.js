@@ -1,10 +1,6 @@
 // var routerApp = angular.module('ThisApp', ['ui.router', 'wu.masonry']);
 
 var routerApp = angular.module('ThisApp', ['ui.router', 'btford.socket-io', 'luegg.directives']);
-    // .value('nickName', 'pizzaMOMMAa')
-    // .value('messageArrayer', function(date, nick, message){
-    //     return date.toLocaleTimeString() + ' - ' +nick+ ' - ' +message+ '\n';
-    // });
 
 
 routerApp.config(function($stateProvider, $urlRouterProvider) {
@@ -20,22 +16,6 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
             controller: 'HistoryCtrl'
         })
 
-        // nested list with custom controller
-        // .state('home.list', {
-        //     url: '/list',
-        //     templateUrl: 'app/main/partial-main-list.html',
-        //     controller: function($scope) {
-        //         $scope.dogs = ['Bernese', 'Husky', 'Goldendoodle'];
-        //     }
-        // })
-
-
-        // .state('home.gif_search', {
-        //     url: '/gif_search',
-        //     templateUrl: 'app/gif_search/gif_search.html',
-        //     controller: 'ScrapesCtrl'
-        // })
-
         // CHAT PAGE AND MULTIPLE NAMED VIEWS =================================
         .state('chat', {
             url: '/chat',
@@ -47,10 +27,6 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
                     templateUrl: 'app/chat/chatroom.html',
                     controller: 'ChatCtrl'
                 },
-                // 'columnTwo@chat': {
-                //     templateUrl: 'app/gif_search/gif_add.html',
-                //     controller: 'ScrapesCtrl'
-                // }
                 'columnTwo@chat': {
                     templateUrl: 'app/chat/gif_nav_module.html',
                     params: {
@@ -58,32 +34,6 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
                     },
                     controller: 'ChatCtrl'
                 }
-                // 'columnTwo@chat': {
-                //     abstract: true,
-                //     views: {
-                //         '' : {
-                //             templateUrl: 'app/chat/gif_nav_module.html'
-                //         },
-                //         'gif_add_search' : {
-                //             parent: 'chat',
-                //             url: '/gif_add_search',
-                //             templateUrl: 'app/gif_search/gif_add.html',
-                //             controller: 'ScrapesCtrl'
-                //         },
-                //         'recent' : {
-                //             parent: 'chat',
-                //             url: '/recent_searches',
-                //             templateUrl: 'app/gif_search/gif_add.html',
-                //             controller: 'ScrapesCtrl'
-                //         },
-                //         'favorites' : {
-                //             parent: 'chat',
-                //             url: '/favorite_searches',
-                //             templateUrl: 'app/gif_search/gif_add.html',
-                //             controller: 'ScrapesCtrl'
-                //         }
-                //     }
-                // }
             }
         })
 

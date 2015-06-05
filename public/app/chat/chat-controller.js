@@ -6,14 +6,6 @@ routerApp
       $scope.chatLine = {};
       $scope.gifCheck = '';
 
-      // $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
-      //     if(toState && toState.params && toState.params.autoActivateChild){
-      //         $state.go(toState.params.autoActivateChild);
-      //         console.log('state change yo');
-      //     }
-      // });
-
-
 
       $scope.loggedIn = AuthenticationBlock.checkLoggedIn().loggedIn;
         if($scope.loggedIn === true){
@@ -25,19 +17,7 @@ routerApp
         return date.toLocaleTimeString() + ' - ' +nick+ ' - ' +message+ '\n';
       }
 
-
-
-
-      //listen for gif loads
-      // trigger sendMessage
-
-      // $rootScope.$on('gifLoaded', function(event, data){
-      //   console.log(data);
-      //   console.log("heard it thru gravepine");
-      //   $scope.gifCheck = 'gif';
-      //   $scope.sendMessage();
-      // });
-
+      // watch for update for GIF url passes
       $scope.$watch(function () { return GifUrl.getUrl(); }, function (newValue, oldValue) {
         if (newValue !== oldValue) {
           console.log("worrrking");
@@ -52,18 +32,6 @@ routerApp
 
 
       $scope.sendMessage = function(){
-        // var match = $scope.message.match('^\/nick (.*)');
-
-        // if(angular.isDefined(match) && angular.isArray(match) && match.length === 2){
-        //   var oldNick = nickName;
-        //   nickName = match[1];
-
-        //   $scope.message = '';
-        //   $scope.messageLog = messageFormatter(new Date(), nickName, 'nickname changed - from ' +oldNick+ ' to ' +nickName+ '!') + $scope.messageLog;
-        //   $scope.nickName = nickName;
-        // }
-
-
         // console logging
         $log.debug('sending message', $scope.message);
         ChatSocket.emit('message', $scope.nickName, $scope.message);
@@ -98,11 +66,7 @@ routerApp
               $scope.gifCheck = '';
             }
 
-            // assemble chat session
-            // $scope.messageToAdd = messageArrayer(new Date(), data.source, data.payload);
-
-            // console.log(data);
-            // console.log($scope.messageToAdd);
+            // date time stamp formatting
             var unixDatestamp = [
                  new Date().getMonth()+1,
                  new Date().getDate(),
@@ -113,20 +77,16 @@ routerApp
                 new Date().getMinutes(),
                 new Date().getSeconds()
               ];
-
             unixDatestamp = unixDatestamp.join('-');
             unixTimestamp = unixTimestamp.join(':');
 
-
-
+            // assembling chatLine
             $scope.chatLine.timestamp = unixDatestamp +", "+ unixTimestamp;
             $scope.chatLine.user = data.source;
             $scope.chatLine.text = data.payload;
             $scope.chatSession.push($scope.chatLine);
 
             var elem = document.getElementById('chatroom');
-            // elem.scrollTop = elem.scrollHeight;
-            // console.log(elem.scrollHeight);
 
             console.log($scope.chatSession);
           }

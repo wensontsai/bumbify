@@ -106,8 +106,8 @@ app.get('/api/searchHistory', routes.showHistory(SearchHistory));
 app.post('/api/signup', routes.createUser(User));
 app.post('/api/login', routes.login(User));
 
-// app.post('/api/favorites', routes.queryFavorites(Favorite));
-app.post('/api/favorites', routes.addFavorite(Favorite));
+app.post('/api/getAllFavorites', routes.queryAllFavorites(Favorite));
+app.post('/api/addFavorite', routes.addFavorite(Favorite));
 
 
 

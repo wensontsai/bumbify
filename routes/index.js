@@ -180,8 +180,22 @@ exports.login = function(User){
 
 
 // USER FAVORITES  //////////////
-exports.queryFavorites = function(Favorite){
+exports.queryAllFavorites = function(Favorite){
+  return function(req, res, next) {
+      console.log("inside addFavorites!");
+      console.log(req.body);
 
+      // find a user in Mongo with provided username
+      Favorite.find({ 'user' : req.body.user }, function(err, favorite) {
+          // In case of any error, return using the done method
+          if (err){
+            console.log('Error in adding Favorite: '+err);
+            res.send(401);
+          } else {
+            res.send(favorite);
+          }
+      });
+  };
 };
 
 exports.addFavorite = function(Favorite){

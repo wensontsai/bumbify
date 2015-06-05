@@ -1,6 +1,27 @@
-<div ng-init="showFavorites()">
+<div ng-init="showAllFavorites()">
   <!-- for all tags, ng-repeat -->
   <!-- on click of tag/button, query, return, and ng-repeat show all gifs for that tag -->
+    <div>
+      <h2 ng-bind="tag"></h2>
+    </div>
+    <div id="masonry-container">
+      <form role="form">
+        <div masonry class="favorite_select">
+
+          <div class="masonry-brick" ng-repeat='favorite in allFavorites'>
+              <input id="{{favorite.url}}" type="radio" value="{{favorite.url}}" ng-model="loadedGif.url" ng-click="uncheck($event)">
+              <label for="{{favorite.url}}">
+                <img ng-src="{{favorite.url}}">
+              </label>
+          </div>
+
+        </div>
+        <div>
+          <div class="col-sm-10 custom_btn">
+            <button ng-click="setUrl()" type="submit" class="btn outline btn-primary btn-sm">Load Gif</button>
+        </div>
+      </form>
+    </div>
 
 </div>
 

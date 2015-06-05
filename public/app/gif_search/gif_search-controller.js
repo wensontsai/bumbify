@@ -72,10 +72,6 @@ routerApp
           console.log($scope.gifs);
           console.log($scope.tag);
         });
-
-          var test_answer = AuthenticationBlock.checkLoggedIn();
-          // console.log(test_answer);
-
       };
 
       $scope.setUrl = function($rootScope){
@@ -97,7 +93,7 @@ routerApp
         // $scope.favoriteResponse = Favorite.setFavorite(favoriteObject);
         // console.log($scope.favoriteResponse);
 
-        $http.post('/api/favorites', favoriteObject).success(function(data){
+        $http.post('/api/addFavorite', favoriteObject).success(function(data){
             console.log(data);
         });
       };

@@ -2,7 +2,18 @@ routerApp
   .controller('FavoritesCtrl',
     function($rootScope, $scope, $http, GifUrl, AuthenticationBlock){
 
+      $scope.allFavorites = {};
+      $scope.favoriteObject = {};
+      $scope.favoriteObject.user = AuthenticationBlock.checkLoggedIn().name;
+
       // 1.  get all tags in favorites for this user id
       // 2.  for each tag query favorites for this user id, return results
+      $scope.showAllFavorites = function(){
+        $http.post('/api/getAllFavorites', $scope.favoriteObject).success(function(data){
+
+          $scope.allFavorites = data;
+          console.log($scope.allFavorites);
+        });
+      };
 
     });

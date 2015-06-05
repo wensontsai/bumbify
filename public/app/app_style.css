@@ -15,6 +15,7 @@ body {
 }
 
 
+
 /* NAVBAR */
 ul.nav a:hover {
   color: #fff;
@@ -43,8 +44,6 @@ ul.nav a:hover {
 
 
 
-
-
 /* BUTTONS */
 .btn.outline {
     background: none;
@@ -66,6 +65,15 @@ ul.nav a:hover {
     color: #D3BECF;
     box-shadow: none;
 }
+
+
+
+/* HISTORIES */
+.history_user{
+  float: right;
+}
+
+
 
 
 /* CHATROOM */
@@ -102,34 +110,6 @@ ul.nav a:hover {
 }
 
 
-/* GIF TOOLS */
-.masonry-brick input[type="radio"] {
-    display: none;
-}
-
-input[type="radio"]:checked + label {
-    opacity: 0.6;
-}
-
-
-.gif_select {
-  height: 54vh;
-  overflow-x: scroll;
-  overflow-y: scroll;
-  border: 2px solid #bdbdbd;
-  border-radius: 10px;
-}
-
-.custom_btn{
-  padding: 15px;
-}
-
-.masonry-brick {
-  margin: 1em;
-  display: inline-block;
-}
-
-
 /* CHAT CONTENT */
 #chatroom {
   padding: 10px;
@@ -154,7 +134,45 @@ input[type="radio"]:checked + label {
 }
 
 
-/* HISTORIES */
-.history_user{
-  float: right;
+
+
+/* GIF TOOLS */
+.masonry-brick input[type="radio"] {
+    display: none;
 }
+
+input[type="radio"]:checked + label {
+    opacity: 0.6;
+}
+
+.gif_select {
+  height: 54vh;
+  overflow-x: scroll;
+  overflow-y: scroll;
+  border: 2px solid #bdbdbd;
+  border-radius: 10px;
+}
+
+.custom_btn{
+  padding: 15px;
+}
+
+.masonry-brick {
+  margin: 1em;
+  display: inline-block;
+}
+
+/* Favorites */
+.favorite_select {
+  height: 70vh;
+  overflow-x: scroll;
+  overflow-y: scroll;
+  border: 2px solid #bdbdbd;
+  border-radius: 10px;
+}
+
+
+
+
+
+

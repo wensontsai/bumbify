@@ -30,6 +30,7 @@ routerApp
 
       //login & signup //
       $scope.loginSignupToggle = function() {
+          $scope.signupData = {};
           AuthenticationBlock.loginSignupToggle();
       };
 

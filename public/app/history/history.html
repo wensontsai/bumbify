@@ -6,7 +6,7 @@
 <div ng-repeat="search in searches">
     <!-- {{search.tag}} by {{search.user}}
  -->
-    {{search.tag}}
+    <span ng-bind="search.tag"></span><span class="history_user" ng-bind="search.user"></span>
 </div>
 
 

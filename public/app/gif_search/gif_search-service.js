@@ -21,6 +21,28 @@ angular.module('ThisApp')
         this.getUrl();
         return "GIF is successfully loaded!";
       }
+    };
+  })
 
+  .factory('Favorite', function () {
+    var data = {};
+
+    return {
+      getFavorite: function(){
+        // console.log("inside getUrl now");
+        return data;
+      },
+      setFavorite: function(object){
+        data.url = object.url;
+        data.user = object.user;
+        data.tag = object.tag;
+        data.timestamp = object.timestamp;
+
+        status = "successfully favorit-ed";
+        this.getFavorite();
+        return data;
+      }
     };
   });
+
+

@@ -41,19 +41,8 @@ ul.nav a:hover {
   margin: auto;
 }
 
-/* CHAT NAVBAR */
-.sub_nav a{
-  color: #71637D;
-}
 
-.nav_tab{
-  border: 1px solid #bdbdbd;
-  border-radius: 10px;
-  width: 8vw;
-  text-align: center;
-  background-color: #FAFAFA;
-  padding: 0;
-}
+
 
 
 /* BUTTONS */
@@ -98,6 +87,20 @@ ul.nav a:hover {
   border: 1px solid #bdbdbd;
 }
 
+/* chat navbar */
+.sub_nav a{
+  color: #71637D;
+}
+
+.nav_tab{
+  border: 1px solid #bdbdbd;
+  border-radius: 10px;
+  width: 8vw;
+  text-align: center;
+  background-color: #FAFAFA;
+  padding: 0;
+}
+
 
 /* GIF TOOLS */
 .masonry-brick input[type="radio"] {
@@ -127,8 +130,6 @@ input[type="radio"]:checked + label {
 }
 
 
-
-
 /* CHAT CONTENT */
 #chatroom {
   padding: 10px;
@@ -152,3 +153,8 @@ input[type="radio"]:checked + label {
   padding-left: 10px;
 }
 
+
+/* HISTORIES */
+.history_user{
+  float: right;
+}

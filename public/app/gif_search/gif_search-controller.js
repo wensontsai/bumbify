@@ -1,6 +1,6 @@
 routerApp
   .controller('ScrapesCtrl',
-    function($rootScope, $scope, $http, GifUrl, AuthenticationBlock){
+    function($rootScope, $scope, $http, GifUrl, AuthenticationBlock, Favorite){
       // search models
       $scope.gifs = [];
       $scope.formInfo = {};
@@ -14,6 +14,26 @@ routerApp
         if($scope.loggedIn === true){
           $scope.nickName = AuthenticationBlock.checkLoggedIn().name;
         }
+
+      function getDateTime(){
+        // date time stamp formatting
+        var unixDatestamp = [
+             new Date().getMonth()+1,
+             new Date().getDate(),
+             new Date().getFullYear()
+          ];
+        var unixTimestamp = [
+            new Date().getHours(),
+            new Date().getMinutes(),
+            new Date().getSeconds()
+          ];
+        unixDatestamp = unixDatestamp.join('-');
+        unixTimestamp = unixTimestamp.join(':');
+
+        // assembling chatLine
+        $scope.timestamp = unixDatestamp +", "+ unixTimestamp;
+        return $scope.timestamp;
+      }
 
       // gif scrape functions
       $scope.searchGifs = function(){
@@ -60,6 +80,19 @@ routerApp
       $scope.setUrl = function($rootScope){
         $scope.loadResponse = GifUrl.setUrl($scope.loadedGif.url);
         console.log($scope.loadResponse);
+      };
+
+
+      $scope.addFavorite = function(){
+        favoriteObject = {
+          url : $scope.loadedGif.url,
+          user : $scope.nickName,
+          tag : $scope.tag,
+          timestamp : getDateTime()
+        }
+
+        $scope.favoriteResponse = Favorite.setFavorite(favoriteObject);
+        console.log($scope.favoriteResponse);
       };
 
 

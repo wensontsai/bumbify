@@ -96,11 +96,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 var routes = require('./routes/index');
+
 /////////////////////
 // AngularJS  ROUTING
 /////////////////////
-// app.get('/', routes.index(Scraper));
-
 app.get('/api/scrapes', routes.showScrapes(Scraper));
 app.post('/api/searchGifs', routes.searchGifs(Scraper, SearchHistory));
 app.get('/api/searchHistory', routes.showHistory(SearchHistory));
@@ -108,7 +107,7 @@ app.post('/api/signup', routes.createUser(User));
 app.post('/api/login', routes.login(User));
 
 // app.post('/api/favorites', routes.queryFavorites(Favorite));
-// app.post('/api/favorites', routes.addFavorites(Favorite));
+app.post('/api/favorites', routes.addFavorite(Favorite));
 
 
 

@@ -1,10 +1,11 @@
 routerApp
   .controller('ScrapesCtrl',
-    function($rootScope, $scope, $http, GifUrl, AuthenticationBlock, Favorite){
+    function($rootScope, $scope, $http, GifUrl, AuthenticationBlock){
       // search models
       $scope.gifs = [];
       $scope.formInfo = {};
       $scope.gifSearch = {};
+      $scope.timestamp = '';
 
       // gif select models
       $scope.loadedGif = {};
@@ -84,15 +85,21 @@ routerApp
 
 
       $scope.addFavorite = function(){
+        getDateTime();
+
         favoriteObject = {
           url : $scope.loadedGif.url,
           user : $scope.nickName,
           tag : $scope.tag,
-          timestamp : getDateTime()
-        }
+          timestamp : $scope.timestamp
+        };
 
-        $scope.favoriteResponse = Favorite.setFavorite(favoriteObject);
-        console.log($scope.favoriteResponse);
+        // $scope.favoriteResponse = Favorite.setFavorite(favoriteObject);
+        // console.log($scope.favoriteResponse);
+
+        $http.post('/api/favorites', favoriteObject).success(function(data){
+            console.log(data);
+        });
       };
 
 

@@ -184,8 +184,40 @@ exports.queryFavorites = function(Favorite){
 
 };
 
-exports.addFavorites = function(Favorite){
+exports.addFavorite = function(Favorite){
+    return function(req, res, next) {
+      console.log("inside addFavorites!");
+      console.log(req.body);
 
+      // find a user in Mongo with provided username
+      Favorite.findOne({ 'url' :  req.body.url, 'user' : req.body.user }, function(err, favorite) {
+          // In case of any error, return using the done method
+          if (err){
+            console.log('Error in adding Favorite: '+err);
+            res.send(401);
+          }
+
+          // already exists
+          if(favorite){
+            console.log('this favorite already exists for url: '+req.body.url);
+            status = "exists";
+            res.send(status);
+          } else {
+            var favorite = new Favorite({
+              url : req.body.url,
+              user : req.body.user,
+              tag : req.body.tag,
+              timestamp : req.body.timestamp
+            });
+
+            favorite.save(function(error, favorite){
+              if(error) return console.error(error);
+              res.send(favorite);
+            });
+          }
+      });
+
+    };
 };
 
 

@@ -24,4 +24,16 @@ routerApp
         console.log($scope.loadResponse);
       };
 
+      $scope.deleteFavorite = function(){
+        $scope.favoriteObject = {
+              url : $scope.loadedGif.url,
+              user : $scope.favoriteObject.user,
+          };
+        $http.post('/api/deleteFavorite', $scope.favoriteObject).success(function(data){
+          console.log(data);
+          // on success reload favorites view
+          $scope.showAllFavorites();
+        });
+      };
+
     });

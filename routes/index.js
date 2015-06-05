@@ -234,4 +234,23 @@ exports.addFavorite = function(Favorite){
     };
 };
 
+exports.deleteFavorite = function(Favorite){
+    return function(req, res, next) {
+      console.log("inside delete favs");
+      console.log(req.body);
+
+      // find a user in Mongo with provided username
+      Favorite.remove({ 'url' :  req.body.url, 'user' : req.body.user }, function(err, favorite) {
+          // In case of any error, return using the done method
+          if (err){
+            console.log('Error in adding Favorite: '+err);
+            res.send(401);
+          }
+
+          res.send("gif successfully removed");
+      });
+
+    };
+};
+
 

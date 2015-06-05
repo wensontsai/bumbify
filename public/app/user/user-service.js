@@ -8,10 +8,13 @@ angular.module('ThisApp')
       },
       setSignupAlert: function(message){
         alert.signupResult = message;
+        console.log("signup alert set up success");
+        return alert;
 
       },
       setLoginAlert: function(message){
         alert.loginResult = message;
+        return alert;
       }
 
     };

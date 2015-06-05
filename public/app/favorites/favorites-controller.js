@@ -6,6 +6,9 @@ routerApp
       $scope.favoriteObject = {};
       $scope.favoriteObject.user = AuthenticationBlock.checkLoggedIn().name;
 
+      $scope.loadedGif = {};
+      $scope.loadResponse = '';
+
       // 1.  get all tags in favorites for this user id
       // 2.  for each tag query favorites for this user id, return results
       $scope.showAllFavorites = function(){
@@ -14,6 +17,11 @@ routerApp
           $scope.allFavorites = data;
           console.log($scope.allFavorites);
         });
+      };
+
+      $scope.setUrl = function($rootScope){
+        $scope.loadResponse = GifUrl.setUrl($scope.loadedGif.url);
+        console.log($scope.loadResponse);
       };
 
     });

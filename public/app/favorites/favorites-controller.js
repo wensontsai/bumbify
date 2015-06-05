@@ -3,19 +3,38 @@ routerApp
     function($rootScope, $scope, $http, GifUrl, AuthenticationBlock){
 
       $scope.allFavorites = {};
+      $scope.allUniqueTags = [];
       $scope.favoriteObject = {};
       $scope.favoriteObject.user = AuthenticationBlock.checkLoggedIn().name;
 
       $scope.loadedGif = {};
       $scope.loadResponse = '';
 
-      // 1.  get all tags in favorites for this user id
-      // 2.  for each tag query favorites for this user id, return results
+      // function getAllUniqueTags(){
+      //   for(var i=0; i<$scope.allFavorites.length){
+      //     console.log($scope.allFavorites[i]);
+      //     // if(!$scope..indexOf)
+      //   }
+      // }
+
+      function getAllUniqueTags(){
+        for (var key in $scope.allFavorites) {
+          if ($scope.allFavorites.hasOwnProperty(key)) {
+            if($scope.allUniqueTags.indexOf($scope.allFavorites[key].tag) < 0 ){
+              console.log($scope.allFavorites[key].tag);
+              $scope.allUniqueTags.push($scope.allFavorites[key].tag);
+            }
+          }
+        }
+        return $scope.allUniqueTags;
+      }
+
       $scope.showAllFavorites = function(){
         $http.post('/api/getAllFavorites', $scope.favoriteObject).success(function(data){
 
           $scope.allFavorites = data;
-          console.log($scope.allFavorites);
+          // console.log($scope.allFavorites);
+          getAllUniqueTags();
         });
       };
 

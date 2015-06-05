@@ -198,6 +198,23 @@ exports.queryAllFavorites = function(Favorite){
   };
 };
 
+
+// exports.queryFavoritesByTag = function(Favorite){
+//   return function(req, res, next) {
+//       console.log("inside favs by tag!");
+//       console.log(req.body);
+
+//       // find a user in Mongo with provided username
+//       Favorite.find({ 'user' : req.body.user, 'tag' : req.body.tag }, function(err, favorite) {
+
+//           res.send(favorite);
+
+//       });
+//   };
+
+// };
+
+
 exports.addFavorite = function(Favorite){
     return function(req, res, next) {
       console.log("inside addFavorites!");

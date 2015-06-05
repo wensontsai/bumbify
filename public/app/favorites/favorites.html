@@ -8,12 +8,21 @@
       <form role="form">
         <div masonry class="favorite_select">
 
-          <div class="masonry-brick" ng-repeat='favorite in allFavorites'>
+          <div ng-repeat='tag in allUniqueTags'>
+            <div ng-click="" class="outline">
+              <span ng-bind="tag"></span>
+            </div>
+          </div>
+
+          <!-- <div class="masonry-brick" ng-repeat='favorite in allFavorites'>
               <input id="{{favorite.url}}" type="radio" value="{{favorite.url}}" ng-model="loadedGif.url" ng-click="uncheck($event)">
               <label for="{{favorite.url}}">
                 <img ng-src="{{favorite.url}}">
               </label>
-          </div>
+          </div> -->
+
+
+
 
         </div>
         <div>

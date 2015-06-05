@@ -25,6 +25,7 @@ routerApp
 
             if(data == 'fail'){
               $scope.searchResult = 'That search yielded no results!';
+              $scope.tag = '';
             } else {
               $scope.searchResult = '';
 

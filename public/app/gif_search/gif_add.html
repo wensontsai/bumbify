@@ -11,7 +11,7 @@
             <input class="input_field search_field" placeholder="tag" ng-model="gifSearch.tag">
           </div>
             <button ng-click="searchGifs()" type="submit" class="btn outline btn-primary btn-sm">Search Gifs</button>
-            {{searchResult}}
+            <div class="col-sm-10" ng-bind="searchResult">
         </div>
       </form>
     </div>
@@ -37,7 +37,6 @@
         <div>
           <div class="col-sm-10 custom_btn">
             <button ng-click="setUrl()" type="submit" class="btn outline btn-primary btn-sm">Load Gif</button>
-            {{searchResult}}
            <!--  {{loadResponse}} -->
             <button class='btn outline btn-primary btn-sm right_align'>Save to Favorites</button>
           </div>

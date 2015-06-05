@@ -21,6 +21,10 @@ ul.nav a:hover {
   color: #fff;
 }
 
+.navbar a{
+  color: #71637D;
+}
+
 .navbar-header>a:hover{
   color: #3B3B3B;
 }
@@ -30,9 +34,6 @@ ul.nav a:hover {
   background-color: #F7F7F7;
 }
 
-.navbar a{
-  color: #71637D;
-}
 
 .navbar-brand{
   position: absolute;
@@ -40,6 +41,11 @@ ul.nav a:hover {
   left: 0;
   text-align: left;
   margin: auto;
+}
+
+.nav>li>a:focus, .nav>li>a:active:focus{
+  color: #fff;
+  background-color: #D3BECF;
 }
 
 
@@ -96,9 +102,18 @@ ul.nav a:hover {
 }
 
 /* chat navbar */
-.sub_nav a{
+#sub_nav a{
   color: #71637D;
 }
+
+
+#sub_nav>ul>li a:focus{
+  color: #fff;
+}
+#sub_nav>ul>li a:active:focus{
+  color: #fff;
+}
+
 
 .nav_tab{
   border: 1px solid #bdbdbd;
@@ -108,6 +123,8 @@ ul.nav a:hover {
   background-color: #FAFAFA;
   padding: 0;
 }
+
+
 
 
 /* CHAT CONTENT */

@@ -102,18 +102,16 @@ ul.nav a:hover {
 }
 
 /* chat navbar */
-#sub_nav a{
+.sub_nav a{
   color: #71637D;
 }
 
-
-#sub_nav>ul>li a:focus{
+.sub_nav>ul>li a:focus{
   color: #fff;
 }
-#sub_nav>ul>li a:active:focus{
+.sub_nav>ul>li a:active:focus{
   color: #fff;
 }
-
 
 .nav_tab{
   border: 1px solid #bdbdbd;

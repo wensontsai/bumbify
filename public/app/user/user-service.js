@@ -1,17 +1,17 @@
 angular.module('ThisApp')
   .factory('AlertBlock', function () {
-    var alerts = {};
+    var alert = {};
 
     return {
       getAlert: function(){
-        return alerts;
+        return alert;
       },
       setSignupAlert: function(message){
-        alerts.signupResult = message;
+        alert.signupResult = message;
 
       },
       setLoginAlert: function(message){
-        alerts.loginResult = message;
+        alert.loginResult = message;
       }
 
     };

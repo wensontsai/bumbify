@@ -15,11 +15,14 @@ routerApp
 
           // clear $scope.signupData
           $scope.signupData = {};
-          // redirect to login page
-          $scope.alert.signupSuccess = "Your account has been successfully created!";
-          console.log($scope.alert.signupSuccess);
+
+          // set alert to display on login view
+          AlertBlock.setSignupAlert("Your account has been successfully created!");
+
+          // toggle login view
           AuthenticationBlock.loginSignupToggle();
-          $location.path('/login');
+
+          // $location.path('/login');
 
         });
 
@@ -37,7 +40,8 @@ routerApp
     function($rootScope, $scope, $http, $location, $state, AlertBlock, AuthenticationBlock){
 
       $scope.loginData = {};
-      $scope.alert = {};
+      $scope.alert = AlertBlock.getAlert().signupResult;
+      console.log($scope.alert);
 
       // Login - add new user
       $scope.logIn = function(){
@@ -51,10 +55,10 @@ routerApp
           AuthenticationBlock.setLoggedIn($scope.loginData);
 
           // clear $scope.loginData
-          // $scope.loginData = {};
+          $scope.loginData = {};
+
           // redirect to login page
-          $state.go('chat', {});
-          $location.path('chat');
+          // $location.path('chat');
 
         });
 
@@ -62,6 +66,7 @@ routerApp
 
       //login & signup //
       $scope.loginSignupToggle = function() {
+          $scope.loginData = {};
           AuthenticationBlock.loginSignupToggle();
       };
 

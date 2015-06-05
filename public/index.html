@@ -97,14 +97,14 @@
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-4 col-sm-10">
-                        <button type="submit" class="btn btn-default" ng-click="logIn()">Log In</button>
+                        <button type="submit" class="btn outline btn-primary btn-sm" ng-click="logIn()">Log In</button>
                     </div>
                 </div>
             </form>
 
             <div class="col-sm-offset-4 col-sm-10">
                 or if you need to create an account ...
-                <button type="submit" class="btn btn-default" ng-click="loginSignupToggle()">Sign Up</button>
+                <button type="submit" class="btn outline btn-primary btn-sm" ng-click="loginSignupToggle()">Sign Up</button>
             </div>
         </div>
     </div>
@@ -137,7 +137,7 @@
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-4 col-sm-10">
-                        <button type="submit" class="btn btn-default" ng-click="signUp()">Sign Up</button>
+                        <button type="submit" class="btn outline btn-primary btn-sm" ng-click="signUp()">Sign Up</button>
                     </div>
                 </div>
             </form>
@@ -148,12 +148,12 @@
 <!-- LOGIN // SIGNUP VIEWS END -->
   <!-- MAIN CONTENT -->
   <!-- THIS IS WHERE WE WILL INJECT OUR CONTENT ============================== -->
-<!-- <div ng-show="loggedIn === true" ng-controller="ThisAppCtrl"> -->
+<div ng-show="loggedIn === true" ng-controller="ThisAppCtrl">
   <div class="container">
       <div ui-view></div>
       <div class="footer text-center"></div>
   </div>
-<!-- </div> -->
+</div>
 
 
 

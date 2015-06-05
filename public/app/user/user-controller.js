@@ -53,7 +53,6 @@ routerApp
           // clear $scope.loginData
           // $scope.loginData = {};
           // redirect to login page
-          console.log($state);
           $state.go('chat', {});
           $location.path('chat');
 

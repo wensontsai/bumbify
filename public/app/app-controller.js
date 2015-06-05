@@ -8,6 +8,12 @@ routerApp
       $scope.alert = {};
       $scope.custom = false;
 
+      $scope.$watch(function () { return AuthenticationBlock.checkLoggedIn(); }, function (newValue, oldValue) {
+        if (newValue !== oldValue) {
+          $scope.loggedIn = AuthenticationBlock.checkLoggedIn().loggedIn;
+        }
+      }, true);
+
      $scope.loggedIn = AuthenticationBlock.checkLoggedIn().loggedIn;
         if($scope.loggedIn === true){
         $scope.nickName = AuthenticationBlock.checkLoggedIn().name;

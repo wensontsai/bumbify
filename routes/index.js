@@ -6,25 +6,23 @@ var bCrypt = require('bcrypt');
 var passport = require('passport');
 
 
+
+// GIF SEARCH /////////////
 function clearDB(Scraper){
   // clear out old urls
   Scraper.remove().exec();
   console.log('removing all current docs from collection -> scraper');
 }
 
-
-function saveSearch(tag, SearchHistory){
-  console.log("i save the search params here - " +tag);
+function saveSearch(tag, user, SearchHistory){
+  console.log("i save the search params here - " +tag+ "by: " +user);
    search = new SearchHistory({
         tag : tag,
-        user : "pizzaMOMMA"
+        user : user
       });
    search.save();
 }
 
-
-
-// GET reqs //
 exports.showScrapes = function(Scraper){
   return function(req, res, next){
     Scraper.find(function(error, scrapes){
@@ -34,7 +32,6 @@ exports.showScrapes = function(Scraper){
     });
   };
 };
-
 
 exports.showHistory = function(SearchHistory){
   return function(req, res, next){
@@ -46,20 +43,17 @@ exports.showHistory = function(SearchHistory){
   };
 };
 
-
-
-// POST reqs //
 exports.searchGifs = function(Scraper, SearchHistory){
     var urls = [];
     var tag = '';
+    var user = '';
     var status = '';
 
     return function(req, res, next){
       var tag = req.body.tag;
+      var user = req.body.user;
 
-      saveSearch(tag, SearchHistory);
-
-    //wrap this in a success function
+    // scrape query
     request('http://giphy.com/search/' + tag, function(err, resp, body){
         if(!err && resp.statusCode == 200){
           var $ = cheerio.load(body);
@@ -71,7 +65,8 @@ exports.searchGifs = function(Scraper, SearchHistory){
               status = "success";
 
             });
-            addScrapedUrls(urls, tag);
+            addScrapedUrls(urls, tag, user);
+            saveSearch(tag, user, SearchHistory);
 
             // clear urls array so next search is that search only
             urls=[];
@@ -84,7 +79,7 @@ exports.searchGifs = function(Scraper, SearchHistory){
       });
     };
 
-    function addScrapedUrls(urls, tag){
+    function addScrapedUrls(urls, tag, user){
       clearDB(Scraper);
 
       // populate with latest scrape urls
@@ -95,7 +90,7 @@ exports.searchGifs = function(Scraper, SearchHistory){
         scraped_data = new Scraper({
           url : cleanUrl.replace('_s', ''),
           tag : tag,
-          used : "no"
+          user : user
         });
         scraped_data.save();
       };
@@ -105,15 +100,12 @@ exports.searchGifs = function(Scraper, SearchHistory){
 
 
 
-// USER AUTHENTICATION
+// USER AUTHENTICATION  ////////////
 
 // Generates hash using bCrypt
 var createHash = function(password){
   return bCrypt.hashSync(password, bCrypt.genSaltSync(10), null);
 };
-
-
-
 
 exports.createUser = function(User){
   return function(req, res, next) {
@@ -151,8 +143,6 @@ exports.createUser = function(User){
   };
 };
 
-
-
 exports.login = function(User){
   return function(req, res, next){
     console.log("inside login func!");
@@ -187,4 +177,15 @@ exports.login = function(User){
 
   };
 };
+
+
+// USER FAVORITES  //////////////
+exports.queryFavorites = function(Favorite){
+
+};
+
+exports.addFavorites = function(Favorite){
+
+};
+
 

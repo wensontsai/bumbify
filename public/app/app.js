@@ -56,9 +56,9 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
         // CHAT PAGE GIF SEARCH FAVORITES =================================
         .state('chat.favorites', {
             parent: 'chat',
-            url: '/favorite_searches',
-            templateUrl: 'app/gif_search/gif_add.html',
-            controller: 'ScrapesCtrl'
+            url: '/favorites',
+            templateUrl: 'app/favorites/favorites.html',
+            controller: 'FavoritesCtrl'
         })
 
 

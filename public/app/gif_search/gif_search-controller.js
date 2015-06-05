@@ -12,11 +12,14 @@ routerApp
 
       $scope.loggedIn = AuthenticationBlock.checkLoggedIn().loggedIn;
         if($scope.loggedIn === true){
-        $scope.nickName = AuthenticationBlock.checkLoggedIn().name;
-      }
+          $scope.nickName = AuthenticationBlock.checkLoggedIn().name;
+        }
 
       // gif scrape functions
       $scope.searchGifs = function(){
+        $scope.gifSearch.user = $scope.nickName;
+          console.log($scope.gifSearch);
+
         $http.post('/api/searchGifs', $scope.gifSearch).success(function(data){
             console.log(data);
 
@@ -50,7 +53,7 @@ routerApp
         });
 
           var test_answer = AuthenticationBlock.checkLoggedIn();
-          console.log(test_answer);
+          // console.log(test_answer);
 
       };
 

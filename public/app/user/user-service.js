@@ -8,7 +8,7 @@ angular.module('ThisApp')
       },
       setSignupAlert: function(message){
         alert.signupResult = message;
-        console.log("signup alert set up success");
+        // console.log("signup alert set up success");
         return alert;
 
       },
@@ -27,13 +27,13 @@ angular.module('ThisApp')
 
         return {
             checkLoggedIn: function(key){
-                console.log("logged in? : " +auth);
+                // console.log("logged in? : " +auth);
                 return auth;
             },
             setLoggedIn: function(data){
                 auth.loggedIn = true;
-                console.log("inside set logged in func");
-                console.log(data);
+                // console.log("inside set logged in func");
+                // console.log(data);
                 auth.name = data.name;
                 $state.go('home');
                 return auth;

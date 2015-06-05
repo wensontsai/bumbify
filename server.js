@@ -50,6 +50,9 @@ var SearchHistory = db.model('searchhistory', SearchHistorySchema);
 var UserSchema = require('./models/User.js').UserSchema;
 var User = db.model('user', UserSchema);
 
+var FavoriteSchema = require('./models/Favorite.js').FavoriteSchema;
+var Favorite = db.model('favorite', FavoriteSchema);
+
 
 
 /////////////////////
@@ -101,10 +104,11 @@ var routes = require('./routes/index');
 app.get('/api/scrapes', routes.showScrapes(Scraper));
 app.post('/api/searchGifs', routes.searchGifs(Scraper, SearchHistory));
 app.get('/api/searchHistory', routes.showHistory(SearchHistory));
-
-// app.post('/api/createUser', routes.createUser(User));
 app.post('/api/signup', routes.createUser(User));
 app.post('/api/login', routes.login(User));
+
+// app.post('/api/favorites', routes.queryFavorites(Favorite));
+// app.post('/api/favorites', routes.addFavorites(Favorite));
 
 
 

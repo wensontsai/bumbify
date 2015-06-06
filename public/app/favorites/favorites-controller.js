@@ -55,4 +55,25 @@ routerApp
         });
       };
 
-    });
+
+      // $scope.showTags = function(tag){
+      //     // var element = document.getElementById(id+ "_toprefs");
+      //     // var arrow = element.parentNode.firstElementChild;
+
+      //     // toggle //
+      //     // hide
+      //     if(element.style.display == "block") {
+      //       element.style.display = "none";
+      //     } else {
+      //     //show
+      //     // hide all elements so only the clicked one shows at a time
+      //       var all_top_refs = document.getElementsByClassName('toprefs_container');
+      //         for(var i=0; i< all_top_refs.length; i++){
+      //              all_top_refs[i].style.display = "none";
+      //         }
+      //       element.style.display = "block";
+      //     }
+
+      // };
+
+});

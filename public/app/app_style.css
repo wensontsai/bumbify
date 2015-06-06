@@ -50,6 +50,7 @@ ul.nav a:hover {
 
 
 
+
 /* BUTTONS */
 .btn.outline {
     background: none;
@@ -101,6 +102,7 @@ ul.nav a:hover {
   border: 1px solid #bdbdbd;
 }
 
+
 /* chat navbar */
 .sub_nav a{
   color: #71637D;
@@ -111,6 +113,10 @@ ul.nav a:hover {
 }
 .sub_nav>ul>li a:active:focus{
   color: #fff;
+}
+.sub_nav-nav>li>a{
+  padding-top: 7px;
+  padding-bottom: 7px;
 }
 
 .nav_tab{
@@ -161,7 +167,7 @@ input[type="radio"]:checked + label {
 }
 
 .gif_select {
-  height: 54vh;
+  height: 61vh;
   overflow-x: scroll;
   overflow-y: scroll;
   border: 2px solid #bdbdbd;
@@ -179,12 +185,24 @@ input[type="radio"]:checked + label {
 
 /* Favorites */
 .favorite_select {
-  height: 70vh;
+  height: 75vh;
   overflow-x: scroll;
   overflow-y: scroll;
   border: 2px solid #bdbdbd;
   border-radius: 10px;
+  margin: 20px 0 0 0;
 }
+
+/* Recents */
+.recents {
+  height: 75vh;
+  overflow-x: scroll;
+  overflow-y: scroll;
+  border: 2px solid #bdbdbd;
+  border-radius: 10px;
+  margin: 20px 0 0 0;
+}
+
 
 
 

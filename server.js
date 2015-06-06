@@ -53,6 +53,8 @@ var User = db.model('user', UserSchema);
 var FavoriteSchema = require('./models/Favorite.js').FavoriteSchema;
 var Favorite = db.model('favorite', FavoriteSchema);
 
+var UsedGifSchema = require('./models/UsedGif.js').UsedGifSchema;
+var UsedGif = db.model('usedGif', UsedGifSchema);
 
 
 /////////////////////

@@ -262,20 +262,34 @@ exports.storeUsedGif = function(UsedGif){
       console.log("inside storeUsedGif ");
       console.log(req.body);
 
-      // store used Gif
-      var usedGif = new UsedGif({
-            user : req.body.user,
-            url : req.body.url,
-            tag : req.body.tag,
-            timestamp : req.body.timestamp
-          });
+      UsedGif.findOne({ 'url' :  req.body.url, 'user' : req.body.user }, function(err, favorite) {
+          // In case of any error, return using the done method
+          if (err){
+            console.log('Error in adding Favorite: '+err);
+            res.send(401);
+          }
 
-      usedGif.save(function(error, usedGif){
-        if(error) return console.error(error);
-        console.dir(usedGif);
-        res.send(usedGif);
+          // already exists
+          if(favorite){
+            console.log('this favorite already exists for url: '+req.body.url);
+            status = "exists";
+            res.send(status);
+          } else {
+            // store used Gif
+            var usedGif = new UsedGif({
+                  user : req.body.user,
+                  url : req.body.url,
+                  tag : req.body.tag,
+                  timestamp : req.body.timestamp
+                });
+
+            usedGif.save(function(error, usedGif){
+              if(error) return console.error(error);
+              console.dir(usedGif);
+              res.send(usedGif);
+            });
+          };
       });
-
     };
 };
 

@@ -14,8 +14,11 @@ angular.module('ThisApp')
       resetUrl: function(){
         data = {};
       },
-      setUrl: function(url){
-        data.url = url;
+      setUrl: function(obj){
+        data.url = obj.url;
+        data.tag = obj.tag;
+        data.user = obj.user;
+        data.timestamp = obj.timestamp;
         // data.loadResponse = "GIF is successfully loaded!";
         // console.log(data.url);
 

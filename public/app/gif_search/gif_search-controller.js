@@ -98,7 +98,7 @@ routerApp
 
         storeUsedGif();
 
-        $scope.loadResponse = GifUrl.setUrl($scope.loadedGif.url);
+        $scope.loadResponse = GifUrl.setUrl($scope.loadedGif);
         console.log($scope.loadResponse);
 
       };

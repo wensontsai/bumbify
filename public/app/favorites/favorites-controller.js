@@ -4,6 +4,7 @@ routerApp
 
       $scope.allFavorites = {};
       $scope.allUniqueTags = [];
+
       $scope.favoriteObject = {};
       $scope.favoriteObject.user = AuthenticationBlock.checkLoggedIn().name;
 
@@ -29,19 +30,73 @@ routerApp
         return $scope.allUniqueTags;
       }
 
+
+      function getDateTime(){
+        // date time stamp formatting
+        var unixDatestamp = [
+             new Date().getMonth()+1,
+             new Date().getDate(),
+             new Date().getFullYear()
+          ];
+        var unixTimestamp = [
+            new Date().getHours(),
+            new Date().getMinutes(),
+            new Date().getSeconds()
+          ];
+        unixDatestamp = unixDatestamp.join('-');
+        unixTimestamp = unixTimestamp.join(':');
+
+        // assembling chatLine
+        $scope.timestamp = unixDatestamp +", "+ unixTimestamp;
+        return $scope.timestamp;
+      }
+
+      function getTag(url){
+        for (var key in $scope.allFavorites) {
+          if ($scope.allFavorites[key].url === url) {
+            return $scope.allFavorites[key].tag;
+          }
+        }
+      }
+
+      function storeUsedGif(){
+        getDateTime();
+
+        var tag = getTag($scope.loadedGif.url);
+
+        gifObject = {
+          url : $scope.loadedGif.url,
+          user : $scope.nickName,
+          tag : tag,
+          timestamp : $scope.timestamp
+        };
+
+        console.log(gifObject);
+        // store as a usedGif
+        $http.post('/api/storeUsedGif', gifObject).success(function(data){
+          console.log(data);
+        });
+      };
+
+
       $scope.showAllFavorites = function(){
         $http.post('/api/getAllFavorites', $scope.favoriteObject).success(function(data){
 
           $scope.allFavorites = data;
           // console.log($scope.allFavorites);
-          getAllUniqueTags();
+          // getAllUniqueTags();
         });
       };
 
       $scope.setUrl = function($rootScope){
-        $scope.loadResponse = GifUrl.setUrl($scope.loadedGif.url);
+
+        storeUsedGif();
+        console.log($scope.loadedGif);
+        $scope.loadResponse = GifUrl.setUrl($scope.loadedGif);
         console.log($scope.loadResponse);
+
       };
+
 
       $scope.deleteFavorite = function(){
         $scope.favoriteObject = {

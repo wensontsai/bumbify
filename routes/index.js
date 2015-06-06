@@ -109,8 +109,6 @@ var createHash = function(password){
 
 exports.createUser = function(User){
   return function(req, res, next) {
-    console.log("inside createUser!");
-
     // find a user in Mongo with provided username
     User.findOne({ 'name' :  req.body.name }, function(err, user) {
         // In case of any error, return using the done method
@@ -145,8 +143,6 @@ exports.createUser = function(User){
 
 exports.login = function(User){
   return function(req, res, next){
-    console.log("inside login func!");
-
     // find a user in Mongo with provided username
     User.findOne({ 'name' :  req.body.name }, function(err, user) {
         // In case of any error, return using the done method
@@ -182,9 +178,6 @@ exports.login = function(User){
 // USER FAVORITES  //////////////
 exports.queryAllFavorites = function(Favorite){
   return function(req, res, next) {
-      console.log("inside addFavorites!");
-      console.log(req.body);
-
       // find a user in Mongo with provided username
       Favorite.find({ 'user' : req.body.user }, function(err, favorite) {
           // In case of any error, return using the done method
@@ -217,9 +210,6 @@ exports.queryAllFavorites = function(Favorite){
 
 exports.addFavorite = function(Favorite){
     return function(req, res, next) {
-      console.log("inside addFavorites!");
-      console.log(req.body);
-
       // find a user in Mongo with provided username
       Favorite.findOne({ 'url' :  req.body.url, 'user' : req.body.user }, function(err, favorite) {
           // In case of any error, return using the done method
@@ -253,9 +243,6 @@ exports.addFavorite = function(Favorite){
 
 exports.deleteFavorite = function(Favorite){
     return function(req, res, next) {
-      console.log("inside delete favs");
-      console.log(req.body);
-
       // find a user in Mongo with provided username
       Favorite.remove({ 'url' :  req.body.url, 'user' : req.body.user }, function(err, favorite) {
           // In case of any error, return using the done method
@@ -270,20 +257,23 @@ exports.deleteFavorite = function(Favorite){
     };
 };
 
-exports.storeUsedGif = function(Favorite){
+exports.storeUsedGif = function(UsedGif){
     return function(req, res, next) {
       console.log("inside storeUsedGif ");
       console.log(req.body);
 
-      // find a user in Mongo with provided username
-      Favorite.remove({ 'url' :  req.body.url, 'user' : req.body.user }, function(err, favorite) {
-          // In case of any error, return using the done method
-          if (err){
-            console.log('Error in adding Favorite: '+err);
-            res.send(401);
-          }
+      // store used Gif
+      var usedGif = new UsedGif({
+            user : req.body.user,
+            url : req.body.url,
+            tag : req.body.tag,
+            timestamp : req.body.timestamp
+          });
 
-          res.send("gif successfully removed");
+      usedGif.save(function(error, usedGif){
+        if(error) return console.error(error);
+        console.dir(usedGif);
+        res.send(usedGif);
       });
 
     };

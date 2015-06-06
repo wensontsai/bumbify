@@ -54,7 +54,7 @@ var FavoriteSchema = require('./models/Favorite.js').FavoriteSchema;
 var Favorite = db.model('favorite', FavoriteSchema);
 
 var UsedGifSchema = require('./models/UsedGif.js').UsedGifSchema;
-var UsedGif = db.model('usedGif', UsedGifSchema);
+var UsedGif = db.model('used_gif', UsedGifSchema);
 
 
 /////////////////////
@@ -112,7 +112,7 @@ app.post('/api/getAllFavorites', routes.queryAllFavorites(Favorite));
 app.post('/api/addFavorite', routes.addFavorite(Favorite));
 app.post('/api/deleteFavorite', routes.deleteFavorite(Favorite));
 
-app.post('/api/saveUsedGif', routes.storeUsedGif(UsedGif));
+app.post('/api/storeUsedGif', routes.storeUsedGif(UsedGif));
 
 
 

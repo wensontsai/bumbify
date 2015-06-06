@@ -36,6 +36,26 @@ routerApp
         return $scope.timestamp;
       }
 
+      function storeUsedGif(){
+        getDateTime();
+
+        gifObject = {
+          url : $scope.loadedGif.url,
+          user : $scope.nickName,
+          tag : $scope.tag,
+          timestamp : $scope.timestamp
+        };
+
+        console.log(gifObject);
+        // store as a usedGif
+        $http.post('/api/storeUsedGif', gifObject).success(function(data){
+          console.log(data);
+        });
+      };
+
+
+
+
       // gif scrape functions
       $scope.searchGifs = function(){
         $scope.gifSearch.user = $scope.nickName;
@@ -75,8 +95,12 @@ routerApp
       };
 
       $scope.setUrl = function($rootScope){
+
+        storeUsedGif();
+
         $scope.loadResponse = GifUrl.setUrl($scope.loadedGif.url);
         console.log($scope.loadResponse);
+
       };
 
 

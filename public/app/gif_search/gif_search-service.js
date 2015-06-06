@@ -18,10 +18,12 @@ angular.module('ThisApp')
         data.url = url;
         // data.loadResponse = "GIF is successfully loaded!";
         // console.log(data.url);
+
         this.getUrl();
         return "GIF is successfully loaded!";
       }
     };
   });
+
 
 

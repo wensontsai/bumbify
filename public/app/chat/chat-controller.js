@@ -20,7 +20,6 @@ routerApp
       // watch for update for GIF url passes
       $scope.$watch(function () { return GifUrl.getUrl(); }, function (newValue, oldValue) {
         if (newValue !== oldValue) {
-          console.log("worrrking");
           $scope.gifCheck = 'gif';
 
           $scope.message = '';
@@ -88,7 +87,6 @@ routerApp
 
             var elem = document.getElementById('chatroom');
 
-            console.log($scope.chatSession);
           }
 
 

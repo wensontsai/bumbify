@@ -71,7 +71,7 @@ routerApp
           timestamp : $scope.timestamp
         };
 
-        console.log(gifObject);
+        // console.log(gifObject);
         // store as a usedGif
         $http.post('/api/storeUsedGif', gifObject).success(function(data){
           console.log(data);
@@ -93,7 +93,7 @@ routerApp
         storeUsedGif();
 
         $scope.loadResponse = GifUrl.setUrl($scope.loadedGif);
-        console.log($scope.loadResponse);
+        // console.log($scope.loadResponse);
 
       };
 
@@ -104,7 +104,7 @@ routerApp
               user : $scope.favoriteObject.user,
           };
         $http.post('/api/deleteFavorite', $scope.favoriteObject).success(function(data){
-          console.log(data);
+          // console.log(data);
           // on success reload favorites view
           $scope.showAllFavorites();
         });

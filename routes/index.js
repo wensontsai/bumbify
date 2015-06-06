@@ -257,6 +257,8 @@ exports.deleteFavorite = function(Favorite){
     };
 };
 
+
+// RECENT USED GIF TRACKING //
 exports.storeUsedGif = function(UsedGif){
     return function(req, res, next) {
       console.log("inside storeUsedGif ");
@@ -291,6 +293,18 @@ exports.storeUsedGif = function(UsedGif){
           };
       });
     };
+};
+
+exports.showRecentUsedGifs = function(RecentUsedGif){
+  return function(req, res, next){
+    console.log(req);
+
+    RecentUsedGif.find({ 'user' : req.body.user },function(error, recents){
+      console.log(recents);
+      if(error) return console.error(error);
+      res.send(recents);
+    });
+  };
 };
 
 

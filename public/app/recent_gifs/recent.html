@@ -7,7 +7,7 @@
     <div id="masonry-container">
       <form role="form">
         <div masonry class="recents">
-          <div class="masonry-brick" ng-repeat='recent in mostRecent'>
+          <div class="masonry-brick" ng-repeat='recent in recentUsedGifs'>
               <input id="{{recent.url}}" type="radio" value="{{recent.url}}" ng-model="loadedGif.url">
               <label for="{{recent.url}}">
                 <img ng-src="{{recent.url}}">

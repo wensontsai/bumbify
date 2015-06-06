@@ -1,6 +1,6 @@
 routerApp
   .controller('ChatCtrl',
-    function($rootScope, $log, $scope, ChatSocket, GifUrl, AuthenticationBlock){
+    function($rootScope, $log, $scope, ChatSocket, GifUrl, AuthenticationBlock, $location){
 
       $scope.chatSession = [];
       $scope.chatLine = {};
@@ -16,6 +16,18 @@ routerApp
       function messageArrayer(date, nick, message){
         return date.toLocaleTimeString() + ' - ' +nick+ ' - ' +message+ '\n';
       }
+
+      // for menu bar styling
+      $scope.isActive = function (viewLocation) {
+           if ($location.path().substr(0, viewLocation.length) == viewLocation) {
+              return true;
+            } else {
+              return false;
+            }
+            console.log(viewLocation);
+            console.log($location.path().substr(0, viewLocation.length));
+      };
+
 
       // watch for update for GIF url passes
       $scope.$watch(function () { return GifUrl.getUrl(); }, function (newValue, oldValue) {

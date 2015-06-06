@@ -1,8 +1,8 @@
 <nav class="nav sub_nav" role="navigation">
     <ul class="nav navbar-nav sub_nav-nav">
-      <li><a ui-sref=".gif_add_search" class="nav_tab">Search</a></li>
-      <li><a ui-sref=".favorites" class="nav_tab">Favorites</a></li>
-      <li><a ui-sref=".recent" class="nav_tab">Recent</a></li>
+      <li ng-class="{ active: isActive('chat.gif_add_search') }"><a ui-sref=".gif_add_search" class="nav_tab">Search</a></li>
+      <li ng-class="{ active: isActive('chat.favorites') }"><a ui-sref=".favorites" class="nav_tab">Favorites</a></li>
+      <li ng-class="{ active: isActive('chat.recent') }"><a ui-sref=".recent" class="nav_tab">Recent</a></li>
     </ul>
 </nav>
 

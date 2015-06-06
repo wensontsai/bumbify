@@ -112,6 +112,7 @@ app.post('/api/getAllFavorites', routes.queryAllFavorites(Favorite));
 app.post('/api/addFavorite', routes.addFavorite(Favorite));
 app.post('/api/deleteFavorite', routes.deleteFavorite(Favorite));
 
+app.post('/api/saveUsedGif', routes.storeUsedGif(UsedGif));
 
 
 

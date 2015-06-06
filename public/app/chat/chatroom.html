@@ -17,13 +17,13 @@
       &nbsp;
     </div>
     <div class='row'>
-      <div class='col-md-5'>
+      <div class='col-md-10'>
         <form role='form' novalidate name='form'>
-          <div class='form-group'>
+        <!--   <div class='form-group'> -->
             <input class='input_field chat_field' type='text'required ng-max='50' ng-model='message' focus>
             {{loadResponse}}
             <button class='btn outline btn-primary btn-sm' ng-enable='form.$valid' ng-click="sendMessage()">Send!</button>
-          </div>
+          <!-- </div> -->
         </form>
       </div>
     </div>

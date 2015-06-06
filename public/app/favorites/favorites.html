@@ -15,15 +15,11 @@
           </div> -->
 
           <div class="masonry-brick" ng-repeat='favorite in allFavorites'>
-              <input id="{{favorite.url}}" type="radio" value="{{favorite.url}}" ng-model="loadedGif.url" ng-click="uncheck($event)">
+              <input id="{{favorite.url}}" type="radio" value="{{favorite.url}}" ng-model="loadedGif.url">
               <label for="{{favorite.url}}">
                 <img ng-src="{{favorite.url}}">
               </label>
           </div>
-
-
-
-
         </div>
         <div>
           <div class="col-sm-10 custom_btn">

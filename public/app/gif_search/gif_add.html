@@ -24,7 +24,7 @@
     </div>
     <div id="masonry-container">
       <form role="form">
-        <div masonry class="gif_select">
+        <div class="gif_select">
 
           <div class="masonry-brick" ng-repeat='url in gifs'>
               <input id="{{url.url}}" type="radio" value="{{url.url}}" ng-model="loadedGif.url" ng-click="uncheck($event)">

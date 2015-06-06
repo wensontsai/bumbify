@@ -42,7 +42,7 @@ routerApp
           console.log($scope.gifSearch);
 
         $http.post('/api/searchGifs', $scope.gifSearch).success(function(data){
-            console.log(data);
+            // console.log(data);
 
             // clear $scope.gifSearch
             $scope.gifSearch = {};
@@ -59,7 +59,7 @@ routerApp
             $http.get('/api/scrapes').success(function(data){
               $scope.gifs = data;
               $scope.tag = data[0].tag;
-              console.log($scope.tag);
+              // console.log($scope.tag);
             });
 
         });
@@ -69,8 +69,8 @@ routerApp
         $http.get('/api/scrapes').success(function(data){
           $scope.gifs = data;
           $scope.tag = data[0].tag;
-          console.log($scope.gifs);
-          console.log($scope.tag);
+          // console.log($scope.gifs);
+          // console.log($scope.tag);
         });
       };
 

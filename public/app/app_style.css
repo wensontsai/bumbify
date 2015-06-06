@@ -4,6 +4,7 @@ body {
 
 .main_view{
   height: 80vh;
+  /*height: 80%;*/
 }
 
 .right_align {
@@ -11,7 +12,9 @@ body {
 }
 
 .container {
-  width: 87vw;
+  /*width: 87vw;*/
+  width: 95%;
+  /*width: 100%;*/
 }
 
 
@@ -85,7 +88,8 @@ ul.nav a:hover {
 
 /* CHATROOM */
 .chat_field{
-  width: 27vw;
+  /*width: 27vw;*/
+  width: 80%;
 }
 
 .search_area{
@@ -93,7 +97,8 @@ ul.nav a:hover {
 }
 
 .search_field{
-  width: 16vw;
+  /*width: 16vw;*/
+  width: 100%;
 }
 
 .input_field {
@@ -123,6 +128,7 @@ ul.nav a:hover {
   border: 1px solid #bdbdbd;
   border-radius: 10px;
   width: 8vw;
+  /*width: 8%;*/
   text-align: center;
   background-color: #FAFAFA;
   padding: 0;
@@ -135,7 +141,9 @@ ul.nav a:hover {
 #chatroom {
   padding: 10px;
   height: 75vh;
+  /*height: 75%;*/
   width: 55vw;
+  /*width: 55%;*/
   border: 2px solid #bdbdbd;
   border-radius: 10px;
   overflow-x: scroll;
@@ -168,6 +176,7 @@ input[type="radio"]:checked + label {
 
 .gif_select {
   height: 61vh;
+  /*height: 61%;*/
   overflow-x: scroll;
   overflow-y: scroll;
   border: 2px solid #bdbdbd;
@@ -186,6 +195,7 @@ input[type="radio"]:checked + label {
 /* Favorites */
 .favorite_select {
   height: 75vh;
+  /*height: 75%;*/
   overflow-x: scroll;
   overflow-y: scroll;
   border: 2px solid #bdbdbd;
@@ -196,6 +206,7 @@ input[type="radio"]:checked + label {
 /* Recents */
 .recents {
   height: 75vh;
+  /*height: 75%;*/
   overflow-x: scroll;
   overflow-y: scroll;
   border: 2px solid #bdbdbd;

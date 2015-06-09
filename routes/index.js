@@ -227,8 +227,8 @@ exports.addFavorite = function(Favorite){
             var favorite = new Favorite({
               url : req.body.url,
               user : req.body.user,
-              tag : req.body.tag,
-              timestamp : req.body.timestamp
+              tag : req.body.tag
+              // timestamp : req.body.timestamp
             });
 
             favorite.save(function(error, favorite){
@@ -264,7 +264,7 @@ exports.storeUsedGif = function(UsedGif){
       console.log("inside storeUsedGif ");
       console.log(req.body);
 
-      UsedGif.findOne({ 'url' :  req.body.url, 'user' : req.body.user }, function(err, favorite) {
+      UsedGif.findOne({ 'url' :  req.body.url, 'user' : req.body.user }, function(err, used_gif) {
           // In case of any error, return using the done method
           if (err){
             console.log('Error in adding Favorite: '+err);
@@ -272,17 +272,34 @@ exports.storeUsedGif = function(UsedGif){
           }
 
           // already exists
-          if(favorite){
+          if(used_gif){
             console.log('this favorite already exists for url: '+req.body.url);
             status = "exists";
-            res.send(status);
+            // res.send(status);
+          // delete existing one then store, so it comes to top
+            UsedGif.remove({'url' :  req.body.url, 'user' : req.body.user }, function(err,removed) {
+            });
+
+            var usedGif = new UsedGif({
+                  user : req.body.user,
+                  url : req.body.url,
+                  tag : req.body.tag
+                  // timestamp : req.body.timestamp
+                });
+
+            usedGif.save(function(error, usedGif){
+              if(error) return console.error(error);
+              console.dir(usedGif);
+              res.send(usedGif);
+            });
+
           } else {
             // store used Gif
             var usedGif = new UsedGif({
                   user : req.body.user,
                   url : req.body.url,
-                  tag : req.body.tag,
-                  timestamp : req.body.timestamp
+                  tag : req.body.tag
+                  // timestamp : req.body.timestamp
                 });
 
             usedGif.save(function(error, usedGif){
@@ -306,8 +323,8 @@ exports.showRecentUsedGifs = function(UsedGif){
 
     UsedGif
       .find({ 'user' : req.body.user })
+      .sort({'time':'descending'})
       .limit(25)
-      .sort('-timestamp')
       .exec(callback);
   };
 };

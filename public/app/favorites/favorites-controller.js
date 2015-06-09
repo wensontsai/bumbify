@@ -30,6 +30,7 @@ routerApp
         return $scope.allUniqueTags;
       }
 
+      // put all this in service!!
 
       function getDateTime(){
         // date time stamp formatting
@@ -78,6 +79,7 @@ routerApp
         });
       };
 
+      /////////////// service !!!  ////////////
 
       $scope.showAllFavorites = function(){
         $http.post('/api/getAllFavorites', $scope.favoriteObject).success(function(data){
@@ -88,12 +90,12 @@ routerApp
         });
       };
 
-        $scope.setUrl = function($rootScope){
+      $scope.setUrl = function($rootScope){
 
-        storeUsedGif();
+      storeUsedGif();
 
-        $scope.loadResponse = GifUrl.setUrl($scope.loadedGif);
-        // console.log($scope.loadResponse);
+      $scope.loadResponse = GifUrl.setUrl($scope.loadedGif);
+      // console.log($scope.loadResponse);
 
       };
 

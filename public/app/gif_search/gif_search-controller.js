@@ -16,6 +16,8 @@ routerApp
           $scope.nickName = AuthenticationBlock.checkLoggedIn().name;
         }
 
+      // put all this in service!!
+
       function getDateTime(){
         // date time stamp formatting
         var unixDatestamp = [
@@ -53,6 +55,8 @@ routerApp
         });
       };
 
+
+     /////////////// service !!!  ////////////
 
 
 

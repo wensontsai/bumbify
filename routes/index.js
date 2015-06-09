@@ -35,11 +35,26 @@ exports.showScrapes = function(Scraper){
 
 exports.showHistory = function(SearchHistory){
   return function(req, res, next){
-    SearchHistory.find(function(error, searches){
+    // ALL HISTORY
+    // SearchHistory.find(function(error, searches){
+    //   if(error) return console.error(error);
+    //   // console.dir(scrapes);
+    //   res.send(searches);
+    // });
+
+    // TOP MOST RECENT 50 SEARCHES
+    var callback = function(error, searches){
+      console.log(searches);
       if(error) return console.error(error);
-      // console.dir(scrapes);
       res.send(searches);
-    });
+    };
+
+    SearchHistory
+      .find({})
+      .sort({'time':'descending'})
+      .limit(50)
+      .exec(callback);
+
   };
 };
 

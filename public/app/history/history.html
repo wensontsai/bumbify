@@ -1,12 +1,12 @@
 <div class="jumbotron text-center" ng-init="showHistory()">
-    <h4>Latest GIF searches</h4>
-    // implement Redis store for latest 20 searches //
+    <h4>Latest 50 Searches</h4>
 </div>
 
 <div ng-repeat="search in searches">
     <!-- {{search.tag}} by {{search.user}}
  -->
-    <span ng-bind="search.tag"></span><span class="history_user" ng-bind="search.user"></span>
+    <span ng-bind="search.tag"></span>
+    <!-- <span class="history_user" ng-bind="search.user"></span> -->
 </div>
 
 

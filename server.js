@@ -56,6 +56,12 @@ var Favorite = db.model('favorite', FavoriteSchema);
 var UsedGifSchema = require('./models/UsedGif.js').UsedGifSchema;
 var UsedGif = db.model('used_gif', UsedGifSchema);
 
+var ChatSessionSchema = require('./models/ChatSession.js').ChatSessionSchema;
+var ChatSession = db.model('chat_session', ChatSessionSchema);
+
+var ChatLineSchema = require('./models/ChatLine.js').ChatLineSchema;
+var ChatLine = db.model('chat_line', ChatLineSchema);
+
 
 /////////////////////
 // view engine setup
@@ -102,19 +108,25 @@ var routes = require('./routes/index');
 /////////////////////
 // AngularJS  ROUTING
 /////////////////////
-app.get('/api/scrapes', routes.showScrapes(Scraper));
-app.post('/api/searchGifs', routes.searchGifs(Scraper, SearchHistory));
-app.get('/api/searchHistory', routes.showHistory(SearchHistory));
 app.post('/api/signup', routes.createUser(User));
 app.post('/api/login', routes.login(User));
+
+app.get('/api/scrapes', routes.showScrapes(Scraper));
+
+app.post('/api/searchGifs', routes.searchGifs(Scraper, SearchHistory));
+app.get('/api/searchHistory', routes.showHistory(SearchHistory));
 
 app.post('/api/getAllFavorites', routes.queryAllFavorites(Favorite));
 app.post('/api/addFavorite', routes.addFavorite(Favorite));
 app.post('/api/deleteFavorite', routes.deleteFavorite(Favorite));
 
 app.post('/api/storeUsedGif', routes.storeUsedGif(UsedGif));
-
 app.post('/api/getRecents', routes.showRecentUsedGifs(UsedGif));
+
+app.post('/api/getChatSession', routes.showChatSession(ChatSession));
+app.post('/api/createChatSession', routes.createChatSession(ChatSession));
+
+app.post('/api/addChatLine', routes.addChatLine(ChatLine));
 
 
 

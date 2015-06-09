@@ -1,15 +1,20 @@
 routerApp
   .controller('ChatCtrl',
-    function($rootScope, $log, $scope, ChatSocket, GifUrl, AuthenticationBlock, $location){
+    function($rootScope, $http, $log, $scope, ChatSocket, GifUrl, AuthenticationBlock, $location){
 
       $scope.chatSession = [];
       $scope.chatLine = {};
       $scope.gifCheck = '';
+      $scope.chatSessionData = {};
+      $scope.chatSessionData.sessionId = null;
 
 
       $scope.loggedIn = AuthenticationBlock.checkLoggedIn().loggedIn;
         if($scope.loggedIn === true){
         $scope.nickName = AuthenticationBlock.checkLoggedIn().name;
+
+        // start a chatroom session //
+
       }
 
       // internal functions
@@ -27,6 +32,38 @@ routerApp
             console.log(viewLocation);
             console.log($location.path().substr(0, viewLocation.length));
       };
+
+
+
+      // initiate chatroom session in DB
+      // get and store _id as $scope.chatSessionData.sessionID
+      $scope.createChatSession = function(){
+        console.log($scope.chatSessionData.sessionId);
+
+
+        if($scope.chatSessionData.sessionId !== null){
+
+          $scope.showChatroom();
+
+        } else {
+          $http.post('/api/createChatSession').success(function(data){
+            console.log("creating chat session ");
+            console.log(data);
+            $scope.chatSessionData.sessionId = data._id;
+            console.log($scope.chatSessionData);
+          });
+        }
+      };
+
+
+      // grab chat Session
+      $scope.showChatSession = function(){
+        $http.post('/api/getChatSession', $scope.chatSessionData).success(function(data){
+            console.log("storing chatline below..");
+            console.log(data);
+          });
+      };
+
 
 
       // watch for update for GIF url passes
@@ -74,6 +111,7 @@ routerApp
           if(data.payload || response.url != null){// if response is not null
             if(response.url !== null){
               $scope.chatLine.url = response.url;
+              $scope.chatLine.sessionId = $scope.chatSessionData.sessionId;
               $scope.gifCheck = '';
             }
 
@@ -92,11 +130,23 @@ routerApp
             unixTimestamp = unixTimestamp.join(':');
 
             // assembling chatLine
+            $scope.chatLine.sessionId = $scope.chatSessionData.sessionId;
             $scope.chatLine.timestamp = unixDatestamp +", "+ unixTimestamp;
             $scope.chatLine.user = data.source;
             $scope.chatLine.text = data.payload;
             $scope.chatSession.push($scope.chatLine);
 
+
+            console.log("chat line yoooo...");
+            console.log($scope.chatLine);
+
+            // store line to DB for session
+            $http.post('/api/addChatLine', $scope.chatLine).success(function(data){
+              console.log("storing chatline raight hayrr..");
+              console.log(data);
+            });
+
+            // display in View
             var elem = document.getElementById('chatroom');
 
           }

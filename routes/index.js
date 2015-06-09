@@ -348,11 +348,14 @@ exports.showRecentUsedGifs = function(UsedGif){
 // for persisting chatroom
 exports.showChatSession = function(ChatSession){
   return function(req, res, next){
-      ChatSession.findOne({ '_id' :  req.body.sessionId }, function(error, chatSession){
-        if(error) return console.error(error);
-        // console.dir(scrapes);
-        res.send(chatSession);
-      });
+
+      console.dir(req.body);
+
+      // ChatSession.findOne({ '_id' :  req.body }, function(error, chatSession){
+      //   if(error) return console.error(error);
+      //   // console.dir(scrapes);
+      //   res.send(chatSession);
+      // });
     };
 };
 

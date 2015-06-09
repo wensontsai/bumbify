@@ -10,10 +10,12 @@ routerApp
       $scope.loggedIn = AuthenticationBlock.checkLoggedIn().loggedIn;
         if($scope.loggedIn === true){
         $scope.nickName = AuthenticationBlock.checkLoggedIn().name;
-
-        // start a chatroom session //
-
       }
+
+      // initiate chatroom persistence to DB//
+      // createChatSession();
+
+
 
       // internal functions
       function messageArrayer(date, nick, message){
@@ -35,7 +37,7 @@ routerApp
 
       // initiate chatroom session in DB
       // get and store _id as $scope.chatSessionData.sessionID
-      $scope.createChatSession = function(){
+      function createChatSession(){
         $scope.chatSessionId = ChatSession.getChatSessionId().sessionId;
 
         if($scope.chatSessionId !== null){
@@ -130,10 +132,10 @@ routerApp
 
 
             // store line to DB for session
-            $http.post('/api/addChatLine', $scope.chatLine).success(function(data){
-              console.log("storing chatline raight hayrr..");
-              console.log(data);
-            });
+            // $http.post('/api/addChatLine', $scope.chatLine).success(function(data){
+            //   console.log("storing chatline raight hayrr..");
+            //   console.log(data);
+            // });
 
             // display in View
             var elem = document.getElementById('chatroom');

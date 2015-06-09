@@ -44,8 +44,9 @@ exports.showHistory = function(SearchHistory){
 
     // TOP MOST RECENT 50 SEARCHES
     var callback = function(error, searches){
-      console.log(searches);
+      // console.log(searches);
       if(error) return console.error(error);
+
       res.send(searches);
     };
 
@@ -298,7 +299,7 @@ exports.storeUsedGif = function(UsedGif){
             var usedGif = new UsedGif({
                   user : req.body.user,
                   url : req.body.url,
-                  tag : req.body.tag
+                  tag : req.body.tag,
                   // timestamp : req.body.timestamp
                 });
 
@@ -343,6 +344,17 @@ exports.showRecentUsedGifs = function(UsedGif){
       .exec(callback);
   };
 };
+
+
+
+
+
+
+
+
+
+
+
 
 
 // for persisting chatroom

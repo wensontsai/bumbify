@@ -295,15 +295,20 @@ exports.storeUsedGif = function(UsedGif){
     };
 };
 
-exports.showRecentUsedGifs = function(RecentUsedGif){
+exports.showRecentUsedGifs = function(UsedGif){
   return function(req, res, next){
-    console.log(req);
 
-    RecentUsedGif.find({ 'user' : req.body.user },function(error, recents){
+    var callback = function(error, recents){
       console.log(recents);
       if(error) return console.error(error);
       res.send(recents);
-    });
+    };
+
+    UsedGif
+      .find({ 'user' : req.body.user })
+      .limit(25)
+      .sort('-timestamp')
+      .exec(callback);
   };
 };
 

@@ -57,10 +57,6 @@ var UsedGifSchema = require('./models/UsedGif.js').UsedGifSchema;
 var UsedGif = db.model('used_gif', UsedGifSchema);
 
 
-var RecentUsedGifSchema = require('./models/RecentUsedGif.js').RecentUsedGifSchema;
-var RecentUsedGif = db.model('recent_used_gifs', RecentUsedGifSchema);
-
-
 /////////////////////
 // view engine setup
 // all environments
@@ -118,7 +114,7 @@ app.post('/api/deleteFavorite', routes.deleteFavorite(Favorite));
 
 app.post('/api/storeUsedGif', routes.storeUsedGif(UsedGif));
 
-app.post('/api/getRecents', routes.showRecentUsedGifs(RecentUsedGif));
+app.post('/api/getRecents', routes.showRecentUsedGifs(UsedGif));
 
 
 

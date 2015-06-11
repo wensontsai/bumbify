@@ -95,7 +95,7 @@ routerApp
       storeUsedGif();
 
       $scope.loadResponse = GifUrl.setUrl($scope.loadedGif);
-      ChatSocket.emit('message', $scope.nickName, $scope.message);
+      ChatSocket.emit('message', $scope.nickName, $scope.message, $scope.loadedGif);
       // console.log($scope.loadResponse);
 
       };

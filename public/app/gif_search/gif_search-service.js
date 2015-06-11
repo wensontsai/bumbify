@@ -9,6 +9,7 @@ angular.module('ThisApp')
     return {
       getUrl: function(){
         // console.log("inside getUrl now");
+
         return data;
       },
       resetUrl: function(){

@@ -1,7 +1,7 @@
 var cheerio = require('cheerio');
 var request = require('request');
 var LocalStrategy = require('passport-local').Strategy;
-var User = require('../models/user');
+var User = require('../models/User.js');
 var bCrypt = require('bcrypt');
 var passport = require('passport');
 

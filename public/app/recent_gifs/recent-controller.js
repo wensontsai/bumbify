@@ -72,11 +72,16 @@ routerApp
 
     $scope.setUrl = function($rootScope){
 
-      storeUsedGif();
+        storeUsedGif();
 
-      $scope.loadResponse = GifUrl.setUrl($scope.loadedGif);
-      ChatSocket.emit('message', $scope.nickName, $scope.loadedGif);
-      // console.log($scope.loadResponse);
+        $scope.loadResponse = GifUrl.setUrl($scope.loadedGif);
+
+        $scope.message.url = $scope.loadedGif.url;
+        console.log($scope.message.url);
+
+        ChatSocket.emit('message', $scope.nickName, $scope.message);
+
+        // console.log($scope.loadResponse);
 
       };
 });

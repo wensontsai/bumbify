@@ -105,6 +105,7 @@ routerApp
         $scope.loadResponse = GifUrl.setUrl($scope.loadedGif);
 
         var gifMessage = "<img src='" +$scope.loadResponse.url+ "'>";
+        console.log(gifMessage);
 
         ChatSocket.emit('message', $scope.nickName, gifMessage);
 

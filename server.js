@@ -39,7 +39,7 @@ var Mongoose = require('mongoose');
 //                 console.log('connection successful');
 //             }
 //         });
-var db = Mongoose.createConnection(process.env.MONGOLAB_URI,
+var db = Mongoose.createConnection('mongodb://heroku_6b7tq96t:rhejqj2qe7spqer6hp54t0gbtj@ds043982.mongolab.com:43982/heroku_6b7tq96t',
         function(err){
             if(err){
                 console.log('connection error', err);

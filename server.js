@@ -31,7 +31,7 @@ var session = require('express-session');
 ///////// db connect  //////////////////
 ////////////////////////////////////////
 var Mongoose = require('mongoose');
-var db = Mongoose.createConnection('mongodb://localhost/bumbify',
+var db = Mongoose.createConnection(process.env.MONGOLAB_URI || 'mongodb://localhost/bumbify',
         function(err){
             if(err){
                 console.log('connection error', err);

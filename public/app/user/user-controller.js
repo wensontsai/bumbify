@@ -10,7 +10,7 @@ routerApp
         $scope.alert = '';
 
         $http.post('/api/signup', $scope.signupData).success(function(data){
-            console.log(data);
+            // console.log(data);
 
           // clear $scope.signupData
           $scope.signupData = {};
@@ -56,8 +56,8 @@ routerApp
       // Login - add new user
       $scope.logIn = function(){
         $http.post('/api/login', $scope.loginData).success(function(data){
-            console.log('inside user controller now');
-            console.log(data);
+            // console.log('inside user controller now');
+            // console.log(data);
 
           if(data === 'password failed'){
             $scope.loginData.password = '';

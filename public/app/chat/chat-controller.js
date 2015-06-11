@@ -2,6 +2,7 @@ routerApp
   .controller('ChatCtrl',
     function($rootScope, $http, $log, $scope, ChatSocket, GifUrl, AuthenticationBlock, $location, ChatSession){
 
+      $scope.message = {};
       $scope.chatSession = [];
       $scope.chatLine = {};
       $scope.gifCheck = '';
@@ -29,8 +30,8 @@ routerApp
             } else {
               return false;
             }
-            console.log(viewLocation);
-            console.log($location.path().substr(0, viewLocation.length));
+            // console.log(viewLocation);
+            // console.log($location.path().substr(0, viewLocation.length));
       };
 
 
@@ -75,10 +76,10 @@ routerApp
 
       $scope.sendMessage = function(){
         // console logging
-        $log.debug('sending message', $scope.message);
+        $log.debug('sending message', $scope.message.text);
         ChatSocket.emit('message', $scope.nickName, $scope.message);
-        $log.debug('message sent', $scope.message);
-        $scope.message = '';
+        $log.debug('message sent', $scope.message.text);
+        $scope.message.text = '';
       };
 
 
@@ -128,7 +129,12 @@ routerApp
             $scope.chatLine.sessionId = $scope.chatSessionId;
             $scope.chatLine.timestamp = unixDatestamp +", "+ unixTimestamp;
             $scope.chatLine.user = data.source;
-            $scope.chatLine.text = data.payload;
+            if(data.payload.url){
+              $scope.chatline.url = data.payload.url;
+            }
+            if(data.payload.text){
+              $scope.chatLine.text = data.payload.text;
+            }
             $scope.chatSession.push($scope.chatLine);
 
 

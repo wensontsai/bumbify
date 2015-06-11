@@ -13,8 +13,8 @@ appControllers.controller('AdminUserCtrl', ['$scope', '$location', '$window', 'U
                     $window.sessionStorage.token = data.token;
                     $location.path("/admin");
                 }).error(function(status, data) {
-                    console.log(status);
-                    console.log(data);
+                    // console.log(status);
+                    // console.log(data);
                 });
             }
         }
@@ -29,8 +29,8 @@ appControllers.controller('AdminUserCtrl', ['$scope', '$location', '$window', 'U
                     $window.sessionStorage.token = data.token;
                     $location.path("/admin");
                 }).error(function(status, data) {
-                    console.log(status);
-                    console.log(data);
+                    // console.log(status);
+                    // console.log(data);
                 });
             }
         }

@@ -4,7 +4,7 @@ routerApp
 
       $scope.showHistory = function(){
         $http.get('/api/searchHistory').success(function(data){
-          console.log(data);
+          // console.log(data);
           $scope.searches = data;
 
         });

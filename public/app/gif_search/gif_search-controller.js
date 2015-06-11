@@ -48,10 +48,10 @@ routerApp
           timestamp : $scope.timestamp
         };
 
-        console.log(gifObject);
+        // console.log(gifObject);
         // store as a usedGif
         $http.post('/api/storeUsedGif', gifObject).success(function(data){
-          console.log(data);
+          // console.log(data);
         });
       };
 
@@ -104,12 +104,11 @@ routerApp
 
         $scope.loadResponse = GifUrl.setUrl($scope.loadedGif);
 
-        var gifMessage = "<img src='" +$scope.loadResponse.url+ "'>";
-        console.log(gifMessage);
+        var gifUrl = $scope.loadedGif.url;
 
-        ChatSocket.emit('message', $scope.nickName, gifMessage);
+        ChatSocket.emit('message', $scope.nickName, $scope.message);
 
-        console.log($scope.loadResponse);
+        // console.log($scope.loadResponse);
 
       };
 
@@ -128,7 +127,7 @@ routerApp
         // console.log($scope.favoriteResponse);
 
         $http.post('/api/addFavorite', favoriteObject).success(function(data){
-            console.log(data);
+            // console.log(data);
         });
       };
 

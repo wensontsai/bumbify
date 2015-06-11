@@ -62,16 +62,16 @@ routerApp
 
 
       // watch for update for GIF url passes
-      $scope.$watch(function () { return GifUrl.getUrl(); }, function (newValue, oldValue) {
-        if (newValue !== oldValue) {
-          $scope.gifCheck = 'gif';
+      // $scope.$watch(function () { return GifUrl.getUrl(); }, function (newValue, oldValue) {
+      //   if (newValue !== oldValue) {
+      //     $scope.gifCheck = 'gif';
 
-          $scope.message = '';
-          $log.debug('sending message', $scope.message);
-          ChatSocket.emit('message', $scope.nickName, $scope.message);
-          $log.debug('message sent', $scope.message);
-        }
-      }, true);
+      //     $scope.message = '';
+      //     $log.debug('sending message', $scope.message);
+      //     ChatSocket.emit('message', $scope.nickName, $scope.message);
+      //     $log.debug('message sent', $scope.message);
+      //   }
+      // }, true);
 
 
       $scope.sendMessage = function(){

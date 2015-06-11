@@ -6,6 +6,7 @@ routerApp
       $scope.formInfo = {};
       $scope.gifSearch = {};
       $scope.timestamp = '';
+      $scope.message = {};
 
       // gif select models
       $scope.loadedGif = {};
@@ -104,7 +105,8 @@ routerApp
 
         $scope.loadResponse = GifUrl.setUrl($scope.loadedGif);
 
-        var gifUrl = $scope.loadedGif.url;
+        $scope.message.url = $scope.loadedGif.url;
+        console.log($scope.message.url);
 
         ChatSocket.emit('message', $scope.nickName, $scope.message);
 

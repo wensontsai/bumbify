@@ -87,7 +87,9 @@ routerApp
       $scope.$on('socket:broadcast', function(event, data){
         // console logging
         $log.debug('got a message', event.name);
-        // console.log("data payload = " +data.payload);
+        console.log("data payload text = " +data.payload.text);
+        console.log("data payload url = " +data.payload.url);
+        console.log("data payload source = " +data.source);
 
         if(!data.payload && $scope.gifCheck !== 'gif'){
           $log.error('invalid message', 'event', event, 'data', JSON.stringify(data));
@@ -129,10 +131,10 @@ routerApp
             $scope.chatLine.sessionId = $scope.chatSessionId;
             $scope.chatLine.timestamp = unixDatestamp +", "+ unixTimestamp;
             $scope.chatLine.user = data.source;
-            if(data.payload.url){
-              $scope.chatline.url = data.payload.url;
+            if(data.payload.url !== null){
+              $scope.chatLine.url = data.payload.url;
             }
-            if(data.payload.text){
+            if(data.payload.text !== null){
               $scope.chatLine.text = data.payload.text;
             }
             $scope.chatSession.push($scope.chatLine);

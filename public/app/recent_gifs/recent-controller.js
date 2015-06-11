@@ -1,6 +1,6 @@
 routerApp
   .controller('RecentsCtrl',
-    function($rootScope, $scope, $http, GifUrl, AuthenticationBlock){
+    function($rootScope, $scope, $http, GifUrl, AuthenticationBlock, ChatSocket){
 
       $scope.recentsObject = {};
       $scope.recentsObject.user = AuthenticationBlock.checkLoggedIn().name;
@@ -75,6 +75,7 @@ routerApp
       storeUsedGif();
 
       $scope.loadResponse = GifUrl.setUrl($scope.loadedGif);
+      ChatSocket.emit('message', $scope.nickName, $scope.message);
       // console.log($scope.loadResponse);
 
       };

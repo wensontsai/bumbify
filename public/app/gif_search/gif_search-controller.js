@@ -1,6 +1,6 @@
 routerApp
   .controller('ScrapesCtrl',
-    function($rootScope, $scope, $http, GifUrl, AuthenticationBlock){
+    function($rootScope, $scope, $http, GifUrl, AuthenticationBlock, ChatSocket){
       // search models
       $scope.gifs = [];
       $scope.formInfo = {};
@@ -103,6 +103,7 @@ routerApp
         storeUsedGif();
 
         $scope.loadResponse = GifUrl.setUrl($scope.loadedGif);
+        ChatSocket.emit('message', $scope.nickName, $scope.message);
         console.log($scope.loadResponse);
 
       };

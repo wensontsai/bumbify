@@ -123,6 +123,7 @@ routerApp
             unixDatestamp = unixDatestamp.join('-');
             unixTimestamp = unixTimestamp.join(':');
 
+
             // assembling chatLine
             $scope.chatLine.sessionId = $scope.chatSessionId;
             $scope.chatLine.timestamp = unixDatestamp +", "+ unixTimestamp;

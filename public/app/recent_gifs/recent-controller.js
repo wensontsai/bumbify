@@ -4,6 +4,7 @@ routerApp
 
       $scope.recentsObject = {};
       $scope.recentsObject.user = AuthenticationBlock.checkLoggedIn().name;
+      $scope.recentsObject.userId = AuthenticationBlock.checkLoggedIn().userId;
 
       $scope.recentUsedGifs = {};
 
@@ -49,6 +50,7 @@ routerApp
           gifObject = {
             url : $scope.loadedGif.url,
             user : $scope.nickName,
+            userId : $scope.userId,
             tag : tag,
             timestamp : $scope.timestamp
           };
@@ -56,7 +58,7 @@ routerApp
           // console.log(gifObject);
           // store as a usedGif
           $http.post('/api/storeUsedGif', gifObject).success(function(data){
-            console.log(data);
+            // console.log(data);
           });
         };
 
@@ -64,7 +66,7 @@ routerApp
 
      $scope.showAllRecents = function(){
         $http.post('/api/getRecents', $scope.recentsObject).success(function(data){
-          console.log(data);
+          // console.log(data);
           $scope.recentUsedGifs = data;
         });
       };
@@ -77,7 +79,7 @@ routerApp
         $scope.loadResponse = GifUrl.setUrl($scope.loadedGif);
 
         $scope.message.url = $scope.loadedGif.url;
-        console.log($scope.message.url);
+        // console.log($scope.message.url);
 
         ChatSocket.emit('message', $scope.nickName, $scope.message);
 

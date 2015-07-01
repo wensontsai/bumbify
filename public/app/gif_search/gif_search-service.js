@@ -19,6 +19,7 @@ angular.module('ThisApp')
         data.url = obj.url;
         data.tag = obj.tag;
         data.user = obj.user;
+        data.userId = obj.userId;
         data.timestamp = obj.timestamp;
         // data.loadResponse = "GIF is successfully loaded!";
         // console.log(data.url);

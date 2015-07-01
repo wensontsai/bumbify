@@ -11,6 +11,7 @@ routerApp
       $scope.loggedIn = AuthenticationBlock.checkLoggedIn().loggedIn;
         if($scope.loggedIn === true){
         $scope.nickName = AuthenticationBlock.checkLoggedIn().name;
+        $scope.userId = AuthenticationBlock.checkLoggedIn().userId;
       }
 
       // initiate chatroom persistence to DB//
@@ -44,15 +45,15 @@ routerApp
         if($scope.chatSessionId !== null){
 
           $http.post('/api/getChatSession', $scope.chatSessionId).success(function(data){
-            console.log("we have a chat session with data below!");
+            // console.log("we have a chat session with data below!");
 
-            console.log(data);
+            // console.log(data);
           });
 
         } else {
           $http.post('/api/createChatSession').success(function(data){
-            console.log("creating chat session ");
-            console.log(data);
+            // console.log("creating chat session ");
+            // console.log(data);
             $scope.chatSessionId = data._id;
 
             ChatSession.setChatSessionId(data);
@@ -87,9 +88,9 @@ routerApp
       $scope.$on('socket:broadcast', function(event, data){
         // console logging
         $log.debug('got a message', event.name);
-        console.log("data payload text = " +data.payload.text);
-        console.log("data payload url = " +data.payload.url);
-        console.log("data payload source = " +data.source);
+        // console.log("data payload text = " +data.payload.text);
+        // console.log("data payload url = " +data.payload.url);
+        // console.log("data payload source = " +data.source);
 
         if(!data.payload && $scope.gifCheck !== 'gif'){
           $log.error('invalid message', 'event', event, 'data', JSON.stringify(data));

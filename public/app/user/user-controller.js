@@ -67,7 +67,7 @@ routerApp
             $scope.alert = "Login failed - Incorrect username.  Please try again!";
           } else {
               // set loggedin
-              AuthenticationBlock.setLoggedIn($scope.loginData);
+              AuthenticationBlock.setLoggedIn(data);
 
               // clear $scope.loginData
               $scope.loginData = {};

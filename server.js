@@ -31,6 +31,9 @@ var session = require('express-session');
 ///////// db connect  //////////////////
 ////////////////////////////////////////
 var Mongoose = require('mongoose');
+
+// *****  LOCAL MONGODB  ***** ///////
+
 // var db = Mongoose.createConnection('mongodb://localhost/bumbify',
 //         function(err){
 //             if(err){
@@ -39,6 +42,9 @@ var Mongoose = require('mongoose');
 //                 console.log('connection successful');
 //             }
 //         });
+
+// ***** HEROKU MONGODB  ***** ///////
+
 var db = Mongoose.createConnection('mongodb://heroku_6b7tq96t:rhejqj2qe7spqer6hp54t0gbtj@ds043982.mongolab.com:43982/heroku_6b7tq96t',
         function(err){
             if(err){
@@ -119,7 +125,7 @@ var routes = require('./routes/index');
 app.post('/api/signup', routes.createUser(User));
 app.post('/api/login', routes.login(User));
 
-app.get('/api/scrapes', routes.showScrapes(Scraper));
+app.post('/api/scrapes', routes.showScrapes(Scraper));
 
 app.post('/api/searchGifs', routes.searchGifs(Scraper, SearchHistory));
 app.get('/api/searchHistory', routes.showHistory(SearchHistory));

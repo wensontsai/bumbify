@@ -15,6 +15,9 @@ routerApp
       $scope.loggedIn = AuthenticationBlock.checkLoggedIn().loggedIn;
         if($scope.loggedIn === true){
           $scope.nickName = AuthenticationBlock.checkLoggedIn().name;
+          $scope.userId = AuthenticationBlock.checkLoggedIn().userId;
+          // console.log("I'm in scrapes ctrl!!!");
+          // console.log($scope.userId);
         }
 
       // put all this in service!!
@@ -45,6 +48,7 @@ routerApp
         gifObject = {
           url : $scope.loadedGif.url,
           user : $scope.nickName,
+          userId : $scope.userId,
           tag : $scope.tag,
           timestamp : $scope.timestamp
         };
@@ -64,7 +68,8 @@ routerApp
       // gif scrape functions
       $scope.searchGifs = function(){
         $scope.gifSearch.user = $scope.nickName;
-          console.log($scope.gifSearch);
+        $scope.gifSearch.userId = $scope.userId;
+          // console.log($scope.gifSearch);
 
         $http.post('/api/searchGifs', $scope.gifSearch).success(function(data){
             // console.log(data);
@@ -81,19 +86,23 @@ routerApp
             }
 
             // then get scrapes again
-            $http.get('/api/scrapes').success(function(data){
-              $scope.gifs = data;
-              $scope.tag = data[0].tag;
+            $scope.showScrapes();
+            // $http.get('/api/scrapes').success(function(data){
+            //   $scope.gifs = data;
+            //   $scope.tag = data[0].tag;
               // console.log($scope.tag);
-            });
+            // });
 
         });
       };
 
       $scope.showScrapes = function(){
-        $http.get('/api/scrapes').success(function(data){
+        $scope.gifSearch.userId = $scope.userId;
+
+        $http.post('/api/scrapes', $scope.gifSearch).success(function(data){
           $scope.gifs = data;
           $scope.tag = data[0].tag;
+          // console.log('showScrapes nowww ng-controller');
           // console.log($scope.gifs);
           // console.log($scope.tag);
         });
@@ -106,7 +115,7 @@ routerApp
         $scope.loadResponse = GifUrl.setUrl($scope.loadedGif);
 
         $scope.message.url = $scope.loadedGif.url;
-        console.log($scope.message.url);
+        // console.log($scope.message.url);
 
         ChatSocket.emit('message', $scope.nickName, $scope.message);
 
@@ -121,6 +130,7 @@ routerApp
         favoriteObject = {
           url : $scope.loadedGif.url,
           user : $scope.nickName,
+          userId : $scope.userId,
           tag : $scope.tag,
           timestamp : $scope.timestamp
         };

@@ -1,4 +1,4 @@
-routerApp
+srouterApp
 
 
 appControllers.controller('AdminUserCtrl', ['$scope', '$location', '$window', 'UserService', 'AuthenticationService',

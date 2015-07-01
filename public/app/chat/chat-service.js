@@ -10,7 +10,7 @@ angular.module('ThisApp')
     };
     return {
       setChatSessionId: function(obj){
-        console.log("NEW CHCATT SESSION CREATED");
+        // console.log("NEW CHCATT SESSION CREATED");
         chatData.sessionId = obj.sessionId;
       },
       getChatSessionId: function(){

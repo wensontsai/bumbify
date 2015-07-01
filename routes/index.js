@@ -8,27 +8,35 @@ var passport = require('passport');
 
 
 // GIF SEARCH /////////////
-function clearDB(Scraper){
+function clearDB(Scraper, userId){
   // clear out old urls
-  Scraper.remove().exec();
-  console.log('removing all current docs from collection -> scraper');
+  Scraper.remove({ 'userId' :  userId }).exec();
+  // console.log('removing all current docs from collection -> scraper where userID = ' +userId);
 }
 
-function saveSearch(tag, user, SearchHistory){
-  console.log("i save the search params here - " +tag+ "by: " +user);
-   search = new SearchHistory({
+function saveSearch(tag, user, userId, SearchHistory){
+  // console.log("i save the search params here - " +tag+ " by: " +userId);
+      search = new SearchHistory({
         tag : tag,
-        user : user
+        user : user,
+        userId : userId
       });
+   // console.dir(search);
+
    search.save();
 }
 
 exports.showScrapes = function(Scraper){
   return function(req, res, next){
-    Scraper.find(function(error, scrapes){
-      if(error) return console.error(error);
-      // console.dir(scrapes);
-      res.send(scrapes);
+    console.dir(req.body.userId);
+    Scraper.find({ 'userId' :  req.body.userId }, function(err, scrapes) {
+        // console.dir("mah gootuhniss");
+        if(scrapes){
+          // console.dir(scrapes);
+          res.send(scrapes);
+        } else {
+          res.send('first timer!!');
+        }
     });
   };
 };
@@ -68,6 +76,9 @@ exports.searchGifs = function(Scraper, SearchHistory){
     return function(req, res, next){
       var tag = req.body.tag;
       var user = req.body.user;
+      var userId = req.body.userId;
+
+      console.dir(req.body);
 
     // scrape query
     request('http://giphy.com/search/' + tag, function(err, resp, body){
@@ -81,8 +92,8 @@ exports.searchGifs = function(Scraper, SearchHistory){
               status = "success";
 
             });
-            addScrapedUrls(urls, tag, user);
-            saveSearch(tag, user, SearchHistory);
+            addScrapedUrls(urls, tag, user, userId);
+            saveSearch(tag, user, userId, SearchHistory);
 
             // clear urls array so next search is that search only
             urls=[];
@@ -95,20 +106,22 @@ exports.searchGifs = function(Scraper, SearchHistory){
       });
     };
 
-    function addScrapedUrls(urls, tag, user){
-      clearDB(Scraper);
+    function addScrapedUrls(urls, tag, user, userId){
+      clearDB(Scraper, userId);
 
       // populate with latest scrape urls
       for (var i=0; i < urls.length; i++){
         // var cleanUrl = urls[i].replace(/.*?:\/\//g, "");
         var cleanUrl = urls[i];
-        console.log("inserting url " + cleanUrl.replace('_s', '') + " into DB");
         scraped_data = new Scraper({
           url : cleanUrl.replace('_s', ''),
           tag : tag,
-          user : user
+          user : user,
+          userId : userId
         });
+        // console.dir(scraped_data);
         scraped_data.save();
+        // console.log("inserting url " + cleanUrl.replace('_s', '') + " into DB");
       };
     };
 };
@@ -129,13 +142,13 @@ exports.createUser = function(User){
     User.findOne({ 'name' :  req.body.name }, function(err, user) {
         // In case of any error, return using the done method
         if (err){
-          console.log('Error in SignUp: '+err);
+          // console.log('Error in SignUp: '+err);
           res.send(401);
         }
 
         // already exists
         if(user){
-          console.log('User already exists with username: '+req.body.name);
+          // console.log('User already exists with username: '+req.body.name);
           status = "exists";
           res.send(status);
         } else {
@@ -144,7 +157,7 @@ exports.createUser = function(User){
             email : req.body.email,
             password : createHash(req.body.password)
           });
-          console.log(user);
+          // console.log(user);
 
           user.save(function(error, user){
             if(error) return console.error(error);
@@ -167,17 +180,18 @@ exports.login = function(User){
         }
         // Username does not exist, log the error and redirect back
         if (!user){
-            console.log('User Not Found with username '+req.body.name);
+            // console.log('User Not Found with username '+req.body.name);
             status = "username failed";
             res.send(status);
         } else if (!isValidPassword(user, req.body.password)){
         // User exists but wrong password, log the error
-            console.log('Invalid Password');
+            // console.log('Invalid Password');
             status = "password failed";
             res.send(status);
         } else {
         // User and password both match, return user from done method
         // which will be treated like success
+          // console.dir(user);
           res.send(user);
         }
 
@@ -195,10 +209,10 @@ exports.login = function(User){
 exports.queryAllFavorites = function(Favorite){
   return function(req, res, next) {
       // find a user in Mongo with provided username
-      Favorite.find({ 'user' : req.body.user }, function(err, favorite) {
+      Favorite.find({ 'userId' : req.body.userId }, function(err, favorite) {
           // In case of any error, return using the done method
           if (err){
-            console.log('Error in adding Favorite: '+err);
+            // console.log('Error in adding Favorite: '+err);
             res.send(401);
           } else {
             res.send(favorite);
@@ -227,22 +241,23 @@ exports.queryAllFavorites = function(Favorite){
 exports.addFavorite = function(Favorite){
     return function(req, res, next) {
       // find a user in Mongo with provided username
-      Favorite.findOne({ 'url' :  req.body.url, 'user' : req.body.user }, function(err, favorite) {
+      Favorite.findOne({ 'url' :  req.body.url, 'userId' : req.body.userId }, function(err, favorite) {
           // In case of any error, return using the done method
           if (err){
-            console.log('Error in adding Favorite: '+err);
+            // console.log('Error in adding Favorite: '+err);
             res.send(401);
           }
 
           // already exists
           if(favorite){
-            console.log('this favorite already exists for url: '+req.body.url);
+            // console.log('this favorite already exists for url: '+req.body.url);
             status = "exists";
             res.send(status);
           } else {
             var favorite = new Favorite({
               url : req.body.url,
               user : req.body.user,
+              userId : req.body.userId,
               tag : req.body.tag
               // timestamp : req.body.timestamp
             });
@@ -260,10 +275,10 @@ exports.addFavorite = function(Favorite){
 exports.deleteFavorite = function(Favorite){
     return function(req, res, next) {
       // find a user in Mongo with provided username
-      Favorite.remove({ 'url' :  req.body.url, 'user' : req.body.user }, function(err, favorite) {
+      Favorite.remove({ 'url' :  req.body.url, 'userId' : req.body.userId }, function(err, favorite) {
           // In case of any error, return using the done method
           if (err){
-            console.log('Error in adding Favorite: '+err);
+            // console.log('Error in adding Favorite: '+err);
             res.send(401);
           }
 
@@ -277,27 +292,28 @@ exports.deleteFavorite = function(Favorite){
 // RECENT USED GIF TRACKING //
 exports.storeUsedGif = function(UsedGif){
     return function(req, res, next) {
-      console.log("inside storeUsedGif ");
-      console.log(req.body);
+      // console.log("inside storeUsedGif ");
+      // console.log(req.body);
 
-      UsedGif.findOne({ 'url' :  req.body.url, 'user' : req.body.user }, function(err, used_gif) {
+      UsedGif.findOne({ 'url' :  req.body.url, 'userId' : req.body.userId }, function(err, used_gif) {
           // In case of any error, return using the done method
           if (err){
-            console.log('Error in adding Favorite: '+err);
+            // console.log('Error in adding Favorite: '+err);
             res.send(401);
           }
 
           // already exists
           if(used_gif){
-            console.log('this favorite already exists for url: '+req.body.url);
+            // console.log('this favorite already exists for url: '+req.body.url);
             status = "exists";
             // res.send(status);
           // delete existing one then store, so it comes to top
-            UsedGif.remove({'url' :  req.body.url, 'user' : req.body.user }, function(err,removed) {
+            UsedGif.remove({'url' :  req.body.url, 'userId' : req.body.userId }, function(err,removed) {
             });
 
             var usedGif = new UsedGif({
                   user : req.body.user,
+                  userId : req.body.userId,
                   url : req.body.url,
                   tag : req.body.tag,
                   // timestamp : req.body.timestamp
@@ -313,6 +329,7 @@ exports.storeUsedGif = function(UsedGif){
             // store used Gif
             var usedGif = new UsedGif({
                   user : req.body.user,
+                  userId : req.body.userId,
                   url : req.body.url,
                   tag : req.body.tag
                   // timestamp : req.body.timestamp
@@ -332,13 +349,13 @@ exports.showRecentUsedGifs = function(UsedGif){
   return function(req, res, next){
 
     var callback = function(error, recents){
-      console.log(recents);
+      // console.log(recents);
       if(error) return console.error(error);
       res.send(recents);
     };
 
     UsedGif
-      .find({ 'user' : req.body.user })
+      .find({ 'userId' : req.body.userId })
       .sort({'time':'descending'})
       .limit(25)
       .exec(callback);

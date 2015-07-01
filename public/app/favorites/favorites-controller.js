@@ -7,6 +7,7 @@ routerApp
 
       $scope.favoriteObject = {};
       $scope.favoriteObject.user = AuthenticationBlock.checkLoggedIn().name;
+      $scope.favoriteObject.userId = AuthenticationBlock.checkLoggedIn().userId;
 
       $scope.loadedGif = {};
       $scope.loadResponse = '';
@@ -22,7 +23,7 @@ routerApp
         for (var key in $scope.allFavorites) {
           if ($scope.allFavorites.hasOwnProperty(key)) {
             if($scope.allUniqueTags.indexOf($scope.allFavorites[key].tag) < 0 ){
-              console.log($scope.allFavorites[key].tag);
+              // console.log($scope.allFavorites[key].tag);
               $scope.allUniqueTags.push($scope.allFavorites[key].tag);
             }
           }
@@ -68,6 +69,7 @@ routerApp
         gifObject = {
           url : $scope.loadedGif.url,
           user : $scope.nickName,
+          userId : $scope.userId,
           tag : tag,
           timestamp : $scope.timestamp
         };
@@ -97,7 +99,7 @@ routerApp
         $scope.loadResponse = GifUrl.setUrl($scope.loadedGif);
 
         $scope.message.url = $scope.loadedGif.url;
-        console.log($scope.message.url);
+        // console.log($scope.message.url);
 
         ChatSocket.emit('message', $scope.nickName, $scope.message);
 
@@ -110,6 +112,7 @@ routerApp
         $scope.favoriteObject = {
               url : $scope.loadedGif.url,
               user : $scope.favoriteObject.user,
+              userId : $scope.favoriteObject.userId
           };
         $http.post('/api/deleteFavorite', $scope.favoriteObject).success(function(data){
           // console.log(data);

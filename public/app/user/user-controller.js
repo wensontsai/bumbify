@@ -80,11 +80,14 @@ routerApp
       //login & signup //
       $scope.loginSignupToggle = function() {
           $scope.loginData = {};
+          $scope.alert = "";
           AuthenticationBlock.loginSignupToggle();
       };
 
       $scope.logOut = function(){
+          $scope.alert = "";
           AuthenticationBlock.unsetLoggedIn();
+
       };
 
 

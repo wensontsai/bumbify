@@ -34,18 +34,7 @@ var Mongoose = require('mongoose');
 
 // *****  LOCAL MONGODB  ***** ///////
 
-// var db = Mongoose.createConnection('mongodb://localhost/bumbify',
-//         function(err){
-//             if(err){
-//                 console.log('connection error', err);
-//             } else {
-//                 console.log('connection successful');
-//             }
-//         });
-
-// ***** HEROKU MONGODB  ***** ///////
-
-var db = Mongoose.createConnection('mongodb://heroku_6b7tq96t:rhejqj2qe7spqer6hp54t0gbtj@ds043982.mongolab.com:43982/heroku_6b7tq96t',
+var db = Mongoose.createConnection('mongodb://localhost/bumbify',
         function(err){
             if(err){
                 console.log('connection error', err);
@@ -53,6 +42,17 @@ var db = Mongoose.createConnection('mongodb://heroku_6b7tq96t:rhejqj2qe7spqer6hp
                 console.log('connection successful');
             }
         });
+
+// ***** HEROKU MONGODB  ***** ///////
+
+// var db = Mongoose.createConnection('mongodb://heroku_6b7tq96t:rhejqj2qe7spqer6hp54t0gbtj@ds043982.mongolab.com:43982/heroku_6b7tq96t',
+//         function(err){
+//             if(err){
+//                 console.log('connection error', err);
+//             } else {
+//                 console.log('connection successful');
+//             }
+//         });
 
 
 var ScraperSchema = require('./models/Scraper.js').ScraperSchema;

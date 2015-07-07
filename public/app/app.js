@@ -37,7 +37,7 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
             }
         })
 
-         // CHAT PAGE GIF SEARCH FAVORITES =================================
+         // CHAT PAGE GIF SEARCH  =================================
         .state('chat.gif_add_search', {
             parent: 'chat',
             url: '/gif_add_search',
@@ -45,7 +45,7 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
             controller: 'ScrapesCtrl'
         })
 
-         // CHAT PAGE GIF SEARCH RECENTS =================================
+         // CHAT PAGE RECENTS =================================
         .state('chat.recent', {
             parent: 'chat',
             url: '/recent_searches',
@@ -53,12 +53,20 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
             controller: 'RecentsCtrl'
         })
 
-        // CHAT PAGE GIF SEARCH FAVORITES =================================
+        // CHAT PAGE FAVORITES =================================
         .state('chat.favorites', {
             parent: 'chat',
             url: '/favorites',
             templateUrl: 'app/favorites/favorites.html',
             controller: 'FavoritesCtrl'
+        })
+
+        // CHAT PAGE FRIENDS LIST =================================
+        .state('chat.friendsList', {
+            parent: 'chat',
+            url: '/friendsList',
+            templateUrl: 'app/friendsList/friendsList.html',
+            controller: 'FriendsListCtrl'
         })
 
 

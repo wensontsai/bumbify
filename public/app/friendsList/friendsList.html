@@ -1,0 +1,55 @@
+<!-- <div ng-controller="ScrapesCtrl" ng-init="showScrapes()"> -->
+
+
+<div ng-init="showFriendsList()">
+
+    <div class="search_area">
+      <form class="form-horizontal" role="form" >
+        <div class="form-group">
+          <!--   -->
+          <div class="col-md-8">
+            <input class="input_field search_field" placeholder="tag" ng-model="gifSearch.tag">
+          </div>
+            <button ng-click="searchGifs()" type="submit" class="btn outline btn-primary btn-sm">Search Gifs</button>
+            <div class="col-sm-10" ng-bind="searchResult">
+        </div>
+      </form>
+    </div>
+
+    <hr>
+
+
+    <div>
+      <h2 ng-bind="tag"></h2>
+    </div>
+    <div id="masonry-container">
+      <form role="form">
+        <div class="gif_select">
+
+          <div class="masonry-brick" ng-repeat='url in gifs'>
+              <input id="{{url.url}}" type="radio" value="{{url.url}}" ng-model="loadedGif.url" ng-click="uncheck($event)">
+              <label for="{{url.url}}">
+                <img ng-src="{{url.url}}">
+              </label>
+          </div>
+
+        </div>
+        <div>
+          <div class="col-sm-10 custom_btn">
+            <button ng-click="setUrl()" type="submit" class="btn outline btn-primary btn-sm">Load Gif</button>
+           <!--  {{loadResponse}} -->
+            <button ng-click="addFavorite()" class='btn outline btn-primary btn-sm right_align'>Save to Favorites</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+

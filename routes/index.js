@@ -364,6 +364,81 @@ exports.showRecentUsedGifs = function(UsedGif){
 
 
 
+// RECENT USED GIF TRACKING //
+exports.showFriendsList = function(Friend){
+  return function(req, res, next){
+
+    var callback = function(error, friends){
+      if(error) return console.error(error);
+      res.send(friends);
+    };
+
+    Friend
+      .find({ 'userId' : req.body.userId })
+      .sort({'time':'descending'})
+      .exec(callback);
+  };
+};
+
+exports.searchUser = function(Friend){
+  return function(req, res, next){
+    User.findOne({'user' : req.body.friendName}, function(err, userSearch){
+        if (err){
+           res.send(401);
+        }
+
+    });
+  };
+};
+
+exports.addFriend = function(Friend){
+    return function(req, res, next) {
+      // find a user in Mongo with provided username
+      Friend.findOne({ 'friendName' :  req.body.friendName, 'userId' : req.body.userId }, function(err, friend) {
+          // In case of any error, return using the done method
+          if (err){
+            res.send(401);
+          }
+
+          // already exists
+          if(friend){
+            status = "exists";
+            res.send(status);
+          } else {
+            var friend = new Friend({
+              url : req.body.url,
+              user : req.body.user,
+              userId : req.body.userId,
+              friendName : req.body.friendName
+              // timestamp : req.body.timestamp
+            });
+
+            favorite.save(function(error, favorite){
+              if(error) return console.error(error);
+              res.send(friend);
+            });
+          }
+      });
+
+    };
+};
+
+exports.deleteFriend = function(Favorite){
+    return function(req, res, next) {
+      // find a user in Mongo with provided username
+      Friend.remove({ 'friendName' :  req.body.friendName, 'userId' : req.body.userId }, function(err, friend) {
+          // In case of any error, return using the done method
+          if (err){
+            // console.log('Error in adding Favorite: '+err);
+            res.send(401);
+          }
+
+          res.send("friend successfully removed");
+      });
+
+    };
+};
+
 
 
 
@@ -417,4 +492,7 @@ exports.addChatLine = function(ChatLine){
       });
   };
 };
+
+
+
 

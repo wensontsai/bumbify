@@ -2,11 +2,7 @@ routerApp
   .controller('FriendsListCtrl',
     function($rootScope, $scope, $http, GifUrl, AuthenticationBlock, ChatSocket){
       // search models
-      $scope.gifs = [];
-      $scope.formInfo = {};
-      $scope.gifSearch = {};
-      $scope.timestamp = '';
-      $scope.message = {};
+      $scope.userSearch = {};
 
       // gif select models
       $scope.loadedGif = {};
@@ -25,12 +21,8 @@ routerApp
       $scope.searchUsers = function(){
         $scope.gifSearch.user = $scope.nickName;
         $scope.gifSearch.userId = $scope.userId;
-          // console.log($scope.gifSearch);
 
-        $http.post('/api/searchGifs', $scope.gifSearch).success(function(data){
-            // console.log(data);
-
-            // clear $scope.gifSearch
+        $http.post('/api/searchUsers', $scope.gifSearch).success(function(data){
             $scope.gifSearch = {};
 
             if(data == 'fail'){
@@ -40,22 +32,13 @@ routerApp
               $scope.searchResult = '';
 
             }
-
-            // then get scrapes again
-            $scope.showScrapes();
-            // $http.get('/api/scrapes').success(function(data){
-            //   $scope.gifs = data;
-            //   $scope.tag = data[0].tag;
-              // console.log($scope.tag);
-            // });
-
         });
       };
 
       $scope.showFriendsList = function(){
         $scope.gifSearch.userId = $scope.userId;
 
-        $http.post('/api/scrapes', $scope.gifSearch).success(function(data){
+        $http.post('/api/friendsList', $scope.gifSearch).success(function(data){
           $scope.gifs = data;
           $scope.tag = data[0].tag;
           // console.log('showScrapes nowww ng-controller');

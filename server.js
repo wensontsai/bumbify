@@ -76,6 +76,9 @@ var ChatSession = db.model('chat_session', ChatSessionSchema);
 var ChatLineSchema = require('./models/ChatLine.js').ChatLineSchema;
 var ChatLine = db.model('chat_line', ChatLineSchema);
 
+var FriendSchema = require('./models/Friend.js').FriendSchema;
+var Friend = db.model('friend', FriendSchema);
+
 
 /////////////////////
 // view engine setup
@@ -142,7 +145,9 @@ app.post('/api/createChatSession', routes.createChatSession(ChatSession));
 
 app.post('/api/addChatLine', routes.addChatLine(ChatLine));
 
-
+app.post('/api/getAllFriends', routes.queryForFriend(Friend));
+app.post('/api/addFriend', routes.addFriend(Friend));
+app.post('/api/deleteFriend', routes.deleteFriend(Friend));
 
 
 //======================================================//

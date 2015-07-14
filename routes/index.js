@@ -364,7 +364,19 @@ exports.showRecentUsedGifs = function(UsedGif){
 
 
 
-// RECENT USED GIF TRACKING //
+// FRIENDS LIST & SEARCH //
+
+exports.queryForFriend = function(Friend){
+  return function(req, res, next){
+    User.findOne({'user' : req.body.friendName}, function(err, userSearch){
+        if (err){
+           res.send(401);
+        }
+
+    });
+  };
+};
+
 exports.showFriendsList = function(Friend){
   return function(req, res, next){
 
@@ -380,21 +392,10 @@ exports.showFriendsList = function(Friend){
   };
 };
 
-exports.searchUser = function(Friend){
-  return function(req, res, next){
-    User.findOne({'user' : req.body.friendName}, function(err, userSearch){
-        if (err){
-           res.send(401);
-        }
-
-    });
-  };
-};
-
 exports.addFriend = function(Friend){
     return function(req, res, next) {
       // find a user in Mongo with provided username
-      Friend.findOne({ 'friendName' :  req.body.friendName, 'userId' : req.body.userId }, function(err, friend) {
+      Friend.findOne({ 'friendName' :  req.body.friendName, 'friendId' :  req.body.friendId, 'userId' : req.body.userId }, function(err, friend) {
           // In case of any error, return using the done method
           if (err){
             res.send(401);
@@ -406,14 +407,13 @@ exports.addFriend = function(Friend){
             res.send(status);
           } else {
             var friend = new Friend({
-              url : req.body.url,
               user : req.body.user,
               userId : req.body.userId,
-              friendName : req.body.friendName
-              // timestamp : req.body.timestamp
+              friendName : req.body.friendName,
+              friendId : req.body.friendId,
             });
 
-            favorite.save(function(error, favorite){
+            friend.save(function(error, friend){
               if(error) return console.error(error);
               res.send(friend);
             });
@@ -426,7 +426,7 @@ exports.addFriend = function(Friend){
 exports.deleteFriend = function(Favorite){
     return function(req, res, next) {
       // find a user in Mongo with provided username
-      Friend.remove({ 'friendName' :  req.body.friendName, 'userId' : req.body.userId }, function(err, friend) {
+      Friend.remove({ 'friendName' :  req.body.friendName, 'friendId' :  req.body.friendId, 'userId' : req.body.userId }, function(err, friend) {
           // In case of any error, return using the done method
           if (err){
             // console.log('Error in adding Favorite: '+err);

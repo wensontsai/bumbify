@@ -3,101 +3,65 @@ routerApp
     function($rootScope, $scope, $http, GifUrl, AuthenticationBlock, ChatSocket){
       // search models
       $scope.userSearch = {};
+      $scope.userSearchResult = {};
 
-      // gif select models
-      $scope.loadedGif = {};
-      $scope.loadResponse = '';
 
+      // logged in check
       $scope.loggedIn = AuthenticationBlock.checkLoggedIn().loggedIn;
         if($scope.loggedIn === true){
           $scope.nickName = AuthenticationBlock.checkLoggedIn().name;
           $scope.userId = AuthenticationBlock.checkLoggedIn().userId;
-          // console.log("I'm in scrapes ctrl!!!");
-          // console.log($scope.userId);
         }
 
 
-      // gif scrape functions
+      // friend/user search function
       $scope.searchUsers = function(){
-        $scope.gifSearch.user = $scope.nickName;
-        $scope.gifSearch.userId = $scope.userId;
+        $scope.userSearch.user = $scope.nickName;
+        $scope.userSearch.userId = $scope.userId;
 
-        $http.post('/api/searchUsers', $scope.gifSearch).success(function(data){
-            $scope.gifSearch = {};
+        $scope.userSearchResult.name = "yup working";
 
-            if(data == 'fail'){
-              $scope.searchResult = 'That search yielded no results!';
-              $scope.tag = '';
-            } else {
-              $scope.searchResult = '';
+        // $http.post('/api/queryForFriend', $scope.gifSearch).success(function(data){
+        //     $scope.gifSearch = {};
 
-            }
-        });
+        //     if(data == 'fail'){
+        //       $scope.searchResult = 'That search yielded no results!';
+        //       $scope.tag = '';
+        //     } else {
+        //       $scope.searchResult = '';
+
+        //     }
+        // });
       };
 
       $scope.showFriendsList = function(){
-        $scope.gifSearch.userId = $scope.userId;
+        $scope.userSearch.userId = $scope.userId;
 
-        $http.post('/api/friendsList', $scope.gifSearch).success(function(data){
-          $scope.gifs = data;
-          $scope.tag = data[0].tag;
-          // console.log('showScrapes nowww ng-controller');
-          // console.log($scope.gifs);
-          // console.log($scope.tag);
+        $http.post('/api/getAllFriends', $scope.userSearch).success(function(data){
+
+
         });
       };
 
-      $scope.setUrl = function($rootScope){
-
-        storeUsedGif();
-
-        $scope.loadResponse = GifUrl.setUrl($scope.loadedGif);
-
-        $scope.message.url = $scope.loadedGif.url;
-        // console.log($scope.message.url);
-
-        ChatSocket.emit('message', $scope.nickName, $scope.message);
-
-        // console.log($scope.loadResponse);
-
-      };
 
 
       $scope.addFriend = function(){
-        getDateTime();
-
-        favoriteObject = {
-          url : $scope.loadedGif.url,
+        friendObject = {
           user : $scope.nickName,
           userId : $scope.userId,
-          tag : $scope.tag,
-          timestamp : $scope.timestamp
+          friendName : $scope.friendName,
+          friendId : $scope.friendId
         };
 
-        // $scope.favoriteResponse = Favorite.setFavorite(favoriteObject);
-        // console.log($scope.favoriteResponse);
-
-        $http.post('/api/addFavorite', favoriteObject).success(function(data){
-            // console.log(data);
+        $http.post('/api/addFriend', friendObject).success(function(data){
+            console.log(data);
         });
       };
 
+
       $scope.deleteFriend = function(){
-        getDateTime();
-
-        favoriteObject = {
-          url : $scope.loadedGif.url,
-          user : $scope.nickName,
-          userId : $scope.userId,
-          tag : $scope.tag,
-          timestamp : $scope.timestamp
-        };
-
-        // $scope.favoriteResponse = Favorite.setFavorite(favoriteObject);
-        // console.log($scope.favoriteResponse);
-
-        $http.post('/api/addFavorite', favoriteObject).success(function(data){
-            // console.log(data);
+        $http.post('/api/deleteFriend', friendObject).success(function(data){
+            console.log(data);
         });
       };
 

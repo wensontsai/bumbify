@@ -8,11 +8,12 @@
         <div class="form-group">
           <!--   -->
           <div class="col-md-8">
-            <input class="input_field search_field" placeholder="tag" ng-model="userSearch.param">
+            <input class="input_field search_field" placeholder="username" ng-keypress="searchUsers()" ng-model="userSearch.param">
           </div>
-            <button ng-click="searchUsers()" type="submit" class="btn outline btn-primary btn-sm">Search Users</button>
-            <div class="col-sm-10" ng-bind="searchResult">
-        </div>
+            <button ng-click="addFriend()" type="submit" class="btn outline btn-primary btn-sm">Add Friend</button>
+          <div class="col-sm-10" ng-bind="searchResult">
+            <span ng-bind="userSearchResult.name"></span>
+          </div>
       </form>
     </div>
 
@@ -24,19 +25,16 @@
     </div>
     <div id="masonry-container">
       <form role="form">
-        <div class="gif_select">
+        <div class="friendList">
 
-          <div class="masonry-brick" ng-repeat='url in gifs'>
-              <input id="{{url.url}}" type="radio" value="{{url.url}}" ng-model="loadedGif.url" ng-click="uncheck($event)">
-              <label for="{{url.url}}">
-                <img ng-src="{{url.url}}">
+          <div ng-repeat='friend in friendsList'>
+              <input id="{{friend.name}}" type="radio" value="{{friend.friendId}}" ng-click="uncheck($event)">
+              <label for="{{friend.name}}">
+                <img ng-src="{{friend.name}}">
               </label>
+              <button ng-click="deleteFriend()"type="submit" class="btn outline btn-primary btn-sm"> - </button>
           </div>
 
-        </div>
-        <div>
-          <div class="col-sm-10 custom_btn">
-          </div>
         </div>
       </form>
     </div>

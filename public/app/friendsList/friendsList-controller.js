@@ -1,9 +1,10 @@
 routerApp
   .controller('FriendsListCtrl',
     function($rootScope, $scope, $http, GifUrl, AuthenticationBlock, ChatSocket){
-      // search models
+      // objects
       $scope.userSearch = {};
       $scope.userSearchResult = {};
+      $scope.friendsList = {};
 
 
       // logged in check
@@ -24,17 +25,7 @@ routerApp
 
           console.log(data);
 
-            // if(data == 'fail'){
-            //   $scope.searchResult = '';
-            //   $scope.tag = '';
-            // } else {
-            //   $scope.searchResult = '';
-            // }
-
-            // show Friends List again
-            // $scope.showFriendsList();
-
-          $scope.userSearchResult.name = data.name;
+          $scope.userSearchResult = data;
         });
 
 
@@ -50,22 +41,33 @@ routerApp
           console.log($scope.userSearch);
           console.log(data);
 
+          $scope.friendsList = data;
+
         });
       };
 
 
 
-      $scope.addFriend = function(){
+      $scope.addFriend = function(friendName, friendId){
         friendObject = {
           user : $scope.nickName,
           userId : $scope.userId,
-          friendName : $scope.friendName,
-          friendId : $scope.friendId
+          friendName : friendName,
+          friendId : friendId
         };
 
+        console.log("adding freendd");
+        console.log(friendObject);
+
         $http.post('/api/addFriend', friendObject).success(function(data){
+          //clear search field
+          $scope.userSearch.friendName = '';
+          $scope.userSearchResult = '';
+
             console.log(data);
+          $scope.showFriendsList();
         });
+
       };
 
 

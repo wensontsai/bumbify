@@ -10,10 +10,13 @@
           <div class="col-md-8">
             <input class="input_field search_field" placeholder="username" ng-keyup="queryForFriend()" ng-model="userSearch.friendName">
           </div>
-            <button ng-click="addFriend()" type="submit" class="btn outline btn-primary btn-sm">Add Friend</button>
-          <div class="col-sm-10">
-            <span ng-bind="userSearchResult.name"></span>
-            <!-- <span ng-bind="userSearch.param"></span> -->
+            <!-- <button ng-click="addFriend()" type="submit" class="btn outline btn-primary btn-sm"> + </button> -->
+
+          <div class="col-sm-10" ng-repeat="name in userSearchResult">
+            <span ng-bind="name.name"></span>
+
+            <button ng-click="addFriend(name.name, name._id)" type="submit" class="btn outline btn-primary btn-sm"> + </button>
+
           </div>
       </form>
     </div>
@@ -29,12 +32,9 @@
         <div class="friendList">
 
           <div ng-repeat='friend in friendsList'>
-              <input id="{{friend.name}}" type="radio" value="{{friend.friendId}}" ng-click="uncheck($event)">
-              <label for="{{friend.name}}">
-                <img ng-src="{{friend.name}}">
-              </label>
-              <button ng-click="deleteFriend()"type="submit" class="btn outline btn-primary btn-sm"> - </button>
+             <span ng-bind="friend.friendName"></span>
           </div>
+              <button ng-click="deleteFriend()"type="submit" class="btn outline btn-primary btn-sm"> - </button>
 
         </div>
       </form>

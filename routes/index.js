@@ -367,7 +367,7 @@ exports.showRecentUsedGifs = function(UsedGif){
 // FRIENDS LIST & SEARCH //
 exports.queryForFriend = function(User){
   return function(req, res, next){
-    User.findOne({'name' : new RegExp('^'+req.body.friendName, "i")}, function(err, userSearch){
+    User.find({'name' : new RegExp('^'+req.body.friendName, "i")}, function(err, userSearch){
         if (err){
            res.send(401);
         }
@@ -411,7 +411,7 @@ exports.addFriend = function(Friend){
               user : req.body.user,
               userId : req.body.userId,
               friendName : req.body.friendName,
-              friendId : req.body.friendId,
+              friendId : req.body.friendId
             });
 
             friend.save(function(error, friend){

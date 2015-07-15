@@ -146,7 +146,7 @@ app.post('/api/createChatSession', routes.createChatSession(ChatSession));
 app.post('/api/addChatLine', routes.addChatLine(ChatLine));
 
 app.post('/api/queryForFriend', routes.queryForFriend(User));
-app.post('/api/getAllFriends', routes.queryForFriend(Friend));
+app.post('/api/getAllFriends', routes.showFriendsList(Friend));
 app.post('/api/addFriend', routes.addFriend(Friend));
 app.post('/api/deleteFriend', routes.deleteFriend(Friend));
 

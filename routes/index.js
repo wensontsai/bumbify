@@ -365,15 +365,16 @@ exports.showRecentUsedGifs = function(UsedGif){
 
 
 // FRIENDS LIST & SEARCH //
-
-exports.queryForFriend = function(Friend){
+exports.queryForFriend = function(User){
   return function(req, res, next){
-    User.findOne({'user' : req.body.friendName}, function(err, userSearch){
+    User.findOne({'name' : new RegExp('^'+req.body.friendName, "i")}, function(err, userSearch){
         if (err){
            res.send(401);
         }
 
+      res.send(userSearch);
     });
+
   };
 };
 
@@ -387,7 +388,7 @@ exports.showFriendsList = function(Friend){
 
     Friend
       .find({ 'userId' : req.body.userId })
-      .sort({'time':'descending'})
+      // .sort({'time':'descending'})
       .exec(callback);
   };
 };

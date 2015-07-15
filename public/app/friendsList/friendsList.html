@@ -8,11 +8,12 @@
         <div class="form-group">
           <!--   -->
           <div class="col-md-8">
-            <input class="input_field search_field" placeholder="username" ng-keypress="searchUsers()" ng-model="userSearch.param">
+            <input class="input_field search_field" placeholder="username" ng-keyup="queryForFriend()" ng-model="userSearch.friendName">
           </div>
             <button ng-click="addFriend()" type="submit" class="btn outline btn-primary btn-sm">Add Friend</button>
-          <div class="col-sm-10" ng-bind="searchResult">
+          <div class="col-sm-10">
             <span ng-bind="userSearchResult.name"></span>
+            <!-- <span ng-bind="userSearch.param"></span> -->
           </div>
       </form>
     </div>
@@ -21,7 +22,7 @@
 
 
     <div>
-      <h2 ng-bind="tag"></h2>
+      <h2>Friend's list</h2>
     </div>
     <div id="masonry-container">
       <form role="form">

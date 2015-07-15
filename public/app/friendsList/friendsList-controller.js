@@ -15,30 +15,40 @@ routerApp
 
 
       // friend/user search function
-      $scope.searchUsers = function(){
+      $scope.queryForFriend = function(){
         $scope.userSearch.user = $scope.nickName;
         $scope.userSearch.userId = $scope.userId;
 
-        $scope.userSearchResult.name = "yup working";
+        console.log($scope.userSearch);
+        $http.post('/api/queryForFriend', $scope.userSearch).success(function(data){
 
-        // $http.post('/api/queryForFriend', $scope.gifSearch).success(function(data){
-        //     $scope.gifSearch = {};
+          console.log(data);
 
-        //     if(data == 'fail'){
-        //       $scope.searchResult = 'That search yielded no results!';
-        //       $scope.tag = '';
-        //     } else {
-        //       $scope.searchResult = '';
+            // if(data == 'fail'){
+            //   $scope.searchResult = '';
+            //   $scope.tag = '';
+            // } else {
+            //   $scope.searchResult = '';
+            // }
 
-        //     }
-        // });
+            // show Friends List again
+            // $scope.showFriendsList();
+
+          $scope.userSearchResult.name = data.name;
+        });
+
+
+
       };
+
+
 
       $scope.showFriendsList = function(){
         $scope.userSearch.userId = $scope.userId;
 
         $http.post('/api/getAllFriends', $scope.userSearch).success(function(data){
-
+          console.log($scope.userSearch);
+          console.log(data);
 
         });
       };

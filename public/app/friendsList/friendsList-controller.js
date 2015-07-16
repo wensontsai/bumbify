@@ -5,6 +5,7 @@ routerApp
       $scope.userSearch = {};
       $scope.userSearchResult = {};
       $scope.friendsList = {};
+      $scope.friendActionObject = {};
 
 
       // logged in check
@@ -72,10 +73,20 @@ routerApp
 
 
       $scope.deleteFriend = function(){
-        $http.post('/api/deleteFriend', friendObject).success(function(data){
-            console.log(data);
-        });
+        console.log($scope.friendActionObject);
+
+        // $http.post('/api/deleteFriend', $scope.friendActionObject).success(function(data){
+        //     console.log(data);
+        // });
       };
+
+      $scope.createChatroom = function(){
+        console.log($scope.friendActionObject);
+
+
+      };
+
+
 
 
     });

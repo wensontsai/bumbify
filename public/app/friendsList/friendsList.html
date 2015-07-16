@@ -27,16 +27,28 @@
     <div>
       <h2>Friend's list</h2>
     </div>
+
     <div id="masonry-container">
       <form role="form">
-        <div class="friendList">
+        <div class="friend_select">
 
-          <div ng-repeat='friend in friendsList'>
-             <span ng-bind="friend.friendName"></span>
+          <div class="friend_list" ng-repeat='friend in friendsList'>
+            <input id="{{friend.friendName}}" type="radio" value="{{friend.friendId}}" ng-model="friendActionObject.friendId" ng-click="uncheck($event)">
+            <label for="{{friend.friendName}}">
+              <span ng-bind="friend.friendName"></span>
+            </label>
           </div>
-              <button ng-click="deleteFriend()"type="submit" class="btn outline btn-primary btn-sm"> - </button>
 
+      </div>
+
+      <div>
+        <div class="col-sm-10 custom_btn">
+          <button ng-click="createChatroom()" type="submit" class="btn outline btn-primary btn-sm">Create Chatroom</button>
+         <!--  {{loadResponse}} -->
+          <button ng-click="deleteFriend()" class='btn outline btn-primary btn-sm right_align'>Delete Friend</button>
         </div>
+      </div>
+
       </form>
     </div>
 

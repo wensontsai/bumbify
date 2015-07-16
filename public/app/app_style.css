@@ -214,6 +214,20 @@ input[type="radio"]:checked + label {
   margin: 20px 0 0 0;
 }
 
+/* Friend List */
+
+.friend_list input[type="radio"] {
+    display: none;
+}
+
+.friend_select{
+  height: 61vh;
+  /*height: 61%;*/
+  overflow-x: scroll;
+  overflow-y: scroll;
+  border: 2px solid #bdbdbd;
+  border-radius: 10px;
+}
 
 
 

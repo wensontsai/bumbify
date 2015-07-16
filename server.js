@@ -121,34 +121,39 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 var routes = require('./routes/index');
+var authRoutes = require('./routes/authRoutes');
+var gifSearchRoutes = require('./routes/gifSearchRoutes');
+
+var favoritesRoutes = require('./routes/favoritesRoutes');
+var recentGifRoutes = require('./routes/recentGifRoutes');
+var chatRoutes = require('./routes/chatRoutes');
+var friendRoutes = require('./routes/friendRoutes');
 
 /////////////////////
 // AngularJS  ROUTING
 /////////////////////
-app.post('/api/signup', routes.createUser(User));
-app.post('/api/login', routes.login(User));
+app.post('/api/signup', authRoutes.createUser(User));
+app.post('/api/login', authRoutes.login(User));
 
-app.post('/api/scrapes', routes.showScrapes(Scraper));
+app.post('/api/scrapes', gifSearchRoutes.showScrapes(Scraper));
+app.post('/api/searchGifs', gifSearchRoutes.searchGifs(Scraper, SearchHistory));
+app.get('/api/searchHistory', gifSearchRoutes.showHistory(SearchHistory));
 
-app.post('/api/searchGifs', routes.searchGifs(Scraper, SearchHistory));
-app.get('/api/searchHistory', routes.showHistory(SearchHistory));
+app.post('/api/getAllFavorites', favoritesRoutes.queryAllFavorites(Favorite));
+app.post('/api/addFavorite', favoritesRoutes.addFavorite(Favorite));
+app.post('/api/deleteFavorite', favoritesRoutes.deleteFavorite(Favorite));
 
-app.post('/api/getAllFavorites', routes.queryAllFavorites(Favorite));
-app.post('/api/addFavorite', routes.addFavorite(Favorite));
-app.post('/api/deleteFavorite', routes.deleteFavorite(Favorite));
+app.post('/api/storeUsedGif', recentGifRoutes.storeUsedGif(UsedGif));
+app.post('/api/getRecents', recentGifRoutes.showRecentUsedGifs(UsedGif));
 
-app.post('/api/storeUsedGif', routes.storeUsedGif(UsedGif));
-app.post('/api/getRecents', routes.showRecentUsedGifs(UsedGif));
+app.post('/api/getChatSession', chatRoutes.showChatSession(ChatSession));
+app.post('/api/createChatSession', chatRoutes.createChatSession(ChatSession));
+app.post('/api/addChatLine', chatRoutes.addChatLine(ChatLine));
 
-app.post('/api/getChatSession', routes.showChatSession(ChatSession));
-app.post('/api/createChatSession', routes.createChatSession(ChatSession));
-
-app.post('/api/addChatLine', routes.addChatLine(ChatLine));
-
-app.post('/api/queryForFriend', routes.queryForFriend(User));
-app.post('/api/getAllFriends', routes.showFriendsList(Friend));
-app.post('/api/addFriend', routes.addFriend(Friend));
-app.post('/api/deleteFriend', routes.deleteFriend(Friend));
+app.post('/api/queryForFriend', friendRoutes.queryForFriend(User));
+app.post('/api/getAllFriends', friendRoutes.showFriendsList(Friend));
+app.post('/api/addFriend', friendRoutes.addFriend(Friend));
+app.post('/api/deleteFriend', friendRoutes.deleteFriend(Friend));
 
 
 //======================================================//

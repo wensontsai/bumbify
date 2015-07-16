@@ -424,10 +424,10 @@ exports.addFriend = function(Friend){
     };
 };
 
-exports.deleteFriend = function(Favorite){
+exports.deleteFriend = function(Friend){
     return function(req, res, next) {
       // find a user in Mongo with provided username
-      Friend.remove({ 'friendName' :  req.body.friendName, 'friendId' :  req.body.friendId, 'userId' : req.body.userId }, function(err, friend) {
+      Friend.remove({ 'friendId' :  req.body.friendId, 'userId' : req.body.userId }, function(err, friend) {
           // In case of any error, return using the done method
           if (err){
             // console.log('Error in adding Favorite: '+err);
@@ -439,10 +439,6 @@ exports.deleteFriend = function(Favorite){
 
     };
 };
-
-
-
-
 
 
 

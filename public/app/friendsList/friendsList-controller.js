@@ -73,18 +73,29 @@ routerApp
 
 
       $scope.deleteFriend = function(){
+        $scope.friendActionObject.userId = $scope.userId;
+
         console.log($scope.friendActionObject);
 
-        // $http.post('/api/deleteFriend', $scope.friendActionObject).success(function(data){
-        //     console.log(data);
-        // });
+        $http.post('/api/deleteFriend', $scope.friendActionObject).success(function(data){
+            console.log(data);
+
+          // reload friends list
+          $scope.showFriendsList();
+        });
       };
 
-      $scope.createChatroom = function(){
-        console.log($scope.friendActionObject);
 
+      // $scope.createChatroom = function(){
+      //   console.log($scope.friendActionObject);
 
-      };
+      //   $http.post('/api/createChatroom', $scope.friendActionObject).success(function(data){
+      //       console.log(data);
+
+      //   // reload friends list
+      //   $scope.showFriendsList();
+      //   });
+      // };
 
 
 

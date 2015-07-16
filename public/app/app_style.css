@@ -170,7 +170,7 @@ ul.nav a:hover {
     display: none;
 }
 
-input[type="radio"]:checked + label {
+.masonry-brick input[type="radio"]:checked + label {
     opacity: 0.6;
 }
 
@@ -227,6 +227,11 @@ input[type="radio"]:checked + label {
   overflow-y: scroll;
   border: 2px solid #bdbdbd;
   border-radius: 10px;
+  padding: 10px;
+}
+
+.friend_list input[type="radio"]:checked + label {
+    color: #D3BECF;
 }
 
 

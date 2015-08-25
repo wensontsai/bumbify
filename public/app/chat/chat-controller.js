@@ -39,27 +39,27 @@ routerApp
 
       // initiate chatroom session in DB
       // get and store _id as $scope.chatSessionData.sessionID
-      function createChatSession(){
-        $scope.chatSessionId = ChatSession.getChatSessionId().sessionId;
+      // function createChatSession(){
+      //   $scope.chatSessionId = ChatSession.getChatSessionId().sessionId;
 
-        if($scope.chatSessionId !== null){
+      //   if($scope.chatSessionId !== null){
 
-          $http.post('/api/getChatSession', $scope.chatSessionId).success(function(data){
-            // console.log("we have a chat session with data below!");
+      //     $http.post('/api/getChatSession', $scope.chatSessionId).success(function(data){
+      //       // console.log("we have a chat session with data below!");
 
-            // console.log(data);
-          });
+      //       // console.log(data);
+      //     });
 
-        } else {
-          $http.post('/api/createChatSession').success(function(data){
-            // console.log("creating chat session ");
-            // console.log(data);
-            $scope.chatSessionId = data._id;
+      //   } else {
+      //     $http.post('/api/createChatSession').success(function(data){
+      //       // console.log("creating chat session ");
+      //       // console.log(data);
+      //       $scope.chatSessionId = data._id;
 
-            ChatSession.setChatSessionId(data);
-          });
-        }
-      };
+      //       ChatSession.setChatSessionId(data);
+      //     });
+      //   }
+      // };
 
 
       // watch for update for GIF url passes
@@ -78,7 +78,9 @@ routerApp
       $scope.sendMessage = function(){
         // console logging
         $log.debug('sending message', $scope.message.text);
+
         ChatSocket.emit('message', $scope.nickName, $scope.message);
+
         $log.debug('message sent', $scope.message.text);
         $scope.message.text = '';
       };

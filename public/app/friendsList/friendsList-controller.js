@@ -13,6 +13,8 @@ routerApp
         if($scope.loggedIn === true){
           $scope.nickName = AuthenticationBlock.checkLoggedIn().name;
           $scope.userId = AuthenticationBlock.checkLoggedIn().userId;
+          $scope.friendActionObject.userId = $scope.userId;
+
         }
 
 
@@ -73,10 +75,6 @@ routerApp
 
 
       $scope.deleteFriend = function(){
-        $scope.friendActionObject.userId = $scope.userId;
-
-        console.log($scope.friendActionObject);
-
         $http.post('/api/deleteFriend', $scope.friendActionObject).success(function(data){
             console.log(data);
 
@@ -86,16 +84,24 @@ routerApp
       };
 
 
-      // $scope.createChatroom = function(){
-      //   console.log($scope.friendActionObject);
+      $scope.createChatroom = function(){
+        console.log($scope.friendActionObject);
 
-      //   $http.post('/api/createChatroom', $scope.friendActionObject).success(function(data){
-      //       console.log(data);
+        $http.post('/api/createChatroom', $scope.friendActionObject).success(function(data){
+            console.log(data);
 
-      //   // reload friends list
-      //   $scope.showFriendsList();
-      //   });
-      // };
+            ChatSocket.emit('newChatroom', data._id, data.createdBy, data.chatPartner);
+
+            // run a directive, opening
+            // new chat window as a TAB in main div
+            // pointing to socket address '/chatRoom_id'
+            // !!!!!!!!
+
+
+          // reload friends list
+          // $scope.showFriendsList();
+        });
+      };
 
 
 

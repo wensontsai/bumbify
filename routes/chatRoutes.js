@@ -1,3 +1,15 @@
+var express = require('express');
+var io = require('socket.io');
+var http = require('http');
+var port = process.env.PORT || 5000;
+
+var app = express();
+var server = http.createServer(app);
+
+// socket.io ////////
+io = io.listen(server);
+
+
 // for persisting chatroom
 exports.showChatSession = function(ChatSession){
   return function(req, res, next){
@@ -39,6 +51,59 @@ exports.addChatLine = function(ChatLine){
         if(error) return console.error(error);
         res.send(chatLine);
       });
+  };
+};
+
+exports.createChatroom = function(ChatRoom){
+
+  return function(req, res, next){
+    var chatRoom = new ChatRoom({
+      created_by : req.body.userId,
+      chat_partner : req.body.friendId,
+    });
+
+    console.dir(chatRoom);
+
+    chatRoom.save(function(error, chatRoom){
+      if(error) return console.error(error);
+      console.dir(chatRoom);
+      res.send(chatRoom);
+
+
+      console.dir("wtf mann why you die");
+      // new socket address for chatroom from mongodb
+      var roomAddress = "/"+chatRoom._id;
+
+      console.dir(roomAddress);
+
+
+
+      // var nsp = io.of(roomAddress);
+
+      // console.log(nsp);
+
+      // nsp.on('connection', function(socket){
+      //   socket.on('message', function(from, msg){
+      //     console.log('received message from', from, 'msg', JSON.stringify(msg));
+      //     console.log('broadcasting message');
+      //     console.log('payload is', msg);
+      //     io.sockets.emit('broadcast', {
+      //       payload: msg,
+      //       source: from
+      //     });
+      //   console.log('broadcast complete');
+
+      // });
+      //   nsp.emit('hi', 'everyone!');
+
+    });
+
+
+
+
+    // });
+
+
   };
 };
 

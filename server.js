@@ -8,9 +8,9 @@ var port = process.env.PORT || 5000;
 
 var app = express();
 var server = http.createServer(app);
-io = io.listen(server);
 
 // socket.io ////////
+io = io.listen(server);
 var socket_run = require('./sockets/base');
 socket_run.runIO(io);
 
@@ -78,6 +78,9 @@ var ChatLine = db.model('chat_line', ChatLineSchema);
 
 var FriendSchema = require('./models/Friend.js').FriendSchema;
 var Friend = db.model('friend', FriendSchema);
+
+var ChatRoomSchema = require('./models/ChatRoom.js').ChatRoomSchema;
+var ChatRoom = db.model('chat_room', ChatRoomSchema);
 
 
 /////////////////////
@@ -155,6 +158,7 @@ app.post('/api/getAllFriends', friendRoutes.showFriendsList(Friend));
 app.post('/api/addFriend', friendRoutes.addFriend(Friend));
 app.post('/api/deleteFriend', friendRoutes.deleteFriend(Friend));
 
+app.post('/api/createChatroom', chatRoutes.createChatroom(ChatRoom));
 
 //======================================================//
 ////////   catch 404 and forward to error handler

@@ -19,6 +19,7 @@ routerApp
       $scope.$watch(function () { return Chatrooms.getChatrooms(); }, function (newValue, oldValue) {
         if (newValue !== oldValue) {
            $scope.chatRooms = Chatrooms.getChatrooms();
+           console.log($scope.chatRooms);
         }
       }, true);
 

@@ -1,28 +1,29 @@
-<div>
-    Logged in as:  <span ng-bind="nickName" class="userChat"></span>
-    <br/>
-    <div class='row'>
-      <div id="chatroom"  scroll-glue="glued" class='col-md-7'>
-          <div ng-repeat="message in chatSession track by $id($index)">
-            <div>
-              <span class="userChat">{{message.user}}</span> <span class="userTimestamp">({{message.timestamp}})</span> :  <span class="chatContent">{{message.text}}</span>
-              <img ng-src="{{message.url}}">
-            </div>
+<div class="chat_container">
+  Logged in as:  <span ng-bind="nickName" class="userChat"></span>
+  <br/>
+  <div class='row'>
+    <div id="chatroom"  scroll-glue="glued" class='col-md-7'>
+        <div ng-repeat="message in chatSession track by $id($index)">
+          <div>
+            <span class="userChat">{{message.user}}</span> <span class="userTimestamp">({{message.timestamp}})</span> :  <span class="chatContent">{{message.text}}</span>
+            <img ng-src="{{message.url}}">
           </div>
-      </div>
-    </div>
-    <div class='row'>
-      &nbsp;
-    </div>
-    <div class='row'>
-      <div class='col-md-10'>
-        <form role='form' novalidate name='form'>
-        <!--   <div class='form-group'> -->
-            <input class='input_field chat_field' type='text'required ng-max='50' ng-model='message.text' focus>
-            {{loadResponse}}
-            <button class='btn outline btn-primary btn-sm' ng-enable='form.$valid' ng-click="sendMessage()">Send!</button>
-          <!-- </div> -->
-        </form>
-      </div>
+        </div>
     </div>
   </div>
+  <div class='row'>
+    &nbsp;
+  </div>
+  <div class='row'>
+    <div class='col-md-10'>
+      <form role='form' novalidate name='form'>
+      <!--   <div class='form-group'> -->
+          <input class='input_field chat_field' type='text'required ng-max='50' ng-model='message.text' focus>
+          {{loadResponse}}
+          <button class='btn outline btn-primary btn-sm' ng-enable='form.$valid' ng-click="sendMessage()">Send!</button>
+        <!-- </div> -->
+      </form>
+    </div>
+  </div>
+</div>
+

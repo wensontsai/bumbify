@@ -42,7 +42,7 @@ gulp.task('sass', function(){
 gulp.task('watch', function(){
   gulp.watch('public/stylesheets/*.scss', ['sass']);
   gulp.watch('public/views/**/*.html', ['templates']);
-  gulp.watch(['public/**/*.js', '!public/app.min.js', '!public/templates.js', '!public/vendor'], ['compress']);
+  gulp.watch(['public/**/*.js', '!public/app.min.js', '!public/templates.js', '!public/vendor']);
 });
 
 // gulp.task('default', ['sass', 'compress', 'templates', 'watch']);

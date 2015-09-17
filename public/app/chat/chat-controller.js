@@ -1,11 +1,26 @@
 routerApp
   .controller('ChatCtrl',
-    function($rootScope, $http, $log, $scope, ChatSocket, GifUrl, AuthenticationBlock, $location, ChatSession){
+    function($rootScope, $http, $log, $scope, ChatSocket, GifUrl, AuthenticationBlock, $location, ChatSession, Chatrooms){
 
       $scope.message = {};
       $scope.chatSession = [];
       $scope.chatLine = {};
       $scope.gifCheck = '';
+      $scope.chatRooms = {};
+
+      // $scope.chatRooms = {
+      //   room98ueo3980 : {'id' : '89sdjlff',
+      //     'partner' : 'jesse'
+      //   },
+      //   room098239s09 : {'id' : '8weafsdfadaww',
+      //     'partner' : 'elisabeth'
+      //   }
+      // };
+      $scope.$watch(function () { return Chatrooms.getChatrooms(); }, function (newValue, oldValue) {
+        if (newValue !== oldValue) {
+           $scope.chatRooms = Chatrooms.getChatrooms();
+        }
+      }, true);
 
 
       $scope.loggedIn = AuthenticationBlock.checkLoggedIn().loggedIn;

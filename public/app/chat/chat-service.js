@@ -18,4 +18,19 @@ angular.module('ThisApp')
       }
     };
 
-  });
+  })
+ .factory('Chatrooms', function(){
+  var chatrooms = [];
+
+  return {
+    setChatroomId: function(obj){
+      console.log("NEW CHAT Room CREATED");
+      chatrooms.push(obj);
+      console.log(obj);
+    },
+    getChatrooms: function(){
+      return chatrooms;
+    }
+  };
+
+});

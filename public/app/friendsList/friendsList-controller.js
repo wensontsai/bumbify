@@ -1,6 +1,6 @@
 routerApp
   .controller('FriendsListCtrl',
-    function($rootScope, $scope, $http, GifUrl, AuthenticationBlock, ChatSocket){
+    function($rootScope, $scope, $http, GifUrl, AuthenticationBlock, ChatSocket, Chatrooms){
       // objects
       $scope.userSearch = {};
       $scope.userSearchResult = {};
@@ -91,6 +91,9 @@ routerApp
             console.log(data);
 
             ChatSocket.emit('newChatroom', data._id, data.createdBy, data.chatPartner);
+
+            // add to chatrooms to be displayed in tabs
+            Chatrooms.setChatroomId(data);
 
             // run a directive, opening
             // new chat window as a TAB in main div

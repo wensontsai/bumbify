@@ -25,9 +25,9 @@ exports.runIO = function(io){
     });
 
 
-    socket.on('newChatroom', function(roomId, createdBy, chatPartner){
+    socket.on('newChatroom', function(roomId, initiatorName, chatPartnerName){
       socket.join(roomId);
-      console.log(roomId+ " has officially been created.");
+      console.log(roomId+ " has officially been created.  initiated by: " +initiatorName+ " & chatparner: " +chatPartnerName);
     });
 
 

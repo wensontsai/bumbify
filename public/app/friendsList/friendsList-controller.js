@@ -13,7 +13,8 @@ routerApp
         if($scope.loggedIn === true){
           $scope.nickName = AuthenticationBlock.checkLoggedIn().name;
           $scope.userId = AuthenticationBlock.checkLoggedIn().userId;
-          $scope.friendActionObject.userId = $scope.userId;
+          $scope.friendActionObject.initiatorId = $scope.userId;
+          $scope.friendActionObject.initiatorName = $scope.nickName;
 
         }
 
@@ -67,7 +68,7 @@ routerApp
           $scope.userSearch.friendName = '';
           $scope.userSearchResult = '';
 
-            console.log(data);
+          console.log(data);
           $scope.showFriendsList();
         });
 
@@ -85,12 +86,19 @@ routerApp
 
 
       $scope.createChatroom = function(){
+        // get partner nickname
+        for(friend in $scope.friendsList){
+          if($scope.friendsList[friend].friendId === $scope.friendActionObject.chatPartnerId){
+            $scope.friendActionObject.chatPartnerName = $scope.friendsList[friend].friendName;
+            break;
+          }
+        }
         console.log($scope.friendActionObject);
 
         $http.post('/api/createChatroom', $scope.friendActionObject).success(function(data){
             console.log(data);
 
-            ChatSocket.emit('newChatroom', data._id, data.createdBy, data.chatPartner);
+            ChatSocket.emit('newChatroom', data._id, data.initiatorName, data.chatPartnerName);
 
             // add to chatrooms to be displayed in tabs
             Chatrooms.setChatroomId(data);

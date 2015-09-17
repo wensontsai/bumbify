@@ -1,7 +1,9 @@
 var Mongoose = require('mongoose');
 
 exports.ChatRoomSchema = new Mongoose.Schema({
-  created_by: { type : String, required : true },
-  chat_partner: { type : String, required : true },
+  initiatorId: { type : String, required : true },
+  initiatorName: { type : String, required : true },
+  chatPartnerId: { type : String, required : true },
+  chatPartnerName: { type : String, required : true },
   timestamp: { type : Date, default: Date.now }
 });

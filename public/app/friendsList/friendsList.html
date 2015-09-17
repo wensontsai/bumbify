@@ -33,7 +33,7 @@
         <div class="friend_select">
 
           <div class="friend_list" ng-repeat='friend in friendsList'>
-            <input id="{{friend.friendName}}" type="radio" value="{{friend.friendId}}" ng-model="friendActionObject.friendId" ng-click="uncheck($event)">
+            <input id="{{friend.friendName}}" type="radio" value="{{friend.friendId}}" ng-model="friendActionObject.chatPartnerId" ng-click="uncheck($event)">
             <label for="{{friend.friendName}}">
               <span ng-bind="friend.friendName"></span>
             </label>

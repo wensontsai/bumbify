@@ -58,8 +58,10 @@ exports.createChatroom = function(ChatRoom){
 
   return function(req, res, next){
     var chatRoom = new ChatRoom({
-      created_by : req.body.userId,
-      chat_partner : req.body.friendId,
+      initiatorId : req.body.initiatorId,
+      initiatorName: req.body.initiatorName,
+      chatPartnerId : req.body.chatPartnerId,
+      chatPartnerName : req.body.chatPartnerName,
     });
 
     console.dir(chatRoom);

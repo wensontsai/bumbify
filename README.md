@@ -1,5 +1,5 @@
 # bumbify
 
-Side project built in MEAN stack
-that scrapes GIFs, and explores the use of GIFs as a new language of communication and expression.
+Multi-room, multi-user chat app exploring the use of GIFs as communication and expression.
 
+All the GIFs.

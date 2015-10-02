@@ -68,6 +68,26 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
             templateUrl: 'app/friendsList/friendsList.html',
             controller: 'FriendsListCtrl'
         })
+        // CHAT PAGE AND MULTIPLE NAMED VIEWS =================================
+        .state('room', {
+            url: '/room/:id',
+            views: {
+                '': {
+                    templateUrl: 'app/chat/chatpage_main.html'
+                },
+                'columnOne@chat': {
+                    templateUrl: 'app/chat/chatroom.html',
+                    controller: 'ChatCtrl'
+                },
+                'columnTwo@chat': {
+                    templateUrl: 'app/chat/gif_nav_module.html',
+                    params: {
+                        autoActivateChild: 'chat.gif_add_search'
+                    },
+                    controller: 'ChatCtrl'
+                }
+            }
+        })
 
 
          //  GIF SEARCH PAGE  =================================

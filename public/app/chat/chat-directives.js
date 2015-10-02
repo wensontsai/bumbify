@@ -19,9 +19,10 @@ routerApp
       controller: 'ChatCtrl',
       template: '<ul class="nav nav-tabs">' +
                       '<li ng-repeat="room in chatRooms">' +
-                          '<a ui-sref="room/{{room._id}}">{{room.chatPartnerName}}</a>' +
+                          '<a ui-sref=".room">{{room.chatPartnerName}}</a>' +
                       '</li>' +
                 '</ul>'
+
     };
   });
 

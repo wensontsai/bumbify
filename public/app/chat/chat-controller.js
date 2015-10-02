@@ -93,7 +93,7 @@ routerApp
 
       $scope.sendMessage = function(){
         // console logging
-        $log.debug('sending message', $scope.message.text);
+        $log.debug('sending message', $scope.message.text, $scope.roomId);
 
         ChatSocket.emit('message', $scope.nickName, $scope.message);
 

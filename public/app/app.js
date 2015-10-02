@@ -23,11 +23,11 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
                 '': {
                     templateUrl: 'app/chat/chatpage_main.html'
                 },
-                'columnOne@chat': {
+                'chatArea@chat': {
                     templateUrl: 'app/chat/chatroom.html',
                     controller: 'ChatCtrl'
                 },
-                'columnTwo@chat': {
+                'toolsArea@chat': {
                     templateUrl: 'app/chat/gif_nav_module.html',
                     params: {
                         autoActivateChild: 'chat.gif_add_search'
@@ -35,7 +35,7 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
                     controller: 'ChatCtrl'
                 },
                 'room@chat': {
-                    templateUrl: 'app/chat/chatwindow.html',
+                    // templateUrl: 'app/chat/chatwindow.html',
                     controller: 'ChatCtrl'
                 }
             }
@@ -43,12 +43,18 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 
 
         // CHATROOM LOAD =================================
-        // .state('chat.room', {
-        //     parent: 'chat',
-        //     url: '/room/:roomId',
-        //     templateUrl: 'app/chat/chatwindow.html',
-        //     controller: 'ChatCtrl'
-        // })
+        .state('chat.room', {
+            parent: 'chat',
+            url: '/room/:roomId',
+            templateUrl: 'app/chat/chatwindow.html',
+            controller: 'ChatCtrl',
+            views: {
+                'room@chat': {
+                    templateUrl: 'app/chat/chatwindow.html',
+                    controller: 'ChatCtrl'
+                }
+            }
+        })
 
          // CHAT PAGE GIF SEARCH  =================================
         .state('chat.gif_add_search', {

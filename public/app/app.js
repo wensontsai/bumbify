@@ -31,7 +31,7 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
                     controller: 'ChatCtrl',
                     persist: true
                 },
-                'currentRoom@chat.chatSpace': {
+                'currentRoom@chat': {
                     parent: 'chat',
                     // url: '/room/:roomId',
                     templateUrl: 'app/chat/chatwindow.html',

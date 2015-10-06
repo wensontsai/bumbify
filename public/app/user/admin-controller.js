@@ -1,6 +1,3 @@
-srouterApp
-
-
 appControllers.controller('AdminUserCtrl', ['$scope', '$location', '$window', 'UserService', 'AuthenticationService',
     function AdminUserCtrl($scope, $location, $window, UserService, AuthenticationService) {
 

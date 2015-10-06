@@ -8,14 +8,7 @@ routerApp
       $scope.gifCheck = '';
       $scope.chatRooms = {};
 
-      // $scope.chatRooms = {
-      //   room98ueo3980 : {'id' : '89sdjlff',
-      //     'partner' : 'jesse'
-      //   },
-      //   room098239s09 : {'id' : '8weafsdfadaww',
-      //     'partner' : 'elisabeth'
-      //   }
-      // };
+
       $scope.$watch(function () { return Chatrooms.getChatrooms(); }, function (newValue, oldValue) {
         if (newValue !== oldValue) {
            $scope.chatRooms = Chatrooms.getChatrooms();

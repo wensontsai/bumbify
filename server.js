@@ -96,8 +96,8 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(express.static(path.join(__dirname, 'public')));
 
 
 // /////////////////////
@@ -135,6 +135,14 @@ var friendRoutes = require('./routes/friendRoutes');
 /////////////////////
 // AngularJS  ROUTING
 /////////////////////
+app.get('/user/:user', function (req, res){
+    res.cookie('name', req.params.user)
+        .send('<p>cookie set: <a href="/user">view here</a>');
+});
+app.get('/user', function(req, res){
+    res.send(req.cookies.name);
+});
+
 app.post('/api/signup', authRoutes.createUser(User));
 app.post('/api/login', authRoutes.login(User));
 

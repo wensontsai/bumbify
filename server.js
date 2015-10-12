@@ -5,9 +5,17 @@ var express = require('express');
 var io = require('socket.io');
 var http = require('http');
 var port = process.env.PORT || 5000;
-
 var app = express();
 var server = http.createServer(app);
+var path = require('path');
+// var favicon = require('static-favicon');
+var logger = require('morgan');
+// var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser');
+var flash = require('connect-flash');
+
+
 
 // socket.io ////////
 io = io.listen(server);
@@ -15,16 +23,14 @@ var socket_run = require('./sockets/base');
 socket_run.runIO(io);
 
 
-var path = require('path');
-// var favicon = require('static-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-
-var flash = require('connect-flash');
+///////////////////////////////////
+// REDIS || session store /////////
+///////////////////////////////////
 var session = require('express-session');
-
-
+var _myRedis = require('redis');
+var myRedisCli = _myRedis.createClient();
+var RedisStore = require('connect-redis')(session);
+// var mongoStore = require('connect-mongo')(session);
 
 
 ////////////////////////////////////////
@@ -32,8 +38,8 @@ var session = require('express-session');
 ////////////////////////////////////////
 var Mongoose = require('mongoose');
 
-// *****  LOCAL MONGODB  ***** ///////
 
+// *****  LOCAL MONGODB  ***** ///////
 var db = Mongoose.createConnection('mongodb://localhost/bumbify',
         function(err){
             if(err){
@@ -43,8 +49,8 @@ var db = Mongoose.createConnection('mongodb://localhost/bumbify',
             }
         });
 
-// ***** HEROKU MONGODB  ***** ///////
 
+// ***** HEROKU MONGODB  ***** ///////
 // var db = Mongoose.createConnection('mongodb://heroku_6b7tq96t:rhejqj2qe7spqer6hp54t0gbtj@ds043982.mongolab.com:43982/heroku_6b7tq96t',
 //         function(err){
 //             if(err){
@@ -91,13 +97,36 @@ var ChatRoom = db.model('chat_room', ChatRoomSchema);
 // app.set('views', path.join(__dirname, 'views'));
 // app.set('view engine', 'jade');
 
+
+///////////////////////////
+//  MIDDLEWARE  || run on all requests//
+///////////////////////////
+
 // app.use(favicon());
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({
+    resave: false,  // don't save session if unmodified
+    saveUninitialized: false, // don't create session until something stored
+    secret: 'secret_f33lings',
+    store: new RedisStore({
+        client: myRedisCli,
+        host: 'localhost',
+        port: 6379
+    }),
+}));
+
+// app.use(session({
+//   resave: false, // don't save session if unmodified
+//   saveUninitialized: false, // don't create session until something stored
+//   secret: 'secret_f33lings',
+//   store: new RedisStore({client: myRedisCli})
+// }));
+
 
 
 // /////////////////////
@@ -123,7 +152,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 
-var routes = require('./routes/index');
+// var routes = require('./routes/index');
 var authRoutes = require('./routes/authRoutes');
 var gifSearchRoutes = require('./routes/gifSearchRoutes');
 
@@ -135,13 +164,13 @@ var friendRoutes = require('./routes/friendRoutes');
 /////////////////////
 // AngularJS  ROUTING
 /////////////////////
-app.get('/user/:user', function (req, res){
-    res.cookie('name', req.params.user)
-        .send('<p>cookie set: <a href="/user">view here</a>');
-});
-app.get('/user', function(req, res){
-    res.send(req.cookies.name);
-});
+// app.get('/user/:user', function (req, res){
+//     res.cookie('name', req.params.user)
+//         .send('<p>cookie set: <a href="/user">view here</a>');
+// });
+// app.get('/user', function(req, res){
+//     res.send(req.cookies.name);
+// });
 
 app.post('/api/signup', authRoutes.createUser(User));
 app.post('/api/login', authRoutes.login(User));

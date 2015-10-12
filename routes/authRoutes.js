@@ -3,6 +3,12 @@ var LocalStrategy = require('passport-local').Strategy;
 var User = require('../models/User.js');
 var bCrypt = require('bcrypt');
 var passport = require('passport');
+var flash = require('connect-flash');
+
+// var session = require('express-session');
+// var _myRedis = require('redis');
+// var myRedisCli = _myRedis.createClient();
+// var RedisStore = require('connect-redis')(session);
 
 
 // USER AUTHENTICATION  ////////////
@@ -68,6 +74,8 @@ exports.login = function(User){
         // User and password both match, return user from done method
         // which will be treated like success
           // console.dir(user);
+          req.session.key = req.body.name;
+          console.log(req.session.key);
           res.send(user);
         }
 

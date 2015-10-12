@@ -116,9 +116,18 @@ app.use(session({
     store: new RedisStore({
         client: myRedisCli,
         host: 'localhost',
-        port: 6379
+        port: 6379,
+        ttl: 600
     }),
 }));
+
+app.use(function (req, res, next){
+    if(!req.session){
+        return next(new Error('oh no, no sesshunsz!')) // handle error
+    } else {
+        next(); // otherwise continue
+    }
+});
 
 // app.use(session({
 //   resave: false, // don't save session if unmodified
@@ -164,20 +173,13 @@ var friendRoutes = require('./routes/friendRoutes');
 /////////////////////
 // AngularJS  ROUTING
 /////////////////////
-// app.get('/user/:user', function (req, res){
-//     res.cookie('name', req.params.user)
-//         .send('<p>cookie set: <a href="/user">view here</a>');
-// });
-// app.get('/user', function(req, res){
-//     res.send(req.cookies.name);
-// });
-
 app.post('/api/signup', authRoutes.createUser(User));
 app.post('/api/login', authRoutes.login(User));
 
+app.get('/api/searchHistory', gifSearchRoutes.showHistory(SearchHistory));
+
 app.post('/api/scrapes', gifSearchRoutes.showScrapes(Scraper));
 app.post('/api/searchGifs', gifSearchRoutes.searchGifs(Scraper, SearchHistory));
-app.get('/api/searchHistory', gifSearchRoutes.showHistory(SearchHistory));
 
 app.post('/api/getAllFavorites', favoritesRoutes.queryAllFavorites(Favorite));
 app.post('/api/addFavorite', favoritesRoutes.addFavorite(Favorite));

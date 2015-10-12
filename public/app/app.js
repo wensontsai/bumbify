@@ -16,6 +16,23 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
             controller: 'HistoryCtrl'
         })
 
+
+         //  SIGNUP PAGE  =================================
+        .state('signup', {
+            url: '/signup',
+            templateUrl: 'app/user/signup.html',
+            controller: 'AdminUserCtrl'
+        })
+
+         //  LOGIN PAGE  =================================
+        .state('login', {
+            url: '/login',
+            templateUrl: 'app/user/login.html',
+            controller: 'AdminUserCtrl'
+        })
+
+
+
         // CHAT PAGE AND MULTIPLE NAMED VIEWS =================================
         .state('chat', {
             url: '/chat',
@@ -98,20 +115,7 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
             controller: 'ScrapesCtrl'
         })
 
-         //  SIGNUP PAGE  =================================
-        .state('signup', {
-            url: '/signup',
-            templateUrl: 'app/user/signup.html',
-            controller: 'SignupCtrl'
-        })
-
-         //  LOGIN PAGE  =================================
-        .state('login', {
-            url: '/login',
-            templateUrl: 'app/user/login.html',
-            controller: 'LoginCtrl'
-        });
-
+        ;
 });
 
 

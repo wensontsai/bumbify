@@ -168,20 +168,24 @@ var friendRoutes = require('./routes/friendRoutes');
 // AngularJS  ROUTING
 /////////////////////
 app.get('/api/getSession', function(res, req, next){
-    if(!res.session){
+    if(!req.session){
         return false;
     }
 });
 
-var getSession = function(){
-    if(!res.session){
-        res.redirect('/');
-    } else {
-        console.log("chello");
-        next();
+// var getSession = function(){
+//     if(!res.session){
+//         res.redirect('/');
+//     } else {
+//         console.log("chello");
+//         next();
+//     }
+// };
+// app.get('/', getSession);
+app.get('/confirm-login', function (req, res) {
+        res.send(req.user)
     }
-};
-app.get('/', getSession);
+);
 
 app.post('/api/signup', authRoutes.createUser(User));
 app.post('/api/login', authRoutes.login(User));

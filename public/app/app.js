@@ -113,9 +113,28 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
             // url: '/gif_search',
             templateUrl: 'app/gif_search/gif_search.html',
             controller: 'ScrapesCtrl'
-        })
+        });
+})
 
-        ;
+// .run(function ($rootScope, $http, $location,  AuthenticationBlock){
+//     $http.get('/api/getSession').success(
+//         function(data){
+//           if(data){
+//             console.log(data);
+//             AuthenticationBlock.setLoggedIn();
+//           }
+//     });
+// });
+
+.run(function ($rootScope, $http, $location,  AuthenticationBlock){
+    $http.get('/confirm-login').success(
+        function(data){
+          if(data){
+            console.log(data);
+            $rootScope.user = data;
+            AuthenticationBlock.setLoggedIn();
+          }
+    });
 });
 
 

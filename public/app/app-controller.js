@@ -8,20 +8,20 @@ routerApp
       $scope.alert = {};
       $scope.custom = false;
 
-      $scope.init = function(){
-        // check for session.
-        // if session, set logged in on service.
-        $http.get('/api/getSession').success(
-            function(data){
-              if(data){
-                AuthenticationBlock.setLoggedIn();
-              }
-        });
+      // $scope.init = function(){
+      //   // check for session.
+      //   // if session, set logged in on service.
+      //   $http.get('/api/getSession').success(
+      //       function(data){
+      //         if(data){
+      //           AuthenticationBlock.setLoggedIn();
+      //         }
+      //   });
 
-        // else redirect to login
+      //   // else redirect to login
 
-      };
-      $scope.init();
+      // };
+      // $scope.init();
 
       // check loggedIn or not so views can hide/show
       $scope.$watch(function () { return AuthenticationBlock.checkLoggedIn(); }, function (newValue, oldValue) {

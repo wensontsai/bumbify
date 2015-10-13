@@ -32,8 +32,8 @@ angular.module('ThisApp')
             },
             setLoggedIn: function(data){
                 auth.loggedIn = true;
-                // console.log("inside set logged in func");
-                // console.log(data);
+                console.log("inside set logged in func");
+                console.log(data);
                 auth.name = data.name;
                 auth.userId = data._id;
                 $state.go('home');

@@ -121,20 +121,14 @@ app.use(session({
     }),
 }));
 
-app.use(function (req, res, next){
-    if(!req.session){
-        return next(new Error('oh no, no sesshunsz!')) // handle error
-    } else {
-        next(); // otherwise continue
-    }
-});
+// app.use(function (req, res, next){
+//     if(!req.session){
+//         return next(new Error('oh no, no sesshunsz!')); // handle error
+//     } else {
+//         next(); // otherwise continue
+//     }
+// });
 
-// app.use(session({
-//   resave: false, // don't save session if unmodified
-//   saveUninitialized: false, // don't create session until something stored
-//   secret: 'secret_f33lings',
-//   store: new RedisStore({client: myRedisCli})
-// }));
 
 
 
@@ -173,6 +167,22 @@ var friendRoutes = require('./routes/friendRoutes');
 /////////////////////
 // AngularJS  ROUTING
 /////////////////////
+app.get('/api/getSession', function(res, req, next){
+    if(!res.session){
+        return false;
+    }
+});
+
+var getSession = function(){
+    if(!res.session){
+        res.redirect('/');
+    } else {
+        console.log("chello");
+        next();
+    }
+};
+app.get('/', getSession);
+
 app.post('/api/signup', authRoutes.createUser(User));
 app.post('/api/login', authRoutes.login(User));
 
